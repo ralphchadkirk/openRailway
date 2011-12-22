@@ -1453,4 +1453,28 @@ function compile_tag_if($tag_args, $elseif)
                    }
                    }
 
+                   
+                   
+                   // GLOBAL TEMP FUNCTIONS
+                   function page_header($title)
+                   {
+                        $template = new Template();
+                        $template->set_custom_template('theme','default');
+                        $template->assign_var('TITLE','Home');
+                        $template->assign_var('ROOT',ROOT . "theme/");
+                        $template->set_filenames(array(
+                                                        'head' => 'header.html',
+                                                       ));
+                        $template->display('head');
+                   }
+                   function page_footer()
+                   {
+                        $template = new Template();
+                        $template->set_custom_template('theme','default');
+                        $template->set_filenames(array(
+                                                        'foot' => 'footer.html',
+                                                       ));
+                        $template->display('foot');
+                   }
+
 ?>
