@@ -100,3 +100,13 @@ footer {
     text-align: center;
     font-size: 50%;
 }
+
+p {
+    font-size: 80%;
+}
+article {
+    padding: 5px;
+}
+h2 {
+    font-size: 150%;
+}
