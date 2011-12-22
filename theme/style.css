@@ -110,3 +110,9 @@ article {
 h2 {
     font-size: 150%;
 }
+#system-message {
+    border-radius: 10px;
+    background-image: -webkit-linear-gradient(bottom, rgb(255,53,53) 0%, rgb(255,117,117) 100%);
+    padding: 10px;
+    color: black;
+}
