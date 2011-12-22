@@ -32,7 +32,13 @@ abbr,acronym { border:0;
     clear: both;
 }
 
-
+a {
+    text-decoration: underline;
+    color: #08C;
+}
+a:hover {
+    text-decoration: none;
+}
 
 html, body {
     padding: 0;
@@ -48,6 +54,7 @@ header {
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     box-shadow: 2px 2px 2px #888;
+    margin-bottom: 10px;
 }
 header #login {
     width: 30%;
@@ -85,7 +92,11 @@ header #logo {
     margin-bottom: 10px;
 }
 footer {
+    margin-top: 10px;
+    padding: 10px;
     background-color: #cfcfcf;
     border-top: solid 1px #999999;
     border-bottom: solid 1px #999999;
+    text-align: center;
+    font-size: 50%;
 }
