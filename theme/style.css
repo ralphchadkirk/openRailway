@@ -49,10 +49,6 @@ header {
     border-bottom-right-radius: 10px;
     box-shadow: 2px 2px 2px #888;
 }
-header #logo {
-    width: 49%;
-    float: left;
-}
 header #login {
     width: 30%;
     float: right;
@@ -67,6 +63,10 @@ header #login {
     padding-top: 5px;
     padding-left: 5px;
 }
+header #logo {
+    width: 49%;
+    float: left;
+}
 #head {
     font-size: 190%;
     font-weight: bold;
@@ -74,4 +74,9 @@ header #login {
     text-shadow: -1px -1px #858585;
     padding-left: 5px;
     margin: 0;
+}
+#head-thin {
+    font-weight: 200;
+    text-shadow: none;
+    font-size: 50%;
 }
