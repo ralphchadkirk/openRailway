@@ -63,6 +63,9 @@ header #login {
     padding-top: 5px;
     padding-left: 5px;
 }
+#login-inner {
+    font-weight: 200;
+}
 header #logo {
     width: 49%;
     float: left;
@@ -79,4 +82,10 @@ header #logo {
     font-weight: 200;
     text-shadow: none;
     font-size: 50%;
+    margin-bottom: 10px;
+}
+footer {
+    background-color: #cfcfcf;
+    border-top: solid 1px #999999;
+    border-bottom: solid 1px #999999;
 }
