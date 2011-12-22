@@ -6,7 +6,7 @@
             <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <link href="{ROOT}style.css" type="text/css" rel="stylesheet" />
-        <title>{TITLE}</title>
+            <title>{TITLE} | openRailway for {RAILWAY_NAME}</title>
     </head>
     <body>
         <header>
@@ -14,9 +14,16 @@
                 <h1 id="head">openRailway <span id="head-thin">Open source tools for heritage railways</span></h1>
             </div>
             <div id="login">
+                <!-- BEGIN switch_user_not_logged_in -->
                 <div id="login-inner">
                     You are not logged in
                 </div>
+                <!-- END switch_user_not_logged_in -->
+                <!-- BEGIN switch_user_logged_in -->
+                <div id="login-inner">
+                    Welcome {User.FName} {User.LName}
+                </div>
+                <!-- END switch_user_logged_in -->
             </div>
             <div class="clear"></div>
         </header>
