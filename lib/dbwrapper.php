@@ -11,7 +11,7 @@
     define('DB_PASS','');
     
     // Table values
-    define('','');
+    define('CONFIG_TABLE','config');
     
     
     // Connect
@@ -28,7 +28,7 @@
     // Runs query as written
     function db_query($query)
     {
-        $selected_db = mysql_select_db(DB_NAME,$con);
+        $selected_db = mysql_select_db(DB_NAME);
         if(!$selected_db)
         {
             error_handle('db','Cannot find the specified database: ' . mysql_error());
@@ -37,7 +37,6 @@
         $query_clean = mysql_real_escape_string($query);
         $result = mysql_query($query_clean);
         $row = mysql_fetch_assoc($result);
-        return $row;
     }
     
     // Close connection
