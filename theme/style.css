@@ -112,7 +112,7 @@ h2 {
 }
 #system-message {
     border-radius: 10px;
-    background-image: -webkit-linear-gradient(bottom, rgb(255,53,53) 0%, rgb(255,117,117) 100%);
-    padding: 10px;
-    color: black;
+    background-color: #ff6969;
+    padding: 6px;
+    color: #850505;
 }
