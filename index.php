@@ -3,6 +3,11 @@
     include("lib/dbwrapper.php");
     include("lib/errorhandler.php");
     include("lib/template.php");
+    db_connect();
+    
+    // Check to see if a system message is set
+    $sql = "SELECT * `title` `body` FROM `" . CONFIG_TABLE . "` WHERE `key` = 'sysmess'";
+    db_query($sql);
     
     page_header("Home");
     $template = new Template();
