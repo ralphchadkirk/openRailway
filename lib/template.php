@@ -1458,10 +1458,12 @@ function compile_tag_if($tag_args, $elseif)
                    // GLOBAL TEMP FUNCTIONS
                    function page_header($title)
                    {
+                   global $railway_name;
                         $template = new Template();
                         $template->set_custom_template('theme','default');
                         $template->assign_var('TITLE','Home');
                         $template->assign_var('ROOT',ROOT . "theme/");
+                        $template->assign_var('RAILWAY_NAME',$railway_name);
                         $template->set_filenames(array(
                                                         'head' => 'header.html',
                                                        ));
