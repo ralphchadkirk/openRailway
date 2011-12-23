@@ -26,18 +26,19 @@
     }
     
     // Runs query as written
-    function db_query($query)
-    {
-        $selected_db = mysql_select_db(DB_NAME);
-        if(!$selected_db)
-        {
-            error_handle('db','Cannot find the specified database: ' . mysql_error());
-            die();
-        }
-        $query_clean = mysql_real_escape_string($query);
-        $result = mysql_query($query_clean);
-        $row = mysql_fetch_assoc($result);
-    }
+//    function db_query($query)
+  //  {
+    //    $selected_db = mysql_select_db(DB_NAME);
+      //  if(!$selected_db)
+        //{
+//            error_handle('db','Cannot find the specified database: ' . mysql_error());
+  //          die();
+    //    }
+      //  $query_clean = mysql_real_escape_string($query);
+        //$result = mysql_query($query_clean);
+//        
+  //      return $result;
+    //}
     
     // Close connection
     function db_close()
