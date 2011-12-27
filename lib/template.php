@@ -1461,7 +1461,7 @@ function compile_tag_if($tag_args, $elseif)
                    global $railway_name;
                         $template = new Template();
                         $template->set_custom_template('theme','default');
-                        $template->assign_var('TITLE','Home');
+                        $template->assign_var('TITLE',$title);
                         $template->assign_var('ROOT',ROOT);
                         $template->assign_var('RAILWAY_NAME',$railway_name);
                         $template->set_filenames(array(
