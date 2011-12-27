@@ -124,6 +124,7 @@ article {
 h2 {
     font-size: 150%;
     margin-bottom: 7px;
+    font-weight: 200;
 }
 #system-message {
     border-radius: 10px;
