@@ -106,11 +106,9 @@ header #logo {
 }
 footer {
     margin-top: 10px;
-    padding: 10px;
-    background-color: #cfcfcf;
-    border-top: solid 1px #999999;
-    border-bottom: solid 1px #999999;
-    text-align: center;
+    padding: 3px;
+    border-top: dotted 1px #999999;
+    text-align: right;
     font-size: 60%;
 }
 
