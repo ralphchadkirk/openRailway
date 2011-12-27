@@ -162,9 +162,8 @@ nav a:active {
     
 }
 .module-container {
-    width: 25%;
-    border: solid 1px #EAEAEA;
     border-radius: 5px;
+    width: 25%;
 }
 .module-title {
     background-image: -webkit-linear-gradient(bottom, rgb(171,171,171) 0%, rgb(186,186,186) 100%);
