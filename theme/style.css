@@ -160,3 +160,30 @@ nav a:hover {
 nav a:active {
     
 }
+.module-container {
+    width: 25%;
+    border: solid 1px #EAEAEA;
+    border-radius: 5px;
+}
+.module-title {
+    background-image: -webkit-linear-gradient(bottom, rgb(171,171,171) 0%, rgb(186,186,186) 100%);
+    font-weight: 100;
+    color: white;
+    padding: 5px;
+    letter-spacing: 1px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.module-content a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 5px;
+    display: block;
+    background-color: #e6e6e6;
+    font-size: 80%;
+}
+.module-content a:hover {
+    color: #4d4d4d;
+    background-color: #f7f7f7;
+}
