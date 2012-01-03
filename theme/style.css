@@ -129,8 +129,9 @@ h2 {
 #system-message {
     border-radius: 10px;
     background-color: #ff6969;
-    padding: 6px;
+    padding: 8px;
     color: #850505;
+    margin-bottom: 20px;
 }
 nav {
     border: 1px solid #EAEAEA;
