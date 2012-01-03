@@ -3,12 +3,17 @@
     include("lib/dbwrapper.php");
     include("lib/errorhandler.php");
     include("lib/template.php");
+    include("lib/functions.php");
     db_connect();
     
     // Check to see if a system message is set
     $sql = "SELECT `value` FROM `" . CONFIG_TABLE . "` WHERE `key` = 'sysmess'";
-    db_query($sql);
-    $sysmess = $row['value'];
+//    db_query($sql);
+//    $sysmess = $row['value'];
+    
+    $result = mysql_query($sql);
+	$row = mysql_fetch_assoc($result);
+	$sysmess = $row['value'];
     
     page_header("Home");
     $template = new Template();
@@ -20,6 +25,16 @@
                                                             'TEXT' => $sysmess,
                                                            ));
     }
+    
+    // Check for avaliable modules and display
+    getInstalledModules();
+	foreach($modules as $key=>$modulename)
+	{
+		$template->assign_block_vars('module_loop',array(
+															'MODULE_NAME' => $modulename,
+														));
+	}
+    
     $template->set_filenames(array(
                                    'body' => 'home.html'
                                    ));
