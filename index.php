@@ -30,9 +30,13 @@
     getInstalledModules();
 	foreach($modules as $key=>$modulename)
 	{
-		$template->assign_block_vars('module_loop',array(
-															'MODULE_NAME' => $modulename,
-														));
+		foreach($links as $key=>$modulelink)
+		{
+			$template->assign_block_vars('module_loop',array(
+																'MODULE_NAME' => $modulename,
+																'MODULE_LINK' => 'modules/' . $modulelink,
+															));
+		}
 	}
     
     $template->set_filenames(array(

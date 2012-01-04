@@ -8,7 +8,9 @@
 		
 		// Module Array
 		global $modules;
+		global $links;
 		$modules = array();
+		$links = array();
 
 		foreach ($results as $result) 
 		{
@@ -19,9 +21,10 @@
       		  $froot = $path . "/" . $result;
       		  $ini_array = parse_ini_file($froot . "/module.cfg");
       		  array_push($modules,$ini_array['name']);
+      		  array_push($links,$ini_array['directory']);
     		}
 		}
-		
+		return $links;
 		return $modules;
 	}
 ?>
