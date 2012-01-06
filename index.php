@@ -38,6 +38,9 @@
 															));
 		}
 	}
+	getModuleConfigArray("staff");
+	print_r($ini);
+	print_r($module);
     
     $template->set_filenames(array(
                                    'body' => 'home.html'
