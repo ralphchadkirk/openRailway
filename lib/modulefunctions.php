@@ -7,9 +7,9 @@
 		$results = scandir($path);
 		
 		// Module Array
-		global $modules;
+		global $names;
 		global $links;
-		$modules = array();
+		$names = array();
 		$links = array();
 
 		foreach ($results as $result) 
@@ -20,11 +20,16 @@
 			{
       		  $froot = $path . "/" . $result;
       		  $ini_array = parse_ini_file($froot . "/module.cfg");
-      		  array_push($modules,$ini_array['name']);
+      		  array_push($names,$ini_array['name']);
       		  array_push($links,$ini_array['directory']);
     		}
 		}
 		return $links;
-		return $modules;
+		return $names;
+	}
+	
+	function getModuleConfigArray($directory)
+	{
+		global $module;
 	}
 ?>

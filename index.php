@@ -3,7 +3,7 @@
     include("lib/dbwrapper.php");
     include("lib/errorhandler.php");
     include("lib/template.php");
-    include("lib/functions.php");
+    include("lib/modulefunctions.php");
     db_connect();
     
     // Check to see if a system message is set
@@ -28,12 +28,12 @@
     
     // Check for avaliable modules and display
     getInstalledModules();
-	foreach($modules as $key=>$modulename)
+	foreach($names as $key=>$name)
 	{
 		foreach($links as $key=>$modulelink)
 		{
 			$template->assign_block_vars('module_loop',array(
-																'MODULE_NAME' => $modulename,
+																'MODULE_NAME' => $name,
 																'MODULE_LINK' => "modules/" . $modulelink,
 															));
 		}
