@@ -5,8 +5,11 @@
         <!--[if lt IE 9]>
             <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-        <link href="{ROOT}/theme/style.css" type="text/css" rel="stylesheet" />
-            <title>{TITLE} | openRailway for {RAILWAY_NAME}</title>
+		<link href="{ROOT}/theme/style.css" type="text/css" rel="stylesheet" />
+		<!-- BEGIN switch_module_css -->
+		<link href="{ROOT}/module/{Module.Name}/{Module.CSS}" type="text/css" rel="stylesheet" />
+		<!-- END switch_module_css -->
+		<title>{TITLE} | openRailway for {RAILWAY_NAME}</title>
     </head>
     <body>
         <header>

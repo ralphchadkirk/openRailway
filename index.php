@@ -34,7 +34,7 @@
 		{
 			$template->assign_block_vars('module_loop',array(
 																'MODULE_NAME' => $modulename,
-																'MODULE_LINK' => 'modules/' . $modulelink,
+																'MODULE_LINK' => "modules/" . $modulelink,
 															));
 		}
 	}
