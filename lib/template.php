@@ -1456,7 +1456,7 @@ function compile_tag_if($tag_args, $elseif)
                    
                    
                    // GLOBAL TEMP FUNCTIONS
-                   function page_header($title)
+                   function page_header($title,$modulename = null,$modulecss = null)
                    {
                    global $railway_name;
                         $template = new Template();
@@ -1464,6 +1464,10 @@ function compile_tag_if($tag_args, $elseif)
                         $template->assign_var('TITLE',$title);
                         $template->assign_var('ROOT',ROOT);
                         $template->assign_var('RAILWAY_NAME',$railway_name);
+                        $template->assign_block_vars('switch_module_css',array(
+                        														'NAME' => "name",
+                        														'CSS' => "css",
+                        													));
                         $template->set_filenames(array(
                                                         'head' => 'header.html',
                                                        ));
