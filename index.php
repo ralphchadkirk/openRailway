@@ -1,9 +1,6 @@
 <?php
     include("config.php");
-    include("lib/dbwrapper.php");
-    include("lib/errorhandler.php");
-    include("lib/template.php");
-    include("lib/modulefunctions.php");
+    openRailway_init();
     db_connect();
     
     // Check to see if a system message is set
