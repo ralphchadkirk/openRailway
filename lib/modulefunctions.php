@@ -3,32 +3,21 @@
 	
 	function getInstalledModules()
 	{
-		$path = FROOT . "modules/" . $name[0];
-		$results = scandir($path);
-		
-		// Module Array
+		$path = FROOT . "modules/";	
 		global $names;
-		global $links;
 		$names = array();
-		$links = array();
-
-		foreach ($results as $result) 
+		$dirs = scandir($path);
+		foreach($dirs as $dir)
 		{
-			if ($result === '.' or $result === '..') continue;
-
-			if (is_dir($path . '/' . $result)) 
+			if(!is_dir($dir))
 			{
-      		  $froot = $path . "/" . $result;
-      		  $ini_array = parse_ini_file($froot . "/module.cfg");
-      		  array_push($names,$ini_array['name']);
-      		  array_push($links,$ini_array['directory']);
-    		}
+				array_push($names,$dir);
+			}
 		}
-		return $links;
 		return $names;
 	}
 	
-	function getModuleConfigArray($directory)
+	function getModuleConfig($directory)
 	{
 		global $module;
 		$path = FROOT . "modules/" . $directory . "/";	

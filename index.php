@@ -28,19 +28,14 @@
     
     // Check for avaliable modules and display
     getInstalledModules();
-	foreach($names as $key=>$name)
-	{
-		foreach($links as $key=>$modulelink)
-		{
-			$template->assign_block_vars('module_loop',array(
-																'MODULE_NAME' => $name,
-																'MODULE_LINK' => "modules/" . $modulelink,
-															));
-		}
-	}
-	getModuleConfigArray("staff");
-	print_r($ini);
-	print_r($module);
+    foreach($names as $name)
+    {
+    	getModuleConfig($name);
+    	$template->assign_block_vars('module_loop',array(
+														'MODULE_NAME' => $module['name'],
+														'MODULE_LINK' => "modules/" . $module['directory'],
+													));
+    }
     
     $template->set_filenames(array(
                                    'body' => 'home.html'
