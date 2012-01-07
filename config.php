@@ -3,7 +3,7 @@
     define(FROOT,'/Users/RChadkirk/Sites/openRailway/');
     $railway_name = "Railway Name";
 
-// --------------------------- 
+// ---------------------------
 // DO NOT EDIT BELOW THIS LINE
 // ---------------------------
 	

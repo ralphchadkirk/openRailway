@@ -30,7 +30,7 @@
     	getModuleConfig($name);
     	$template->assign_block_vars('module_loop',array(
 														'MODULE_NAME' => $module['name'],
-														'MODULE_LINK' => "modules/" . $module['directory'],
+														'MODULE_LINK' => "modules/" . $module['directory'] . "/" . $module['landingpage'],
 													));
     }
     
