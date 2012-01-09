@@ -134,6 +134,8 @@ nav li {
     width: 25%;
     text-align: center;
     font-size: 90%;
+    font-weight: 200;
+    letter-spacing: 1px;
 }
 nav a {
     display: block;
@@ -173,4 +175,26 @@ nav a:active {
 .module-content a:hover {
     color: #4d4d4d;
     background-color: #f7f7f7;
+}
+table {
+	width: 100%;
+	border: solid 1px black;
+}
+table p {
+	font-size: 75%;
+}
+
+table th {
+	background-color: #e6e6e6;
+	padding: 3px;
+	font-weight: bold;
+	border: solid 1px gray;
+}
+table tr {
+	border: solid 1px gray;
+	padding: 3px;
+}
+table td {
+	border: solid 1px gray;
+	padding: 3px;
 }
