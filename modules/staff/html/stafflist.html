@@ -12,12 +12,12 @@
 			</tr>
 			<!-- BEGIN stafflist_loop -->
 			<tr>
-				<td><p>&nbsp;</p></td>
-				<td><p>&nbsp;</p></td>
-				<td><p>&nbsp;</p></td>
-				<td><p>&nbsp;</p></td>
-				<td><p>&nbsp;</p></td>
-				<td><p>&nbsp;</p></td>
+				<td><p>{stafflist_loop.ID}</p></td>
+				<td><p>{stafflist_loop.LASTNAME}</p></td>
+				<td><p>{stafflist_loop.FIRSTNAME}</p></td>
+				<td><p>{stafflist_loop.DEPARTMENT} ({stafflist_loop.SUBDEPARTMENT})</p></td>
+				<td><p>{stafflist_loop.ADDRESS}</p></td>
+				<td><p>{stafflist_loop.TELEPHONE}</p></td>
 				<td><p><a href="#">View</a> | <a href="mailto:#">Email</a></p></td>
 			</tr>
 			<!-- END stafflist_loop -->
@@ -28,16 +28,5 @@
 				</td>
 			</tr>
 			<!-- END switch_empty_recordset -->
-			<!-- TO BE REMOVED -->
-			<tr>
-				<td><p>&nbsp;</p></td>
-				<td><p>&nbsp;</p></td>
-				<td><p>&nbsp;</p></td>
-				<td><p>&nbsp;</p></td>
-				<td><p>&nbsp;</p></td>
-				<td><p>&nbsp;</p></td>
-				<td><p><a href="#">View</a> | <a href="mailto:#">Email</a></p></td>
-			</tr>
-			<!-- /TO BE REMOVED -->
 		</table>
 	</article>

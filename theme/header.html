@@ -5,34 +5,18 @@
         <!--[if lt IE 9]>
             <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
-		<link href="{ROOT}theme/style.css" type="text/css" rel="stylesheet" />
-		<!-- BEGIN switch_module_css -->
-		<link href="{ROOT}module/{switch_module_css.NAME}/{switch_module_css.CSS}" type="text/css" rel="stylesheet" />
-		<!-- END switch_module_css -->
+		<link href="{ROOT}theme/bootstrap/lib/bootstrap.less" type="text/css" rel="stylesheet/less" />
+		<script src="{ROOT}theme/less.js"></script>
 		<title>{TITLE} {MODULE_NAME} | openRailway for {RAILWAY_NAME}</title>
     </head>
     <body>
-        <header>
-            <div id="logo">
-                <h1 id="head">openRailway <span id="head-thin">Open source tools for heritage railways</span></h1>
-            </div>
-            <div id="login">
-                <!-- BEGIN switch_user_not_logged_in -->
-                <div id="login-inner">
-                    You are not logged in
-                </div>
-                <!-- END switch_user_not_logged_in -->
-                <!-- BEGIN switch_user_logged_in -->
-                <div id="login-inner">
-                    Welcome {User.FName} {User.LName}
-                </div>
-                <!-- END switch_user_logged_in -->
-            </div>
-            <div class="clear"></div>
-        </header>
-        <nav>
-            <ul>
-                <li><a href="{ROOT}index.php">Dashboard</a></li>
-            </ul>
-            <div class="clear"></div>
-        </nav>
+    	<div class="topbar" data-scrollspy="scrollspy">
+   			<div class="topbar-inner">
+    			<div class="container">
+    				<a href="{ROOT}index.php" class="brand">openRailway</a>
+     				<ul class="nav">
+      					<li><a href="{ROOT}index.php">Dashboard</a></li>
+    				</ul>
+    			</div>
+   			</div>
+ 		</div>

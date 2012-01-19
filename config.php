@@ -9,9 +9,9 @@
 	
 	function openRailway_init()
 	{
-		include_once(FROOT . "lib/dbwrapper.php");
-		include_once(FROOT . "lib/errorhandler.php");
-		include_once(FROOT . "lib/modulefunctions.php");
-		include_once(FROOT . "lib/template.php");
+		include(FROOT . "lib/dbwrapper.php");
+		include(FROOT . "lib/errorhandler.php");
+		include(FROOT . "lib/modulefunctions.php");
+		include(FROOT . "lib/template.php");
 	}
 ?>

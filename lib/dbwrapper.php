@@ -12,6 +12,7 @@
     
     // Table values
     define('CONFIG_TABLE','config');
+    define('STAFF_MASTER_TABLE','staff_master');
     
     
     // Connect
