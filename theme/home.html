@@ -1,11 +1,13 @@
         
         <article>
             <!-- BEGIN system_message -->
-            <div id="system-message">
-                <p><b>{system_message.TEXT}</b></p>
+            <div class="alert-message error fade in" data-alert="alert">
+            	<a class="close" href="#">×</a>
+            	<p><b>System message:</b></p>
+                <p>{system_message.TEXT}</p>
             </div>
             <!-- END system_message -->
-            <div class="module-container">
+ <!--          <div class="module-container">
                 <div class="module-title">
                     Avaliable modules
                 </div>
@@ -15,6 +17,7 @@
                         <a href="{module_loop.MODULE_LINK}">{module_loop.MODULE_NAME}</a>
                     </div>
                     <!-- END module_loop -->
-                </div>
-            </div>
+                </div> 
+            </div> -->
+            <h1>Your dashboard</h1>
         </article>
