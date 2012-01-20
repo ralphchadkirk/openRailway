@@ -1,15 +1,15 @@
 	<article>
-		<h2>Staff List</h2>
-		<table>
+		<h1>Staff List</h1>
+		<table class="zebra-striped">
 			<thead>
 				<tr>
-					<th><p>Staff ID</p></th>
-					<th><p>Surname</p></th>
-					<th><p>First Name</p></th>
-					<th><p>Primary department</p></th>
-					<th><p>Address</p></th>
-					<th><p>Primary phone number</p></th>
-					<th><p>&nbsp;</p></th>
+					<th>Staff ID</th>
+					<th>Surname</th>
+					<th>First Name</th>
+					<th>Department</th>
+					<th>Address</th>
+					<th>Primary phone number</th>
+					<th>&nbsp;</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -21,7 +21,7 @@
 					<td><p>{stafflist_loop.DEPARTMENT} ({stafflist_loop.SUBDEPARTMENT})</p></td>
 					<td><p>{stafflist_loop.ADDRESS}</p></td>
 					<td><p>{stafflist_loop.TELEPHONE}</p></td>
-					<td><p><a href="#">View</a> | <a href="mailto:#">Email</a></p></td>
+					<td><p><a href="staffprofile.php?id={stafflist_loop.ID}">View</a> | <a href="mailto:{stafflist_loop.EMAIL}">Email</a></p></td>
 				</tr>
 			<!-- END stafflist_loop -->
 			<!-- BEGIN switch_empty_recordset -->

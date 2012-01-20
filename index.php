@@ -23,17 +23,6 @@
                                                            ));
     }
     
-    // Check for avaliable modules and display
-    getInstalledModules();
-    foreach($names as $name)
-    {
-    	getModuleConfig($name);
-    	$template->assign_block_vars('module_loop',array(
-														'MODULE_NAME' => $module['name'],
-														'MODULE_LINK' => "modules/" . $module['directory'] . "/" . $module['landingpage'],
-													));
-    }
-    
     $template->set_filenames(array(
                                    'body' => 'home.html'
                                    ));

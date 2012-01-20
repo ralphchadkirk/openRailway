@@ -1459,11 +1459,13 @@ function compile_tag_if($tag_args, $elseif)
                    function page_header($title,$modulename = null,$moduledirectory = null,$modulecss = null)
                    {
                   		global $railway_name;
+                  		global $names;
                         $template = new Template();
                         $template->set_custom_template(FROOT . 'theme','default');
                         $template->assign_var('TITLE',$title);
                     	$template->assign_var('RAILWAY_NAME',$railway_name);
                         $template->assign_var('ROOT',ROOT);
+
                         if(isset($modulename) || isset($modulecss))
                         {
 							$template->assign_block_vars('switch_module_css',array(
@@ -1473,6 +1475,17 @@ function compile_tag_if($tag_args, $elseif)
                         	$name = ' - ' . $modulename;
                         	$template->assign_var('MODULE_NAME',$name);
                         }
+                        
+                        // Check for available modules and display in dropdown
+  						getInstalledModules();
+    					foreach($names as $name)
+    					{
+    						getModuleConfig($name);
+    						$template->assign_block_vars('module_loop',array(
+																			'MODULE_NAME' => $module['name'],
+																			'MODULE_LINK' => "modules/" . $module['directory'] . "/" . $module['landingpage'],
+																			));
+   						}
                         $template->set_filenames(array(
                                                         'head' => 'header.html',
                                                        ));
