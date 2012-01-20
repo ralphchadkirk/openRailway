@@ -1,32 +1,36 @@
 	<article>
 		<h2>Staff List</h2>
 		<table>
-			<tr>
-				<th><p>Staff ID</p></th>
-				<th><p>Surname</p></th>
-				<th><p>First Name</p></th>
-				<th><p>Primary department</p></th>
-				<th><p>Address</p></th>
-				<th><p>Primary phone number</p></th>
-				<th><p>&nbsp;</p></th>
-			</tr>
+			<thead>
+				<tr>
+					<th><p>Staff ID</p></th>
+					<th><p>Surname</p></th>
+					<th><p>First Name</p></th>
+					<th><p>Primary department</p></th>
+					<th><p>Address</p></th>
+					<th><p>Primary phone number</p></th>
+					<th><p>&nbsp;</p></th>
+				</tr>
+			</thead>
+			<tbody>
 			<!-- BEGIN stafflist_loop -->
-			<tr>
-				<td><p>{stafflist_loop.ID}</p></td>
-				<td><p>{stafflist_loop.LASTNAME}</p></td>
-				<td><p>{stafflist_loop.FIRSTNAME}</p></td>
-				<td><p>{stafflist_loop.DEPARTMENT} ({stafflist_loop.SUBDEPARTMENT})</p></td>
-				<td><p>{stafflist_loop.ADDRESS}</p></td>
-				<td><p>{stafflist_loop.TELEPHONE}</p></td>
-				<td><p><a href="#">View</a> | <a href="mailto:#">Email</a></p></td>
-			</tr>
+				<tr>
+					<td><p>{stafflist_loop.ID}</p></td>
+					<td><p>{stafflist_loop.LASTNAME}</p></td>
+					<td><p>{stafflist_loop.FIRSTNAME}</p></td>
+					<td><p>{stafflist_loop.DEPARTMENT} ({stafflist_loop.SUBDEPARTMENT})</p></td>
+					<td><p>{stafflist_loop.ADDRESS}</p></td>
+					<td><p>{stafflist_loop.TELEPHONE}</p></td>
+					<td><p><a href="#">View</a> | <a href="mailto:#">Email</a></p></td>
+				</tr>
 			<!-- END stafflist_loop -->
 			<!-- BEGIN switch_empty_recordset -->
-			<tr>
-				<td colspan="7">
-					<p>There are no staff member records to display</p>
-				</td>
-			</tr>
+				<tr>
+					<td colspan="7">
+						<p>There are no staff member records to display</p>
+					</td>
+				</tr>
 			<!-- END switch_empty_recordset -->
+			</tbody>
 		</table>
 	</article>
