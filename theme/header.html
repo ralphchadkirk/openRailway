@@ -5,18 +5,17 @@
         <!--[if lt IE 9]>
             <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<link href="{ROOT}theme/bootstrap/lib/bootstrap.less" type="text/css" rel="stylesheet/less" />
 		<script src="{ROOT}theme/less.js"></script>
 		<script src="{ROOT}theme/bootstrap/js/bootstrap-alerts.js">
-			$('.alert-message') .alert('close')
+			$(".alert-message").alert('close')
 		</script>
 		<script src="{ROOT}theme/bootstrap/js/bootstrap-tabs.js">
-			$('.tabs').tabs()
 		</script>
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<title>{TITLE} {MODULE_NAME} | openRailway for {RAILWAY_NAME}</title>
     </head>
-    <body style = "padding-top: 60px;">
+    <body id="bootstrap-js" style = "padding-top: 60px;">
     	<div class="topbar" data-scrollspy="scrollspy">
    			<div class="topbar-inner">
     			<div class="container">
