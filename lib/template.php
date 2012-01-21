@@ -1456,36 +1456,50 @@ function compile_tag_if($tag_args, $elseif)
                    
                    
                    // GLOBAL TEMP FUNCTIONS
-                   function page_header($title,$modulename = null,$moduledirectory = null,$modulecss = null)
+                   function page_header($title,$modulename = null)
                    {
                   		global $railway_name;
                   		global $names;
+                  		
+                  		if(isset($modulename))
+                  		{
+                  			$t = $title . " - " . $modulename;
+                  		} else
+                  		{
+                  			$t = $title;
+                  		}
+                  		
                         $template = new Template();
                         $template->set_custom_template(FROOT . 'theme','default');
-                        $template->assign_var('TITLE',$title);
+                        $template->assign_var('TITLE',$t);
                     	$template->assign_var('RAILWAY_NAME',$railway_name);
                         $template->assign_var('ROOT',ROOT);
-
-                        if(isset($modulename) || isset($modulecss))
+                        
+                        // Display list of modules in /modules
+                        $path = FROOT . "modules/";	
+						$names = array();
+						$dirs = scandir($path);
+						foreach($dirs as $dir)
+						{
+							if(!is_dir($dir))
+							{
+								array_push($names,$dir);
+							}
+						}
+						
+                        foreach($names as $name)
                         {
-							$template->assign_block_vars('switch_module_css',array(
-                        															'NAME' => $moduledirectory,
-                        															'CSS' => $modulecss,
-                        														));
-                        	$name = ' - ' . $modulename;
-                        	$template->assign_var('MODULE_NAME',$name);
+                        	// Get the module config details
+							$path = FROOT . "modules/" . $name . "/";	
+							$module = parse_ini_file($path . "module.cfg");
+							
+                        	$template->assign_block_vars("module_loop",array(
+                        													"MODULE_NAME" => $module['name'],
+                        													"MODULE_LINK" => "modules/" . $module['directory'] . "/" . $module['landingpage'],
+                        													));
                         }
                         
-                        // Check for available modules and display in dropdown
-  						getInstalledModules();
-    					foreach($names as $name)
-    					{
-    						getModuleConfig($name);
-    						$template->assign_block_vars('module_loop',array(
-																			'MODULE_NAME' => $module['name'],
-																			'MODULE_LINK' => "modules/" . $module['directory'] . "/" . $module['landingpage'],
-																			));
-   						}
+                        
                         $template->set_filenames(array(
                                                         'head' => 'header.html',
                                                        ));
