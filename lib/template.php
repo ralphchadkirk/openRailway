@@ -1495,7 +1495,7 @@ function compile_tag_if($tag_args, $elseif)
 							
                         	$template->assign_block_vars("module_loop",array(
                         													"MODULE_NAME" => $module['name'],
-                        													"MODULE_LINK" => "modules/" . $module['directory'] . "/" . $module['landingpage'],
+                        													"MODULE_LINK" => ROOT . "modules/" . $module['directory'] . "/" . $module['landingpage'],
                         													));
                         }
                         

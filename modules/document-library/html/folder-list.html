@@ -1,0 +1,59 @@
+	<article>
+		<h1>{FOLDER_NAME}</h1>
+		<ul class="breadcrumb">
+  			<li><a href="index.php">Library Root</a> <span class="divider">/</span></li>
+  			<!-- BEGIN foldercrumb_loop -->
+  			<li><a href=""></a> <span class="divider">/</span></li>
+  			<!-- END foldercrump_loop -->
+  			<!-- BEGIN switch_current_folder -->
+  			<li class="active">{switch_current_folder.NAME}</li>
+  			<!-- END switch_current_folder -->
+			</ul>
+		<table class="zebra-striped">
+			<thead>
+				<tr>
+					<th>Folder Name</th>
+					<th>Folder Description</th>
+					<th>&nbsp;</th>
+				</tr>
+			</thead>
+			<tbody>
+			<!-- BEGIN folderlist_loop -->
+				<tr>
+					<td><p>{folderlist_loop.NAME}</p></td>
+					<td><p>{folderlist_loop.DESC}</p></td>
+					<td><p><a href="index.php?fid={folderlist_loop.ID}">Open</a></p></td>
+				</tr>
+			<!-- END folderlist_loop -->
+			<!-- BEGIN switch_empty_recordset -->
+				<tr>
+					<td colspan="7">
+						<p>There are no folders to display</p>
+					</td>
+				</tr>
+			<!-- END switch_empty_recordset -->
+			</tbody>
+		</table>
+		<table class="zebra-striped">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Title</th>
+					<th>Synopsis</th>
+					<th>Document Status</th>
+					<th>Issue Date</td>
+					<th>Document supersedes</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</article>
