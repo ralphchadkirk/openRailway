@@ -16,6 +16,7 @@
 		
 		$template = new Template();
     	$template->set_custom_template('html','default');
+    	$template->assign_var("FOLDER_NAME",$title['folder_name']);
 
     	while($folder = mysql_fetch_assoc($sql_result))
     	{
