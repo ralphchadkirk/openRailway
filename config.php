@@ -11,7 +11,7 @@
 	{
 		include(FROOT . "lib/dbwrapper.php");
 		include(FROOT . "lib/errorhandler.php");
-		include(FROOT . "lib/modulefunctions.php");
+		include(FROOT . "lib/functions.php");
 		include(FROOT . "lib/template.php");
 	}
 ?>

@@ -14,10 +14,16 @@
 		$title = mysql_fetch_assoc($title_sql_result);
 		page_header($title['folder_name'],$module['name']);
 		
+		
 		$template = new Template();
     	$template->set_custom_template('html','default');
     	$template->assign_var("FOLDER_NAME",$title['folder_name']);
-
+		
+		if(mysql_num_rows($sql_result) == 0)
+		{
+			$template->assign_block_vars('switch_empty_recordset',array(
+																		));
+		}
     	while($folder = mysql_fetch_assoc($sql_result))
     	{
     		$template->assign_block_vars('folderlist_loop',array(
@@ -29,6 +35,9 @@
 		$template->set_filenames(array(
 										'folder-list' => 'folder-list.html'
      	                              ));
+     	$template->assign_block_vars('switch_current_folder',array(
+     																'NAME' => $title['folder_name'],
+     																));
      	$template->display('folder-list');
     
 		page_footer();
@@ -37,11 +46,11 @@
 		$sql = "SELECT * FROM `doclib_folders` WHERE `parent_id` IS NULL";
 		$sql_result = mysql_query($sql);
     	
-    	page_header("Root",$module['name']);
+    	page_header("Library Home",$module['name']);
     	$template = new Template();
     	$template->set_custom_template('html','default');
     	
-    	$template->assign_var("FOLDER_NAME","Root");
+    	$template->assign_var("FOLDER_NAME","Library Home");
     	while($folder = mysql_fetch_assoc($sql_result))
     	{
     		$template->assign_block_vars('folderlist_loop',array(
