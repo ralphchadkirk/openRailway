@@ -13,8 +13,6 @@
 		$title_sql_result = mysql_query($title_sql);
 		$title = mysql_fetch_assoc($title_sql_result);
 		page_header($title['folder_name'],$module['name']);
-		
-		
 		$template = new Template();
     	$template->set_custom_template('html','default');
     	$template->assign_var("FOLDER_NAME",$title['folder_name']);
@@ -41,6 +39,9 @@
      	$template->display('folder-list');
     
 		page_footer();
+		
+		doclibBreadcrumbArray($_GET['fid']);
+		print_r($name);
 	} else
 	{
 		$sql = "SELECT * FROM `doclib_folders` WHERE `parent_id` IS NULL";
@@ -50,6 +51,12 @@
     	$template = new Template();
     	$template->set_custom_template('html','default');
     	
+    	if(mysql_num_rows($sql_result) == 0)
+		{
+			$template->assign_block_vars('switch_empty_recordset',array(
+																		));
+		}
+		
     	$template->assign_var("FOLDER_NAME","Library Home");
     	while($folder = mysql_fetch_assoc($sql_result))
     	{
