@@ -3,7 +3,7 @@
     session_start();
     $_SESSION['session_id'] = "1";
     openRailway_init();
-    db_connect();
+    openRailwayCore::dbConnect();
     
     // Check to see if a system message is set
     $sql = "SELECT `value` FROM `" . CONFIG_TABLE . "` WHERE `key` = 'sysmess'";
@@ -16,7 +16,7 @@
     
     
     // Start output
-    page_header("Home");
+    openRailwayCore::pageHeader("Home");
     $template = new Template();
     $template->set_custom_template('theme','default');
     // If a system message is set, we'll enable the sysmess block
@@ -31,5 +31,5 @@
                                    'body' => 'home.html'
                                    ));
     $template->display('body');
-    page_footer();
+    openRailwayCore::pageFooter();
 ?>

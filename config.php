@@ -1,35 +1,28 @@
 <?php
+// ---------------------------
+// USER DEFINED VALUES
+// ---------------------------
     define(ROOT,'http://localhost/~RChadkirk/openRailway/');
     define(FROOT,'/Users/RChadkirk/Sites/openRailway/');
+    define('DB_HOST','localhost');
+    define('DB_NAME','open-railway');
+    define('DB_USER','root');
+    define('DB_PASS','');
     $railway_name = "Railway Name";
-
+    
 // ---------------------------
-// DO NOT EDIT BELOW THIS LINE
-// ---------------------------
-	
-	function openRailway_init()
-	{
-		include(FROOT . "lib/dbwrapper.php");
-		include(FROOT . "lib/errorhandler.php");
-		include(FROOT . "lib/functions.php");
-		include(FROOT . "lib/template.php");
+// TABLE VALUES
+// ---------------------------    
+    
+    define('CONFIG_TABLE','config');
+    define('STAFF_MASTER_TABLE','staff_master');
+    
+    function openRailway_init()
+    {
+		// Include the required files
+		include(FROOT . "lib/core.class.php");
+		include(FROOT . "lib/template.php");			
+		// Trigger error reports
+		error_reporting(E_ALL);
 	}
-
-	error_reporting(E_ALL);
-	
-	// Make sure that nobody who isn't logged in can see anything
-/*	if(!isset($_SESSION['session_id']))
-	{
-		include(FROOT . "lib/template.php");
-		page_header("Access not authorised");
-		$template = new Template();
-		$template->set_custom_template('theme','default');
-   		$template->set_filenames(array(
-                                		'login' => 'login.html'
-                                   		));
-    	$template->display('login');
-		page_footer();
-		// End output
-		die();
-	} */
 ?>
