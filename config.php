@@ -16,4 +16,20 @@
 	}
 
 	error_reporting(E_ALL);
+	
+	// Make sure that nobody who isn't logged in can see anything
+/*	if(!isset($_SESSION['session_id']))
+	{
+		include(FROOT . "lib/template.php");
+		page_header("Access not authorised");
+		$template = new Template();
+		$template->set_custom_template('theme','default');
+   		$template->set_filenames(array(
+                                		'login' => 'login.html'
+                                   		));
+    	$template->display('login');
+		page_footer();
+		// End output
+		die();
+	} */
 ?>

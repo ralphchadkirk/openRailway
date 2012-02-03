@@ -1,5 +1,7 @@
 <?php
     include("config.php");
+    session_start();
+    $_SESSION['session_id'] = "1";
     openRailway_init();
     db_connect();
     
@@ -12,6 +14,8 @@
 	$row = mysql_fetch_assoc($result);
 	$sysmess = $row['value'];
     
+    
+    // Start output
     page_header("Home");
     $template = new Template();
     $template->set_custom_template('theme','default');

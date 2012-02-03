@@ -6,27 +6,21 @@
             <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<link href="{ROOT}theme/bootstrap/lib/bootstrap.less" type="text/css" rel="stylesheet/less" />
-		<script src="{ROOT}theme/less.js"></script>
-		<script src="{ROOT}theme/bootstrap/js/bootstrap-alerts.js">
-			$(".alert-message").alert('close')
-		</script>
-		<script src="{ROOT}theme/bootstrap/js/bootstrap-tabs.js">
-		</script>
-		<script src="{ROOT}theme/bootstrap/js/bootstrap-dropdown.js">
-			$('.topbar').dropdown()
+		<link href="{ROOT}theme/css/bootstrap.css" type="text/css" rel="stylesheet" />
+		<script src="{ROOT}theme/js/bootstrap.js">
+			$(".alert-message").alert()
 		</script>
 		<title>{TITLE} | openRailway for {RAILWAY_NAME}</title>
     </head>
     <body id="bootstrap-js" style = "padding-top: 60px;">
-    	<div class="topbar" data-scrollspy="scrollspy">
-   			<div class="topbar-inner">
+    	<div class="navbar navbar-fixed-top" data-scrollspy="scrollspy">
+   			<div class="navbar-inner">
     			<div class="container">
     				<a href="{ROOT}index.php" class="brand">openRailway</a>
      				<ul class="nav">
       					<li><a href="{ROOT}index.php">Dashboard</a></li>
       					<li class="dropdown" data-dropdown="dropdown">
-      						<a href="#" class="dropdown-toggle">Modules</a>
+      						<a href="#" class="dropdown-toggle">Modules<span class="caret"></span></a>
       						<ul class="dropdown-menu">
       							<!-- BEGIN module_loop -->
       							<li><a href="{module_loop.MODULE_LINK}">{module_loop.MODULE_NAME}</a></li>
@@ -40,15 +34,9 @@
  		<div class="container">
  			<div class="content">
  				<div class="row">
- 					<div class="span12">
- 						&nbsp;
- 					</div>
- 					<div class="span4">
- 						{DATE}
- 					</div>
  				</div>
  				<div class="row">
- 					<div class="span16">
+ 					<div class="span12">
  						&nbsp;
  					</div>
  				</div>
