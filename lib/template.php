@@ -1499,6 +1499,7 @@ function compile_tag_if($tag_args, $elseif)
                         													));
                         }
                         
+                        $template->assign_var('DATE',date("l jS F Y"));
                         
                         $template->set_filenames(array(
                                                         'head' => 'header.html',
