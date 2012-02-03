@@ -14,4 +14,6 @@
 		include(FROOT . "lib/functions.php");
 		include(FROOT . "lib/template.php");
 	}
+
+	error_reporting(E_ALL);
 ?>
