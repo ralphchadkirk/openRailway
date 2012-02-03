@@ -1486,19 +1486,18 @@ function compile_tag_if($tag_args, $elseif)
 								array_push($names,$dir);
 							}
 						}
-						
-                        foreach($names as $name)
-                        {
-                        	// Get the module config details
+                  		foreach($names as $name)
+                   		{
+                   		 	// Get the module config details
 							$path = FROOT . "modules/" . $name . "/";	
 							$module = parse_ini_file($path . "module.cfg");
 							
-                        	$template->assign_block_vars("module_loop",array(
-                        													"MODULE_NAME" => $module['name'],
-                        													"MODULE_LINK" => ROOT . "modules/" . $module['directory'] . "/" . $module['landingpage'],
-                        													));
+                  		  	$template->assign_block_vars("module_loop",array(
+                  		  													"MODULE_NAME" => $module['name'],
+                		  													"MODULE_LINK" => ROOT . "modules/" . $module['directory'] . "/" . $module['landingpage'],
+                       	 													));
                         }
-                        
+
                         $template->assign_var('DATE',date("l jS F Y"));
                         
                         $template->set_filenames(array(
