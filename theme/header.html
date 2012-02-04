@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="UTF8">
+        <meta charset="UTF-8">
         <!--[if lt IE 9]>
             <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<link href="{ROOT}theme/css/bootstrap.css" type="text/css" rel="stylesheet" />
-		<script src="{ROOT}theme/js/bootstrap.js">
-			$(".alert-message").alert()
+		<script src="{ROOT}theme/js/bootstrap.js" type="text/javascript">
+			$(".alert-message").alert();
+			$('.dropdown-toggle').dropdown();
 		</script>
 		<title>{TITLE} | openRailway for {RAILWAY_NAME}</title>
     </head>
@@ -16,12 +17,12 @@
     	<div class="navbar navbar-fixed-top" data-scrollspy="scrollspy">
    			<div class="navbar-inner">
     			<div class="container">
-    				<a href="{ROOT}index.php" class="brand">openRailway</a>
+    				<a href="#" class="brand">openRailway</a>
      				<ul class="nav">
       					<li><a href="{ROOT}index.php">Dashboard</a></li>
       					<li class="divider-vertical"></li>
-      					<li class="dropdown" data-dropdown="dropdown">
-      						<a href="#" class="dropdown-toggle">Modules<span class="caret"></span></a>
+      					<li class="dropdown">
+      						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Modules<span class="caret"></span></a>
       						<ul class="dropdown-menu">
       							<!-- BEGIN module_loop -->
       							<li><a href="{module_loop.MODULE_LINK}">{module_loop.MODULE_NAME}</a></li>
@@ -29,6 +30,19 @@
       						</ul>
       					</li>
     				</ul>
+    				<!-- BEGIN if_user_logged_in -->
+    				<ul class="nav pull-right">
+    					<li class="dropdown">
+    						<a href="#" class="dropdown-toggle" data-toggle="dropdown">{if_user_logged_in.NAME}<span class="caret"></span></a>
+    						<ul class="dropdown-menu">
+    							<li><a href="#">Profile</a></li>
+    							<li><a href="#">Messaging (0)</a></li>
+    							<li class="divider"></li>
+    							<li><a href="#"><b>Log out</b></a></li>
+    						</ul>
+    					</li>
+    				</ul>
+    				<!-- END if_user_logged_in -->
     			</div>
    			</div>
  		</div>
