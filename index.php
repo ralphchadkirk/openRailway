@@ -4,6 +4,7 @@
     openRailway_init();
     openRailwayCore::dbConnect();
     Authentication::blockPageToVisitors();
+    Authentication::logUserIn();
     
     // Check to see if a system message is set
     $sql = "SELECT `value` FROM `" . CONFIG_TABLE . "` WHERE `key` = 'sysmess'";
