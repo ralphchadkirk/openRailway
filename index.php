@@ -1,7 +1,6 @@
 <?php
     include("config.php");
     session_start();
-    $_SESSION['session_id'] = "1";
     openRailway_init();
     openRailwayCore::dbConnect();
     
