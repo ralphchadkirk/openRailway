@@ -3,11 +3,11 @@
     session_start();
     openRailway_init();
     openRailwayCore::dbConnect();
-    Authentication::blockPageToVisitors();
-    if(($_POST['username'] !== null) && ($_POST['password'] !== null))
+    if(isset($_POST['username']) && isset($_POST['password']))
     {
     	Authentication::logUserIn($_POST['username'],$_POST['password']);
     }
+    Authentication::blockPageToVisitors();
     
     // Check to see if a system message is set
     $sql = "SELECT `value` FROM `" . CONFIG_TABLE . "` WHERE `key` = 'sysmess'";
