@@ -56,6 +56,12 @@
             $template->assign_var('TITLE',$t);
             $template->assign_var('RAILWAY_NAME',$railway_name);
             $template->assign_var('ROOT',ROOT);
+            if(isset($_SESSION['session_id']))
+            {
+            	$template->assign_block_vars('if_user_logged_in',array(
+            															'NAME' => "Name here",
+            														));
+            }
                         
             // Display list of modules in /modules
             $path = FROOT . "modules/";	
@@ -94,6 +100,10 @@
             $template->set_custom_template(FROOT .'theme','default');
             $template->assign_var('RAILWAY_NAME',$railway_name);
             $template->assign_var('CURRENT_YEAR',gmdate("Y"));
+            if(isset($_SESSION['session_id']))
+            {
+            	$template->assign_block_vars('if_user_logged_in','');
+            }
             $template->set_filenames(array(
                                             'foot' => 'footer.html',
                                         	));
