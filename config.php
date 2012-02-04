@@ -21,6 +21,7 @@
     {
 		// Include the required files
 		include(FROOT . "lib/core.class.php");
+		include(FROOT . "lib/auth.class.php");
 		include(FROOT . "lib/template.php");			
 		// Trigger error reports
 		error_reporting(E_ALL);
