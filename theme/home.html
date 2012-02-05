@@ -29,6 +29,20 @@
             	</div>
             	<div class="span4">
             		<h6>Messaging</h6>
+            		<table class="table table-bordered table-striped table-condensed">
+            			<thead>
+            				<tr>
+            					<th>From</th>
+            					<th>Message</th>
+            				</tr>
+            			</thead>
+            			<tbody>
+            				<tr>
+            					<td>From</td>
+            					<td><u>Subject</u><br />Message</td>
+            				</tr>
+            			</tbody>
+            		</table>
             	</div>
             </div>
             <div class="row">
@@ -38,13 +52,26 @@
             	</div>
             	<div class="span5">
             		<hr />
-            		<p><a href="#">What is the activity panel?</a></p>
+            		<p><a href="#activity-pane" data-toggle="modal">What is the activity panel?</a></p>
             	</div>
             	<div class="span4">
             		<hr />
             		<div class="btn-group">
             			<button class="btn btn-small"><i class="icon-pencil"></i> Compose</button> <button class="btn btn-small"><i class="icon-share-alt"></i> Reply</button><button class="btn btn-small"><i class="icon-arrow-left"></i> Forward</button> <button class="btn btn-danger btn-small"><i class="icon-trash icon-white"></i> Delete</button> 
             		</div>
+            	</div>
+            </div>
+            <div class="modal fade" id="activity-pane">
+            	<div class="modal-header">
+            		<a class="close" data-dismiss="modal">×</a>
+            		<h3>What is the activity panel?</h3>
+            	</div>
+            	<div class="modal-body">
+            		<p>The activity pane shows you what other users are doing on the site (within your set permissions). This allows you to keep on top of what's happening, and making sure that processes are being carried out correctly.</p>
+            		<p>Important messaages (like system messages) will also be displayed here, as well as general messages to openRailway users.</p>
+            	</div>
+            	<div class="modal-footer">
+            		<a href="#" class="btn" data-dismiss="modal">Close</a>
             	</div>
             </div>
         </article>
