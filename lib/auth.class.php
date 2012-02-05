@@ -9,7 +9,7 @@
     		$string = "";    
     		for ($p = 0; $p < $length; $p++)
     		{
-       			$string .= $characters[mt_rand(0, strlen($characters))];
+       			$string .= $characters[mt_rand(0, strlen($characters) -1)];
     		}
    			return $string;
 		}
@@ -20,6 +20,14 @@
 				openRailwayCore::pageHeader("Access not authorised");
 				$template = new Template;
 				$template->set_custom_template('theme','default');
+				if((isset($_GET['l'])) && ($_GET['l'] == 'fail'))
+				{
+					$template->assign_block_vars('if_login_failed',array());
+				}
+				if((isset($_GET['l'])) && ($_GET['l'] == "logout"))
+				{
+					$template->assign_block_vars('if_logged_out',array());
+				}
 				$template->set_filenames(array(
                                    				'body' => 'login.html'
                                    			));
@@ -50,7 +58,8 @@
 		}
 		public static function logUserOut()
 		{
-			unset($_SESSION);
+			session_destroy();
+			header("Location: " . ROOT . "index.php?l=logout");
 		}
 	}
 ?>
