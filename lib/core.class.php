@@ -121,5 +121,10 @@
 			$module = parse_ini_file($path . "module.cfg");
 		}
 		
+		// Action Logger
+		public static function logAction($uid,$time,$action,$module = null)
+		{
+		}
+		
 	}
 ?>
