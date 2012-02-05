@@ -10,6 +10,16 @@
         	</div>
         	<div class="row">
         		<div class="span12">
+        			<!-- BEGIN if_login_failed -->
+        			<div class="alert alert-error">
+        				<p>Sorry, either your username or password was not correct. Please try again. <a href="#">Forgotton your password?</a></p>
+        			</div>
+        			<!-- END if_login_failed -->
+        			<!-- BEGIN if_logged_out -->
+        			<div class="alert alert-success">
+        				<p>Your account has been successfully logged out.</p>
+        			</div>
+        			<!-- END if_logged_out -->
         			<form class="form" method="post" action="">
         				<label>Username</label>
         				<input name="username" type="text" class="span4" />
