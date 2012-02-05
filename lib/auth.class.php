@@ -47,6 +47,7 @@
 				$_SESSION['session_id'] = Authentication::genRandomString();
 				$_SESSION['user_id'] = $row['user_id'];
 				$_SESSION['log_in_time'] = time();
+				$_SESSION['staff_id'] = $row['staff_id'];
 				$sql = "INSERT INTO sessions(session_id,log_in_time,user_id) VALUES (" . $_SESSION['session_id'] . "," . $_SESSION['log_in_time'] . "," . $_SESSION['user_id'] . ")";
 				mysql_query($sql);
 				header("Location: " . ROOT . "index.php");
@@ -61,5 +62,11 @@
 			session_destroy();
 			header("Location: " . ROOT . "index.php?l=logout");
 		}
+/*		public static function getDetailsOfUserLoggedIn($uid)
+		{
+			$query = "SELECT * FROM `staff_master` WHERE `staff_id` = '" . $uid . "'";
+			$result = mysql_query($query);
+			return($result);
+		} */
 	}
 ?>
