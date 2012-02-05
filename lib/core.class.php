@@ -58,8 +58,11 @@
             $template->assign_var('ROOT',ROOT);
             if(isset($_SESSION['session_id']))
             {
+            	$query = "SELECT * FROM `staff_master` WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'";
+            	$result = mysql_query($query);
+            	$row = mysql_fetch_assoc($result);
             	$template->assign_block_vars('if_user_logged_in',array(
-            															'NAME' => "Name here",
+            															'NAME' => $row['first_name'] . " " . $row['surname'],
             														));
             }
                         
