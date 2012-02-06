@@ -32,7 +32,7 @@
                                                            ));
     }
     $query = "SELECT * FROM `staff_master` WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'";
-    $result = mysql_query($query);
+    $result = openRailwayCore::dbQuery($query);
     $staff = mysql_fetch_assoc($result);
     $dobunix = strtotime($staff['date_of_birth']);
     $dob = date("d/m/Y",$dobunix);
