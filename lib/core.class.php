@@ -20,6 +20,8 @@
 		
 		public static function dbQuery($query)
 		{
+   			$result = mysql_query($query);
+  			return $result; 
 		}
 		
 		// Error Handling

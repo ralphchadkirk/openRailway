@@ -14,11 +14,8 @@
     Authentication::blockPageToVisitors();
     
     // Check to see if a system message is set
-    $sql = "SELECT `value` FROM `" . CONFIG_TABLE . "` WHERE `key` = 'sysmess'";
-//    db_query($sql);
-//    $sysmess = $row['value'];
-    
-    $result = mysql_query($sql);
+	$sql = "SELECT `value` FROM `" . CONFIG_TABLE . "` WHERE `key` = 'sysmess'";
+	$result = openRailwayCore::dbQuery($sql);
 	$row = mysql_fetch_assoc($result);
 	$sysmess = $row['value'];
     
