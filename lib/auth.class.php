@@ -52,9 +52,11 @@
 				$sql = "INSERT INTO sessions VALUES ('" . $_SESSION['session_id'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['user_id'] . "','" . $_SESSION['staff_id'] . "')";
 				$result = openRailwayCore::dbQuery($sql);
 				header("Location: " . ROOT . "index.php");
+				openRailwayCore::logAction($_SESSION['user_id'],"login");
 			}
 			else 
 			{
+				openRailwayCore::logAction("","failed-login");
 				header("Location: " . ROOT . "index.php?l=fail");
 			}
 		}
@@ -62,6 +64,7 @@
 		{
 			$sql = "DELETE FROM sessions WHERE `session_id` = '" . $_SESSION['session_id'] . "'";
 			$result = openRailwayCore::dbQuery($sql);
+			openRailwayCore::logAction($_SESSION['user_id'],"logout");
 			session_destroy();
 			header("Location: " . ROOT . "index.php?l=logout");
 		}

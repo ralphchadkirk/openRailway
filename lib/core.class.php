@@ -124,8 +124,10 @@
 		}
 		
 		// Action Logger
-		public static function logAction($uid,$time,$action,$module = null)
+		public static function logAction($uid = null,$type,$onstaffid = null)
 		{
+			$sql = "INSERT INTO activity_log(user_id,on_staff_id,time,type,ip) VALUES('" . $uid . "','" . $onstaffid . "','" . time() . "','" . $type . "','" . $_SERVER['REMOTE_ADDR'] . "')";
+			$result = openRailwayCore::dbQuery($sql);
 		}
 		
 	}
