@@ -28,6 +28,7 @@
 				{
 					$template->assign_block_vars('if_logged_out',array());
 				}
+				$template->assign_var('ROOT',ROOT);
 				$template->set_filenames(array(
                                    				'body' => 'login.html'
                                    			));
