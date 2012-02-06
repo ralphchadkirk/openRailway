@@ -40,24 +40,24 @@
 		// Templates
 		public static function pageHeader($title,$modulename = null)
 		{
-		    global $railway_name;
-            global $names;
+			global $railway_name;
+			global $names;
                   		
-            if(isset($modulename))
-            {
+			if(isset($modulename))
+			{
             	$t = $title . " - " . $modulename;
-            } else
-            {
+			} else
+			{
                 $t = $title;
-            }
+			}
                   		
-            $template = new Template();
-            $template->set_custom_template(FROOT . 'theme','default');
-            $template->assign_var('TITLE',$t);
-            $template->assign_var('RAILWAY_NAME',$railway_name);
-            $template->assign_var('ROOT',ROOT);
-            if(isset($_SESSION['session_id']))
-            {
+			$template = new Template();
+			$template->set_custom_template(FROOT . 'theme','default');
+			$template->assign_var('TITLE',$t);
+			$template->assign_var('RAILWAY_NAME',$railway_name);
+			$template->assign_var('ROOT',ROOT);
+			if(isset($_SESSION['session_id']))
+			{
             	$query = "SELECT * FROM `staff_master` WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'";
             	$result = mysql_query($query);
             	$row = mysql_fetch_assoc($result);
@@ -66,8 +66,8 @@
             														));
             }
                         
-            // Display list of modules in /modules
-            $path = FROOT . "modules/";	
+			// Display list of modules in /modules
+			$path = FROOT . "modules/";	
 			$names = array();
 			$dirs = scandir($path);
 			foreach($dirs as $dir)
@@ -77,8 +77,8 @@
 					array_push($names,$dir);
 				}
 			}
-            foreach($names as $name)
-            {
+			foreach($names as $name)
+			{
                 // Get the module config details
 				$path = FROOT . "modules/" . $name . "/";	
 				$module = parse_ini_file($path . "module.cfg");
@@ -86,14 +86,14 @@
                   		  											"MODULE_NAME" => $module['name'],
                 		  											"MODULE_LINK" => ROOT . "modules/" . $module['directory'] . "/" . $module['landingpage'],
                        	 										));
-            }
+			}
 
-            $template->assign_var('DATE',date("l jS F Y"));
+			$template->assign_var('DATE',date("l jS F Y"));
                         
-            $template->set_filenames(array(
+			$template->set_filenames(array(
                                             'head' => 'header.html',
                                          ));
-            $template->display('head');
+			$template->display('head');
 		}
 		
 		public static function pageFooter()
