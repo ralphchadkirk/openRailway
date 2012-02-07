@@ -1,0 +1,6 @@
+1328598725 | db | Cannot find the specified database: Access denied for user ''@'localhost' to database 'open-railway' 
+1328599141 | db | Cannot find the specified database: Access denied for user ''@'localhost' to database 'open-railway' 
+1328599164 | db | Cannot find the specified database: Access denied for user ''@'localhost' to database 'open-railwayy' 
+1328599165 | db | Cannot find the specified database: Access denied for user ''@'localhost' to database 'open-railwayy' 
+1328599171 | db | Could not connect to database: Unknown MySQL server host 'localhostt' (1) 
+1328599172 | db | Could not connect to database: Unknown MySQL server host 'localhostt' (1) 
