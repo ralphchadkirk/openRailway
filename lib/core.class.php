@@ -7,13 +7,13 @@
 			$con = mysql_connect(DB_HOST,DB_USER,DB_PASS);
     		if(!$con)
         	{
-            	errorHandler('db','Could not connect to database: ' . mysql_error());
+            	openRailwayCore::errorHandler('db','Could not connect to database: ' . mysql_error());
             	die();
         	}
        		$selected_db = mysql_select_db(DB_NAME);
         	if(!$selected_db)
         	{
-            	errorHandler('db','Cannot find the specified database: ' . mysql_error());
+            	openRailwayCore::errorHandler('db','Cannot find the specified database: ' . mysql_error());
             	die();
         	}
 		}
@@ -27,16 +27,16 @@
 		// Error Handling
 		public static function errorHandler($type,$description)
 		{
-			// Display error page here
-        
         	// Logging the error
-       		$errortime = date();
-        	$file = "errorlog.txt";
-        	$fopenfile = fopen($file,'a') or die('Fatal error\n Error logging file cannot be found');
-        	$string = $errortime . " " . $type . " " . $description . "\n";
+       		$errortime = time();
+        	$file = FROOT . "lib/errorlog.txt";
+        	$fopenfile = fopen($file,'a') or die('Fatal error \n Error logging file cannot be found');
+        	$string = $errortime . " | " . $type . " | " . $description . " \n";
         	// Write string to file
         	fwrite($fopenfile,$string);
         	fclose($fopenfile);
+        	// Error page
+        	die();
 		}
 		
 		// Templates
