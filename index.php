@@ -18,6 +18,13 @@
 	$result = openRailwayCore::dbQuery($sql);
 	$row = mysql_fetch_assoc($result);
 	$sysmess = $row['value'];
+	
+	// Get staff profile
+	$query = "SELECT * FROM `staff_master` WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'";
+    $result = openRailwayCore::dbQuery($query);
+    $staff = mysql_fetch_assoc($result);
+    $dobunix = strtotime($staff['date_of_birth']);
+    $dob = date("d/m/Y",$dobunix);
     
     
     // Start output
@@ -31,11 +38,6 @@
                                                             'TEXT' => $sysmess,
                                                            ));
     }
-    $query = "SELECT * FROM `staff_master` WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'";
-    $result = openRailwayCore::dbQuery($query);
-    $staff = mysql_fetch_assoc($result);
-    $dobunix = strtotime($staff['date_of_birth']);
-    $dob = date("d/m/Y",$dobunix);
     $template->assign_var('FULL_NAME',$staff['first_name'] . " " . $staff['middle_name'] . " " . $staff['surname']);
     $template->assign_var('ADDRESS',nl2br($staff['address']));
     $template->assign_var('DOB',$dob);

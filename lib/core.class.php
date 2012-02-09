@@ -7,13 +7,13 @@
 			$con = mysql_connect(DB_HOST,DB_USER,DB_PASS);
     		if(!$con)
         	{
-            	openRailwayCore::errorHandler('db','Could not connect to database: ' . mysql_error());
+            	// ERROR
             	die();
         	}
        		$selected_db = mysql_select_db(DB_NAME);
         	if(!$selected_db)
         	{
-            	openRailwayCore::errorHandler('db','Cannot find the specified database: ' . mysql_error());
+            	// ERROR
             	die();
         	}
 		}
