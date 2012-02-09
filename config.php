@@ -6,7 +6,7 @@
     define(FROOT,'/Users/RChadkirk/Sites/openRailway/');
     define('DB_HOST','localhost');
     define('DB_NAME','open-railway');
-    define('DB_USER','root1');
+    define('DB_USER','root');
     define('DB_PASS','');
     $railway_name = "Railway Name";
     

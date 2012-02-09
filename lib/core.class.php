@@ -27,7 +27,7 @@
 		// Error Handling
 		public static function errorHandler($type,$description)
 		{
-        	// Logging the error
+/*        	// Logging the error
        		$errortime = time();
         	$file = FROOT . "lib/errorlog.txt";
         	$fopenfile = fopen($file,'a') or die('Fatal error \n Error logging file cannot be found');
@@ -36,7 +36,7 @@
         	fwrite($fopenfile,$string);
         	fclose($fopenfile);
         	// Error page
-        	die();
+        	die(); */
 		}
 		
 		// Templates
