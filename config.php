@@ -16,14 +16,6 @@
     
     define('CONFIG_TABLE','config');
     define('STAFF_MASTER_TABLE','staff_master');
-    
-    function openRailway_init()
-    {
-		// Include the required files
-		include(FROOT . "lib/core.class.php");
-		include(FROOT . "lib/auth.class.php");
-		include(FROOT . "lib/template.php");			
-		// Trigger error reports
-		error_reporting(E_ALL);
-	}
+	
+	include(FROOT . "lib/core.class.php");
 ?>

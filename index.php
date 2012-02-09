@@ -1,7 +1,7 @@
 <?php
     include("config.php");
     session_start();
-    openRailway_init();
+	openRailwayCore::initialisation();
     openRailwayCore::dbConnect();
     if(isset($_POST['username']) && isset($_POST['password']))
     {

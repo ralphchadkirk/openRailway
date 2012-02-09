@@ -1,6 +1,14 @@
 <?php
 	class openRailwayCore
 	{
+		public static function initialisation()
+		{
+			// Include required files
+			include(FROOT . "lib/auth.class.php");
+			include(FROOT . "lib/perm.class.php");
+			include(FROOT . "lib/temp.class.php");
+			error_reporting(E_ALL);
+		}
 		// Database
 		public static function dbConnect()
 		{
