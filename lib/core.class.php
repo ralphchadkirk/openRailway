@@ -15,48 +15,33 @@
 			$con = mysql_connect(DB_HOST,DB_USER,DB_PASS);
     		if(!$con)
         	{
-            	// ERROR
-            	die();
+            	trigger_error("Could not connect to database with credentials supplied in config.php",E_USER_ERROR);
         	}
        		$selected_db = mysql_select_db(DB_NAME);
         	if(!$selected_db)
         	{
-            	// ERROR
-            	die();
+            	trigger_error("Database '" . DB_NAME . "' could not be found",E_USER_ERROR);
         	}
 		}
 		
 		public static function dbQuery($query)
 		{
    			$result = mysql_query($query);
+			if(!$result)
+			{
+				trigger_error("Query failed: $query",E_USER_ERROR);
+			}
   			return $result; 
 		}
 		
 		public static function deleteFrom($table,$wherefield,$operator,$whereparameter)
 		{
-			if((!isset($table)) && (!isset($wherefield)) && (!isset($whereparameter)) && (!isset($operator)))
-			{
-				trigger_error('One or more arguments is missing for openRailwayCore::deleteFrom()',E_USER_ERROR);
-			   die();
-			}
 			$sql = "DELETE FROM `" . $table . "` WHERE `" . $wherefield . "` " . $operator . " '" .$whereparameter . "'";
 			$result = mysql_query($sql);
-		}
-		
-		
-		// Error Handling
-		public static function errorHandler($type,$description)
-		{
-/*        	// Logging the error
-       		$errortime = time();
-        	$file = FROOT . "lib/errorlog.txt";
-        	$fopenfile = fopen($file,'a') or die('Fatal error \n Error logging file cannot be found');
-        	$string = $errortime . " | " . $type . " | " . $description . " \n";
-        	// Write string to file
-        	fwrite($fopenfile,$string);
-        	fclose($fopenfile);
-        	// Error page
-        	die(); */
+			if(!$result)
+			{
+				trigger_error("Could not delete record: $sql",E_USER_ERROR);
+			}
 		}
 		
 		// Templates
