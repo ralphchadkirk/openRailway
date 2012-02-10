@@ -16,6 +16,8 @@
     
     define('CONFIG_TABLE','config');
     define('STAFF_MASTER_TABLE','staff_master');
+	define('SESSIONS_TABLE','sessions');
+	define('USERS_TABLE','users');
 	
 	include(FROOT . "lib/core.class.php");
 ?>

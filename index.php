@@ -20,7 +20,7 @@
 	$sysmess = $row['value'];
 	
 	// Get staff profile
-	$query = "SELECT * FROM `staff_master` WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'";
+	$query = "SELECT * FROM `" . STAFF_MASTER_TABLE . "` WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'";
     $result = openRailwayCore::dbQuery($query);
     $staff = mysql_fetch_assoc($result);
     $dobunix = strtotime($staff['date_of_birth']);

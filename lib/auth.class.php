@@ -40,7 +40,7 @@
 		public static function logUserIn($username,$password)
 		{
 			openRailwayCore::dbConnect();
-			$query = "SELECT * FROM `users` WHERE `username` = '" . $username . "' AND password = MD5('" . $password . "')";
+			$query = "SELECT * FROM `" . USERS_TABLE . "` WHERE `username` = '" . $username . "' AND password = MD5('" . $password . "')";
 			$result = openRailwayCore::dbQuery($query);
 			if(mysql_num_rows($result) >0)
 			{
@@ -49,7 +49,7 @@
 				$_SESSION['user_id'] = $row['user_id'];
 				$_SESSION['log_in_time'] = time();
 				$_SESSION['staff_id'] = $row['staff_id'];
-				$sql = "INSERT INTO sessions VALUES ('" . $_SESSION['session_id'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['user_id'] . "','" . $_SESSION['staff_id'] . "')";
+				$sql = "INSERT INTO " . SESSIONS_TABLE . " VALUES ('" . $_SESSION['session_id'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['user_id'] . "','" . $_SESSION['staff_id'] . "')";
 				$result = openRailwayCore::dbQuery($sql);
 				header("Location: " . ROOT . "index.php");
 				openRailwayCore::logAction($_SESSION['user_id'],"login");
@@ -62,7 +62,7 @@
 		}
 		public static function logUserOut()
 		{
-			$sql = "DELETE FROM sessions WHERE `session_id` = '" . $_SESSION['session_id'] . "'";
+			$sql = "DELETE FROM " . SESSIONS_TABLE . " WHERE `session_id` = '" . $_SESSION['session_id'] . "'";
 			$result = openRailwayCore::dbQuery($sql);
 			openRailwayCore::logAction($_SESSION['user_id'],"logout");
 			session_destroy();
@@ -70,7 +70,7 @@
 		}
 /*		public static function getDetailsOfUserLoggedIn($uid)
 		{
-			$query = "SELECT * FROM `staff_master` WHERE `staff_id` = '" . $uid . "'";
+			$query = "SELECT * FROM `" . STAFF_MASTER_TABLE . "` WHERE `staff_id` = '" . $uid . "'";
 			$result = mysql_query($query);
 			return($result);
 		} */
