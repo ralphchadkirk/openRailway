@@ -9,6 +9,20 @@
 			include(FROOT . "lib/temp.class.php");
 			error_reporting(E_ALL);
 		}
+		// Error Handler
+		public static function error_handler($errno,$errstr,$errfile,$errline)
+		{
+			switch($errno):
+			case E_USER_ERROR:
+				break;
+			case E_USER_NOTICE:
+				break;
+			case E_USER_WARNING:
+				break;
+			default:
+				break;
+			endswitch;
+		}
 		// Database
 		public static function dbConnect()
 		{
