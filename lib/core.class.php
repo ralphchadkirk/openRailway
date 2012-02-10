@@ -32,6 +32,18 @@
   			return $result; 
 		}
 		
+		public static function deleteFrom($table,$wherefield,$operator,$whereparameter)
+		{
+			if((!isset($table)) && (!isset($wherefield)) && (!isset($whereparameter)) && (!isset($operator)))
+			{
+				trigger_error('One or more arguments is missing for openRailwayCore::deleteFrom()',E_USER_ERROR);
+			   die();
+			}
+			$sql = "DELETE FROM `" . $table . "` WHERE `" . $wherefield . "` " . $operator . " '" .$whereparameter . "'";
+			$result = mysql_query($sql);
+		}
+		
+		
 		// Error Handling
 		public static function errorHandler($type,$description)
 		{

@@ -62,8 +62,7 @@
 		}
 		public static function logUserOut()
 		{
-			$sql = "DELETE FROM " . SESSIONS_TABLE . " WHERE `session_id` = '" . $_SESSION['session_id'] . "'";
-			$result = openRailwayCore::dbQuery($sql);
+			openRailwayCore::deleteFrom(SESSIONS_TABLE,'session_id','=',$_SESSION['session_id']);
 			openRailwayCore::logAction($_SESSION['user_id'],"logout");
 			session_destroy();
 			header("Location: " . ROOT . "index.php?l=logout");
