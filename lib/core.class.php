@@ -90,9 +90,9 @@
 				$path = FROOT . "modules/" . $name . "/";	
 				$module = parse_ini_file($path . "module.cfg");
 				$template->assign_block_vars("module_loop",array(
-																	"MODULE_NAME" => $module['name'],
-																	"MODULE_LINK" => ROOT . "modules/" . $module['directory'] . "/" . $module['landingpage'],
-																));
+																 "MODULE_NAME" => $module['name'],
+																 "MODULE_LINK" => ROOT . "modules/" . $module['directory'] . "/" . $module['landingpage'],
+																 ));
 			}
 
 			$template->assign_var('DATE',date("l jS F Y"));
