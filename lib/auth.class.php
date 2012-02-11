@@ -77,6 +77,19 @@
 			session_destroy();
 			header("Location: " . ROOT . "index.php?l=logout");
 		}
+		public static function userTimeout()
+		{
+			$inactive = 1200;
+			$sessionlife = time() - $_SESSION['log_in_time'];
+			if($sessionlife > $inactive)
+			{
+				Authentication::logUserOut();
+			} else
+			{
+				$_SESSION['log_in_time'] = time();
+			}
+			
+		}
 /*		public static function getDetailsOfUserLoggedIn($uid)
 		{
 			$query = "SELECT * FROM `" . STAFF_MASTER_TABLE . "` WHERE `staff_id` = '" . $uid . "'";
