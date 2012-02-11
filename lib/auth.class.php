@@ -15,8 +15,18 @@
 		}
 		public static function blockPageToVisitors()
 		{
+			openRailwayCore::dbConnect();
+			if(isset($_SESSION['session_id']))
+			{
+				$result = openRailwayCore::dbQuery("SELECT `session_id` FROM " . SESSIONS_TABLE . " WHERE `session_id` = '" . $_SESSION['session_id'] . "'");
+				if(mysql_num_rows($result) == 0)
+				{
+					goto login;
+				}
+			}
 			if(!isset($_SESSION['session_id']))
 			{
+				login:
 				openRailwayCore::pageHeader("Access not authorised");
 				$template = new Template;
 				$template->set_custom_template('theme','default');
