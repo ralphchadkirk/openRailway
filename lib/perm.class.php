@@ -1,19 +1,19 @@
 <?php
 	class Permissions extends Authentication
 	{
-		private static function getUserPermission()
+		public static function getUserPermission()
 		{
 			
 		}
-		private static function setUserPermission()
+		public static function setUserPermission()
 		{
 			
 		}
-		private static function revokeUserPermission()
+		public static function revokeUserPermission()
 		{
 			
 		}
-		private static function suspendUser()
+		public static function suspendUser()
 		{
 			
 		}
