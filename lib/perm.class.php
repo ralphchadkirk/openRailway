@@ -1,7 +1,7 @@
 <?php
 	class Permissions extends Authentication
 	{
-        private static function getUserPermission()
+		private static function getUserPermission()
 		{
 			
 		}
@@ -17,5 +17,5 @@
 		{
 			
 		}
-    }
+	}
 ?>
