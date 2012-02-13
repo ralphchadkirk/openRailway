@@ -77,18 +77,16 @@
 			session_destroy();
 			header("Location: " . ROOT . "index.php?l=logout");
 		}
-		public static function userTimeout()
+		public static function pollInactiveUsers()
 		{
 			$inactive = 1200;
-			$sessionlife = time() - $_SESSION['log_in_time'];
-			if($sessionlife > $inactive)
+			if((time() - $_SESSION['last_active']) > $inactive)
 			{
 				Authentication::logUserOut();
 			} else
 			{
-				$_SESSION['log_in_time'] = time();
+				$_SESSION['last_active'] = time();
 			}
-			
 		}
 /*		public static function getDetailsOfUserLoggedIn($uid)
 		{
