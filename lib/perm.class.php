@@ -7,7 +7,10 @@
 		}
 		public static function setUserPermission($uid,$pid)
 		{
-			
+			// Query for user perm number
+			// Query to get integer for PID
+			$user_perm |= $perm_bit;
+			// Update user perm query
 		}
 		public static function revokeUserPermission($uid,$pid)
 		{
@@ -16,9 +19,18 @@
 			$user_perm ^= $perm_bit;
 			// Update user perm query here
 		}
-		public static function isUserAllowed($uid,$pid)
+		public static function isUserAllowed($uid,$perm_name)
 		{
-			
+			// Query for user perm number
+			// Query to get integer for perm_name
+			if($user_perm & $perm_bit)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+			}
 		}
 		public static function addNewPermission($name)
 		{
