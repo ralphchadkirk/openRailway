@@ -79,8 +79,7 @@
 		}
 		public static function pollInactiveUsers()
 		{
-			$result = openRailwayCore::dbConnect("SELECT `value` from " . CONFIG_TABLE . " WHERE `key` = 'user-inactive'");
-			$config = mysql_fetch_assoc($result);
+			$config = openRailwayCore::populateConfigurationArray();
 			if((time() - $_SESSION['last_active']) > $config['user-inactive'])
 			{
 				Authentication::logUserOut();

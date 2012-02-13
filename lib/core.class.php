@@ -149,5 +149,12 @@
 			$result = openRailwayCore::dbQuery($sql);
 		}
 		
+		// Config Array
+		public static function populateConfigurationArray()
+		{
+			$result = openRailwayCore::dbQuery("SELECT * FROM " . CONFIG_TABLE);
+			$config = mysql_fetch_assoc($result);
+			return $config;
+		}
 	}
 ?>
