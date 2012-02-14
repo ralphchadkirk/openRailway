@@ -153,7 +153,14 @@
 		public static function populateConfigurationArray()
 		{
 			$result = openRailwayCore::dbQuery("SELECT * FROM " . CONFIG_TABLE);
-			$config = mysql_fetch_assoc($result);
+			$config =  array();
+			while($row = mysql_fetch_assoc($result));
+			{
+				$config = array(
+									$row['key'] => $row['value'],
+								);
+			}
+			
 			return $config;
 		}
 	}
