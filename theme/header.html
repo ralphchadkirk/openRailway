@@ -7,10 +7,14 @@
         <![endif]-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<link href="{ROOT}theme/css/bootstrap.css" type="text/css" rel="stylesheet" />
-		<script src="{ROOT}theme/js/bootstrap.js" type="text/javascript">
+		<script src="{ROOT}theme/js/bootstrap.js" type="text/javascript"></script>
+		<script>
 			$('.alert-message').alert();
 			$('.dropdown-toggle').dropdown();
-			$('#activity-pane').modal(options)
+			$('#activity-pane').modal();
+			$(function () {   
+			  $("[rel=tooltip]").tooltip({	placement: "right"	}) 
+			})
 		</script>
 		<title>{TITLE} | openRailway for {RAILWAY_NAME}</title>
     </head>
