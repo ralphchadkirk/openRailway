@@ -18,14 +18,6 @@
 	$result = openRailwayCore::dbQuery($sql);
 	$row = mysql_fetch_assoc($result);
 	$sysmess = $row['value'];
-	
-	// Get staff profile
-	$query = "SELECT * FROM `" . STAFF_MASTER_TABLE . "` WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'";
-    $result = openRailwayCore::dbQuery($query);
-    $staff = mysql_fetch_assoc($result);
-    $dobunix = strtotime($staff['date_of_birth']);
-    $dob = date("d/m/Y",$dobunix);
-    
     
     // Start output
     openRailwayCore::pageHeader("Home");
@@ -38,13 +30,6 @@
                                                             'TEXT' => $sysmess,
                                                            ));
     }
-    $template->assign_var('FULL_NAME',$staff['first_name'] . " " . $staff['middle_name'] . " " . $staff['surname']);
-    $template->assign_var('ADDRESS',nl2br($staff['address']));
-    $template->assign_var('DOB',$dob);
-	$template->assign_var('EMAIL',$staff['email']);
-	$template->assign_var('HOME_PHONE',$staff['home_phone']);
-	$template->assign_var('WORK_PHONE',$staff['work_phone']);
-	$template->assign_var('MOBILE_PHONE',$staff['mobile_phone']);
     $template->set_filenames(array(
                                    'body' => 'home.html'
                                    ));
