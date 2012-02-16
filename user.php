@@ -28,6 +28,8 @@
 				openRailwayCore::pageHeader("Your inbox");
 				openRailwayCore::pageFooter();
 			break;
+			default:
+				trigger_error("An invalid MODE parameter has been provided",E_USER_ERROR);
 		endswitch;
 	}
 	else
