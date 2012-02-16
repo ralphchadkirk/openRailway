@@ -2,17 +2,6 @@
 	session_start();
 	class Authentication extends openRailwayCore
 	{
-		private function genRandomString()
-		{
-    		$length = 20;
-    		$characters = "0123456789abcdefghijklmnopqrstuvwxyz";
-    		$string = "";    
-    		for ($p = 0; $p < $length; $p++)
-    		{
-       			$string .= $characters[mt_rand(0, strlen($characters) -1)];
-    		}
-   			return $string;
-		}
 		public static function blockPageToVisitors()
 		{
 			openRailwayCore::dbConnect();
@@ -55,7 +44,7 @@
 			if(mysql_num_rows($result) >0)
 			{
 				$row = mysql_fetch_assoc($result);
-				$_SESSION['session_id'] = Authentication::genRandomString();
+				$_SESSION['session_id'] = session_id();
 				$_SESSION['user_id'] = $row['user_id'];
 				$_SESSION['log_in_time'] = time();
 				$_SESSION['staff_id'] = $row['staff_id'];
