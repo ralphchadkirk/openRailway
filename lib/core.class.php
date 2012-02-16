@@ -73,7 +73,7 @@
 			}
                   		
 			$template = new Template();
-			$template->set_custom_template(FROOT . 'theme','default');
+			$template->set_custom_template(FROOT . 'theme/' . STYLE,'default');
 			$template->assign_var('TITLE',$t);
 			$template->assign_var('RAILWAY_NAME',$railway_name);
 			$template->assign_var('ROOT',ROOT);
@@ -121,7 +121,7 @@
 		{
 			global $railway_name;
 			$template = new Template();
-			$template->set_custom_template(FROOT .'theme','default');
+			$template->set_custom_template(FROOT . 'theme/' . STYLE,'default');
 			$template->assign_var('RAILWAY_NAME',$railway_name);
 			$template->assign_var('CURRENT_YEAR',gmdate("Y"));
 			if(isset($_SESSION['session_id']))

@@ -8,6 +8,7 @@
     define('DB_NAME','open-railway');
     define('DB_USER','root');
     define('DB_PASS','');
+	define('STYLE','bootstrap');
     $railway_name = "Railway Name";
     
 // ---------------------------

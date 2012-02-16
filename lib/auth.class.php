@@ -29,7 +29,7 @@
 				login:
 				openRailwayCore::pageHeader("Access not authorised");
 				$template = new Template;
-				$template->set_custom_template('theme','default');
+				$template->set_custom_template(FROOT . 'theme/' . STYLE,'default');
 				if((isset($_GET['l'])) && ($_GET['l'] == 'fail'))
 				{
 					$template->assign_block_vars('if_login_failed',array());

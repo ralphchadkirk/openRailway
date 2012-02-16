@@ -22,7 +22,7 @@
     // Start output
     openRailwayCore::pageHeader("Home");
     $template = new Template();
-    $template->set_custom_template('theme','default');
+    $template->set_custom_template("theme/" . STYLE,'default');
     // If a system message is set, we'll enable the sysmess block
     if(isset($sysmess))
     {
