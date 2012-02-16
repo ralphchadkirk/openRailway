@@ -8,6 +8,7 @@
 			include(FROOT . "lib/perm.class.php");
 			include(FROOT . "lib/temp.class.php");
 			error_reporting(E_ALL);
+			ini_set('log_errors','1');
 		}
 		// Error Handler
 		public static function error_handler($errno,$errstr,$errfile,$errline)
