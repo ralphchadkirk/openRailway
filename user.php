@@ -33,6 +33,7 @@
 				{
 					$folder = "inbox";
 				}
+				// HATE having the HTML below in the file, but can't think of a better way ATM
 				$active_class = "class='active'";
 				$icon_white = "icon-white";
 				switch($folder):
