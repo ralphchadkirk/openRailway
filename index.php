@@ -14,10 +14,7 @@
     Authentication::blockPageToVisitors();
     
     // Check to see if a system message is set
-	$sql = "SELECT `value` FROM `" . CONFIG_TABLE . "` WHERE `key` = 'sysmess'";
-	$result = openRailwayCore::dbQuery($sql);
-	$row = mysql_fetch_assoc($result);
-	$sysmess = $row['value'];
+	$sysmess = openRailwayCore::getSystemMessage();
     
     // Start output
     openRailwayCore::pageHeader("Home");

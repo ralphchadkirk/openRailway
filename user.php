@@ -36,9 +36,14 @@
 				// HATE having the HTML below in the file, but can't think of a better way ATM
 				$active_class = "class='active'";
 				$icon_white = "icon-white";
+				$num = Messages::getNumberUnread($_SESSION['user_id']);
+				if($num > 0)
+				{
+					$unread = "(" . $num . ")";
+				}
 				switch($folder):
 					case "inbox":
-						$title = "Inbox";
+						$title = "Inbox " . $unread;
 						$name = "inbox";
 						$sql = "";
 					break;
@@ -56,11 +61,13 @@
 						trigger_error("An invalid folder has been provided",E_USER_WARNING);
 					break;
 				endswitch;
+		
 				openRailwayCore::pageHeader($title,"Messages");
 				$template = new Template();
 				$template->set_custom_template("theme/" . STYLE,'default');
 				$template->assign_var('ROOT',ROOT);
 				$template->assign_var('TITLE',$title);
+				$template->assign_var('NUMBER_UNREAD',$num);
 				if(isset($name))
 				{
 					if($name == "inbox")

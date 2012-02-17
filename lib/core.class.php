@@ -7,6 +7,7 @@
 			include(FROOT . "lib/auth.class.php");
 			include(FROOT . "lib/perm.class.php");
 			include(FROOT . "lib/temp.class.php");
+			include(FROOT . "lib/messages.class.php");
 			error_reporting(E_ALL);
 			ini_set('log_errors','1');
 			if(isset($_SESSION['session_id']))
@@ -115,6 +116,9 @@
 			}
 
 			$template->assign_var('DATE',date("l jS F Y"));
+			
+			$num = Messages::getNumberUnread($_SESSION['user_id']);
+			$template->assign_var('UNREAD_MESSAGES',$num);
                         
 			$template->set_filenames(array(
 											'head' => 'header.html',
@@ -167,6 +171,16 @@
 			}
 			
 			return $config;
+		}
+		
+		// System Messages
+		public static function getSystemMessage()
+		{
+			$sql = "SELECT `value` FROM `" . CONFIG_TABLE . "` WHERE `key` = 'sysmess'";
+			$result = openRailwayCore::dbQuery($sql);
+			$row = mysql_fetch_assoc($result);
+			$sysmess = $row['value'];
+			return $sysmess;
 		}
 	}
 ?>
