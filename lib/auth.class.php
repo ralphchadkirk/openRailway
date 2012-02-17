@@ -44,11 +44,12 @@
 			if(mysql_num_rows($result) >0)
 			{
 				$row = mysql_fetch_assoc($result);
+				session_regenerate_id();
 				$_SESSION['session_id'] = session_id();
 				$_SESSION['user_id'] = $row['user_id'];
 				$_SESSION['log_in_time'] = time();
 				$_SESSION['staff_id'] = $row['staff_id'];
-				$sql = "INSERT INTO " . SESSIONS_TABLE . " VALUES ('" . $_SESSION['session_id'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['user_id'] . "','" . $_SESSION['staff_id'] . "')";
+				$sql = "INSERT INTO " . SESSIONS_TABLE . " VALUES ('" . $_SESSION['session_id'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['user_id'] . "','" . $_SESSION['staff_id'] . "')";
 				$result = openRailwayCore::dbQuery($sql);
 				header("Location: " . ROOT . "index.php");
 				openRailwayCore::logAction($_SESSION['user_id'],"login");
@@ -75,6 +76,14 @@
 			} else
 			{
 				$_SESSION['last_active'] = time();
+			}
+		}
+		public static function updateActiveTime($sid)
+		{
+			if(isset($_SESSION))
+			{
+				//	$sql = "UPDATE " . SESSIONS_TABLE . " SET last_active_time='" . time() . "' WHERE session_id = '" . $sid . "'";
+				//openRailwayCore::dbQuery($sql);
 			}
 		}
 /*		public static function getDetailsOfUserLoggedIn($uid)

@@ -9,6 +9,10 @@
 			include(FROOT . "lib/temp.class.php");
 			error_reporting(E_ALL);
 			ini_set('log_errors','1');
+			if(isset($_SESSION['session_id']))
+			{
+				Authentication::updateActiveTime($_SESSION['session_id']);
+			}
 		}
 		// Error Handler
 		public static function error_handler($errno,$errstr,$errfile,$errline)
