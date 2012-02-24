@@ -20,8 +20,14 @@
 	elseif(isset($_GET['mode']))
 	{
 		switch($_GET['mode']):
-			case "profile":
-				openRailwayCore::pageHeader("Your profile");
+			case "account":
+				openRailwayCore::pageHeader("Your account");
+				$template = new Template;
+				$template->set_custom_template("theme/" . STYLE,'default');
+				$template->set_filenames(array(
+												'body' => 'account.html'
+												));
+				$template->display('body');
 				openRailwayCore::pageFooter();
 			break;
 			case "messages":
@@ -45,7 +51,11 @@
 					case "inbox":
 						$title = "Inbox " . $unread;
 						$name = "inbox";
-						$sql = "";
+						$ids = Messages::getInbox($_SESSION['user_id']);
+						foreach($ids as $id)
+						{
+							print $id;
+						}
 					break;
 					case "outbox":
 						$title = "Outbox";
@@ -98,6 +108,6 @@
 	}
 	else
 	{
-		trigger_error("Correct URL paramaters do not exist",E_USER_ERROR);
+		trigger_error("Correct URL parameters do not exist",E_USER_ERROR);
 	}
 ?>
