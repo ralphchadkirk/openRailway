@@ -15,7 +15,7 @@
 			$sql = "SELECT `message_id` FROM `message_to` WHERE `user_id` = '" . $uid . "'";
 			$result = openRailwayCore::dbQuery($sql);
 			$ids = mysql_fetch_assoc($result);
-			print_r($ids);
+			return $ids;
 		}
 	}
 ?>
