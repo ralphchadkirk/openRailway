@@ -8,7 +8,8 @@
 			include(FROOT . "lib/perm.class.php");
 			include(FROOT . "lib/temp.class.php");
 			include(FROOT . "lib/messages.class.php");
-			error_reporting(E_ALL);
+			error_reporting(E_ALL & ~E_STRICT);
+			//set_error_handler("openRailwayCore::error_handler",E_NONE);
 			ini_set('log_errors','1');
 			if(isset($_SESSION['session_id']))
 			{
@@ -16,18 +17,11 @@
 			}
 		}
 		// Error Handler
-		public static function error_handler($errno,$errstr,$errfile,$errline)
+		public static function error_handler($errno,$errstr,$errfile,$errline,$errcontext)
 		{
-			switch($errno):
-			case E_USER_ERROR:
-				break;
-			case E_USER_NOTICE:
-				break;
-			case E_USER_WARNING:
-				break;
-			default:
-				break;
-			endswitch;
+			// Display error page
+			include("lib/pages/error.php");
+			die();
 		}
 		// Database
 		public static function dbConnect()
@@ -116,9 +110,14 @@
 			}
 
 			$template->assign_var('DATE',date("l jS F Y"));
-			
-			$num = Messages::getNumberUnread($_SESSION['user_id']);
-			$template->assign_var('UNREAD_MESSAGES',$num);
+			if(isset($_SESSION['user_id']))
+			{
+				$num = Messages::getNumberUnread($_SESSION['user_id']);
+			}
+			if(isset($num))
+			{
+				$template->assign_var('UNREAD_MESSAGES',$num);
+			}
                         
 			$template->set_filenames(array(
 											'head' => 'header.html',
