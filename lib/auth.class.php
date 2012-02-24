@@ -49,7 +49,16 @@
 				$_SESSION['user_id'] = $row['user_id'];
 				$_SESSION['log_in_time'] = time();
 				$_SESSION['staff_id'] = $row['staff_id'];
-				$sql = "INSERT INTO " . SESSIONS_TABLE . " VALUES ('" . $_SESSION['session_id'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['user_id'] . "','" . $_SESSION['staff_id'] . "')";
+				if(isset($_SERVER['REMOTE_ADDR']))
+				{
+					$user_ip = $_SERVER['REMOTE_ADDR'];
+				} elseif(isset($_SERVER["HTTP_CLIENT_IP"]))
+				{
+					$user_ip = $_SERVER["HTTP_CLIENT_IP"];
+				}
+				
+				$_SESSION['user_ip'] = $user_ip;
+				$sql = "INSERT INTO " . SESSIONS_TABLE . " VALUES ('" . $_SESSION['session_id'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['user_id'] . "','" . $_SESSION['staff_id'] . "','" . $_SESSION['user_ip'] . "')";
 				$result = openRailwayCore::dbQuery($sql);
 				header("Location: " . ROOT . "index.php");
 				openRailwayCore::logAction($_SESSION['user_id'],"login");
@@ -63,7 +72,6 @@
 		public static function logUserOut()
 		{
 			openRailwayCore::deleteFrom(SESSIONS_TABLE,'session_id','=',$_SESSION['session_id']);
-			openRailwayCore::logAction($_SESSION['user_id'],"logout");
 			session_destroy();
 			header("Location: " . ROOT . "index.php?l=logout");
 		}
