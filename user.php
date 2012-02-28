@@ -21,84 +21,23 @@
 	{
 		switch($_GET['mode']):
 			case "account":
+				if(isset($_GET['action']))
+				{
+					switch($_GET['action']):
+						case "deactivate":
+							if(isset($_SESSION['user_id']))
+							{
+								Authentication::deactivateUser($_SESSION['user_id']);
+							}
+						break;
+					endswitch;
+				}
 				openRailwayCore::pageHeader("Your account");
 				$template = new Template;
 				$template->set_custom_template("theme/" . STYLE,'default');
 				$template->set_filenames(array(
 												'body' => 'account.html'
 												));
-				$template->display('body');
-				openRailwayCore::pageFooter();
-			break;
-			case "messages":
-				if(isset($_GET['folder']))
-				{
-					$folder = $_GET['folder'];
-				}
-				else
-				{
-					$folder = "inbox";
-				}
-				// HATE having the HTML below in the file, but can't think of a better way ATM
-				$active_class = "class='active'";
-				$icon_white = "icon-white";
-				$num = Messages::getNumberUnread($_SESSION['user_id']);
-				if($num > 0)
-				{
-					$unread = "(" . $num . ")";
-				}
-				switch($folder):
-					case "inbox":
-						$title = "Inbox " . $unread;
-						$name = "inbox";
-						$ids = Messages::getInbox($_SESSION['user_id']);
-						foreach($ids as $id)
-						{
-							print $id;
-						}
-					break;
-					case "outbox":
-						$title = "Outbox";
-						$name = "outbox";
-						$sql = "";
-					break;
-					case "sent":
-						$title = "Sent messages";
-						$name = "sent";
-						$sql = "";
-					break;
-					default:
-						trigger_error("An invalid folder has been provided",E_USER_WARNING);
-					break;
-				endswitch;
-		
-				openRailwayCore::pageHeader($title,"Messages");
-				$template = new Template();
-				$template->set_custom_template("theme/" . STYLE,'default');
-				$template->assign_var('ROOT',ROOT);
-				$template->assign_var('TITLE',$title);
-				$template->assign_var('NUMBER_UNREAD',$num);
-				if(isset($name))
-				{
-					if($name == "inbox")
-					{
-					   $template->assign_var('INBOX_ACTIVE',$active_class);
-					   $template->assign_var('INBOX_WHITE',$icon_white);
-					}
-					elseif($name == "outbox")
-					{
-						$template->assign_var('OUTBOX_ACTIVE',$active_class);
-						$template->assign_var('OUTBOX_WHITE',$icon_white);
-					}
-					elseif($name == "sent")
-					{
-						$template->assign_var('SENT_ACTIVE',$active_class);
-						$template->assign_var('SENT_WHITE',$icon_white);
-					}
-				}
-				$template->set_filenames(array(
-												'body' => 'messages.html'
-											   ));
 				$template->display('body');
 				openRailwayCore::pageFooter();
 			break;

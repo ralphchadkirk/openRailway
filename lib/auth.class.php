@@ -52,9 +52,9 @@
 				if(isset($_SERVER['REMOTE_ADDR']))
 				{
 					$user_ip = $_SERVER['REMOTE_ADDR'];
-				} elseif(isset($_SERVER["HTTP_CLIENT_IP"]))
+				} elseif(isset($_SERVER['HTTP_CLIENT_IP']))
 				{
-					$user_ip = $_SERVER["HTTP_CLIENT_IP"];
+					$user_ip = $_SERVER['HTTP_CLIENT_IP'];
 				}
 				
 				$_SESSION['user_ip'] = $user_ip;
@@ -94,11 +94,22 @@
 				//openRailwayCore::dbQuery($sql);
 			}
 		}
-/*		public static function getDetailsOfUserLoggedIn($uid)
+
+		public static function registerUser($sid)
 		{
-			$query = "SELECT * FROM `" . STAFF_MASTER_TABLE . "` WHERE `staff_id` = '" . $uid . "'";
-			$result = mysql_query($query);
-			return($result);
-		} */
+			
+		}
+		
+		public static function deactivateUser($uid)
+		{
+			Authentication::logUserOut();
+			Mailer::mailUser($uid,'openRailway for ' . $railway_name . ' Account deactivated','test','test');
+			openRailwayCore::deleteFrom(USERS_TABLE,'user_id','=',$uid);
+		}
+		
+		public static function activateUser($uid,$sid,$token)
+		{
+			
+		}
 	}
 ?>

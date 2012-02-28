@@ -7,7 +7,7 @@
 			include(FROOT . "lib/auth.class.php");
 			include(FROOT . "lib/perm.class.php");
 			include(FROOT . "lib/temp.class.php");
-			include(FROOT . "lib/messages.class.php");
+			include(FROOT . "lib/mailer.class.php");
 			error_reporting(E_ALL & ~E_STRICT);
 			//set_error_handler("openRailwayCore::error_handler",E_NONE);
 			ini_set('log_errors','1');
@@ -110,10 +110,6 @@
 			}
 
 			$template->assign_var('DATE',date("l jS F Y"));
-			if(isset($_SESSION['user_id']))
-			{
-				$num = Messages::getNumberUnread($_SESSION['user_id']);
-			}
 			if(isset($num))
 			{
 				$template->assign_var('UNREAD_MESSAGES',$num);
