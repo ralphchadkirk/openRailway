@@ -2,6 +2,35 @@
 		<div class="row">
 			<div class="span12">
 				<h2>Account controls</h2>
+				<h3>Profile</h3>
+				<p>You cannot edit some fields. If these fields are incorrect, then please contact your openRailway administrator</p>
+				<form action="" method="post" class="">
+					<label for="sname">Surname
+						<input name="sname" type="text" value="{SNAME}" disabled="disabled" />
+					</label>
+					<label for="mname">Middle name(s)
+						<input name="mname" type="text" value="{MNAME}" disabled="disabled" />
+					</label>
+					<label for="fname">First name
+						<input name="fname" type="text" value="{FNAME}" disabled="disabled" />
+					</label>
+					<label for="email">Email
+						<input name="email" type="text" value="{EMAIL}" />
+					</label>
+					<label for="hpone">Home phone
+						<input name="hphone" type="text" value="{HPHONE}" />
+					</label>
+					<label for="wphone">Work phone
+						<input name="wphone" type="text" value="{WPHONE}" />
+					</label>
+					<label for="mphone">Mobile phone
+						<input name="mphone" type="text" value="{MPHONE}" />
+					</label>
+					<label for="dob">Date of Birth
+						<input name="dob" type="text" value="{DOB}" disabled="disabled" />
+					</label>
+					<button type="submit" class="btn btn-success">Save changes</button>
+				</form>
 				<h3>Deactivate your account</h3>
 				<div class="row">
 					<div class="span2">

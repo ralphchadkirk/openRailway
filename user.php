@@ -32,9 +32,23 @@
 						break;
 					endswitch;
 				}
+				$result = openRailwayCore::dbQuery("SELECT * FROM `staff_master` WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'");
+				$staff = mysql_fetch_assoc($result);
 				openRailwayCore::pageHeader("Your account");
 				$template = new Template;
 				$template->set_custom_template("theme/" . STYLE,'default');
+		
+				// Profile
+				$template->assign_var('FNAME',$staff['first_name']);
+				$template->assign_var('MNAME',$staff['middle_name']);
+				$template->assign_var('SNAME',$staff['surname']);
+				$template->assign_var('ADDRESS',nl2br($staff['address']));
+				$template->assign_var('EMAIL',$staff['email']);
+				$template->assign_var('HPHONE',$staff['home_phone']);
+				$template->assign_var('WPHONE',$staff['work_phone']);
+				$template->assign_var('MPHONE',$staff['mobile_phone']);
+				$template->assign_var('DOB',$staff['date_of_birth']);
+		
 				$template->set_filenames(array(
 												'body' => 'account.html'
 												));
