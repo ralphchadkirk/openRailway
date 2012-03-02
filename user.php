@@ -14,21 +14,32 @@
 		{
 			trigger_error("UID parameter should be integer",E_USER_ERROR);
 		}
+		// Display profile
 		openRailwayCore::pageHeader("");
 		openRailwayCore::pageFooter();
 	}
 	elseif(isset($_GET['mode']))
 	{
+		// Modes
 		switch($_GET['mode']):
 			case "account":
+				// Account actions
 				if(isset($_GET['action']))
 				{
 					switch($_GET['action']):
 						case "deactivate":
+							// Deactivates account
 							if(isset($_SESSION['user_id']))
 							{
 								Authentication::deactivateUser($_SESSION['user_id']);
 							}
+						break;
+						case "update":
+							// Update user details - AJAX implementation
+							$result = openRailwayCore::dbQuery("UPDATE `staff_master` SET `first_name` = '" . $_POST['fname'] . "' `middle_name` = '" . $_POST['mname'] . "' `surname` = '" . $_POST['lname'] . "' `date_of_birth` = '" . $_POST['dob'] . "' `address` = '" . $_POST['address'] . "' `email` = '" . $_POST['email'] . "' `home_phone` = '" . $_POST['hphone'] . "' `mobile_phone` = '" . $_POST['mphone'] . "' `work_phone` = '" . $_POST['wphone'] . "' WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'");
+						break;
+						default:
+							header("Location: " . ROOT . "user.php?mode=account");
 						break;
 					endswitch;
 				}
@@ -37,12 +48,13 @@
 				openRailwayCore::pageHeader("Your account");
 				$template = new Template;
 				$template->set_custom_template("theme/" . STYLE,'default');
+				$template->assign_var('ROOT',ROOT);
 		
 				// Profile
 				$template->assign_var('FNAME',$staff['first_name']);
 				$template->assign_var('MNAME',$staff['middle_name']);
 				$template->assign_var('SNAME',$staff['surname']);
-				$template->assign_var('ADDRESS',nl2br($staff['address']));
+				$template->assign_var('ADDRESS',$staff['address']);
 				$template->assign_var('EMAIL',$staff['email']);
 				$template->assign_var('HPHONE',$staff['home_phone']);
 				$template->assign_var('WPHONE',$staff['work_phone']);
@@ -56,11 +68,14 @@
 				openRailwayCore::pageFooter();
 			break;
 			default:
-				trigger_error("An invalid MODE parameter has been provided",E_USER_ERROR);
+				// If invalid mode, redirect to account
+				header("Location: " . ROOT . "user.php?mode=account");
+			break;
 		endswitch;
 	}
 	else
 	{
-		trigger_error("Correct URL parameters do not exist",E_USER_ERROR);
+		// If no mode then redirect to account
+		header("Location: " . ROOT . "user.php?mode=account");
 	}
 ?>
