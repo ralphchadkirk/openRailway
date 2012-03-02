@@ -36,7 +36,10 @@
 						break;
 						case "update":
 							// Update user details - AJAX implementation
-							$result = openRailwayCore::dbQuery("UPDATE `staff_master` SET `first_name` = '" . $_POST['fname'] . "' `middle_name` = '" . $_POST['mname'] . "' `surname` = '" . $_POST['lname'] . "' `date_of_birth` = '" . $_POST['dob'] . "' `address` = '" . $_POST['address'] . "' `email` = '" . $_POST['email'] . "' `home_phone` = '" . $_POST['hphone'] . "' `mobile_phone` = '" . $_POST['mphone'] . "' `work_phone` = '" . $_POST['wphone'] . "' WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'");
+							if(isset($_POST['fname']))
+							{
+								openRailwayCore::dbQuery("UPDATE `staff_master` SET `first_name` = '" . $_POST['fname'] . "', `middle_name` = '" . $_POST['mname'] . "', `surname` = '" . $_POST['lname'] . "', `date_of_birth` = '" . $_POST['dob'] . "', `address` = '" . $_POST['address'] . "', `email` = '" . $_POST['email'] . "', `home_phone` = '" . $_POST['hphone'] . "', `mobile_phone` = '" . $_POST['mphone'] . "', `work_phone` = '" . $_POST['wphone'] . "' WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'");
+							}
 						break;
 						default:
 							header("Location: " . ROOT . "user.php?mode=account");

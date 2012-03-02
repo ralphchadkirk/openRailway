@@ -17,25 +17,30 @@ $('#activity-pane').modal();
 // Update account form submit ajax
  $(document).ready(function(){
 	$("#update-button").click(function() {
-		var sname = $("input#sname").val();
-		var mname = $("input#mname").val(); 
-		var fname = $("input#fname").val(); 
-		var email = $("input#email").val(); 
-		var hphone = $("input#hphone").val(); 
-		var mphone = $("input#mphone").val(); 
-		var wphone = $("input#wphone").val(); 
-		var address = $("textarea#address").val(); 
-		var dob = $("input#dob").val(); 
+		var sname = $("#sname").val();
+		var mname = $("#mname").val(); 
+		var fname = $("#fname").val(); 
+		var email = $("#email").val(); 
+		var hphone = $("#hphone").val(); 
+		var mphone = $("#mphone").val(); 
+		var wphone = $("#wphone").val(); 
+		var address = $("#address").val(); 
+		var dob = $("#dob").val(); 
 							
-		var dataString = '&sname='+ sname + '&mname=' + mname + '&fname=' + fname + '&email=' + email + '&hphone=' + hphone + '&wphone=' + wphone + '&mphone=' + mphone + '&address=' + address + '&dob=' + dob;
+		var dataString = 'sname='+ sname + '&mname=' + mname + '&fname=' + fname + '&email=' + email + '&hphone=' + hphone + '&wphone=' + wphone + '&mphone=' + mphone + '&address=' + address + '&dob=' + dob;
 		$.ajax({
 			   type: "POST",
-			   url: "user.php?mode=account&action=update",
+			   url:  "user.php?mode=account&action=update",
 			   data: dataString,
 			   success: function() {
 					$('#ability-message').hide();
 					$('#update-wrapper').html("<div class='alert alert-success' id='message'></div>");
-					$('#message').html("Your personal details have been successfully updated")
+					$('#message').html("Your personal details have been successfully updated");
+			   },
+			   error: function() {
+					$('#ability-message').hide();
+					$('#update-wrapper').html("<div class='alert alert-error' id='message'></div>");
+					$('#message').html("Your personal details could not be updated at this time. Please try again later");
 			   }
 		});
 		return false;
