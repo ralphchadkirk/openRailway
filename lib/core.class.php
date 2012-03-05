@@ -220,8 +220,11 @@
 			if(!isset($length))
 			{
 				trigger_error("You must set a length for the random integer string",E_USER_WARNING);
+			} else 
+			{
+				$i = 0;
 			}
-			while($i > $length)
+			while($i < $length)
 			{
 				$n = rand(0,9);
 				$string .= $n;
