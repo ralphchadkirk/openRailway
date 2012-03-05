@@ -19,8 +19,7 @@
 	// Get staff member's details
 	$result = openRailwayCore::dbQuery("SELECT * FROM `" . STAFF_MASTER_TABLE . "` WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'");
 	$staff = mysql_fetch_assoc($result);
-	
-    
+
     // Start output
     openRailwayCore::pageHeader("Home");
     $template = new Template();
