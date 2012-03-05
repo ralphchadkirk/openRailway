@@ -32,13 +32,24 @@
 							if(isset($_SESSION['user_id']))
 							{
 								Authentication::deactivateUser($_SESSION['user_id']);
+								openRailwayCore::logAction($_SESSION['user_id'],"account-deactivate");
 							}
 						break;
 						case "update":
-							// Update user details - AJAX implementation
-							if(isset($_POST['fname']))
+							// Update user details - AJAX implementation - need to add rest of fields to if
+							if(isset($_POST['fname']) && isset($_POST['mname']) && isset($_POST['sname']) && isset($_POST['address']) && isset($_POST['dob']) && isset($_POST['mphone']) && isset($_POST['wphone']) && isset($_POST['hphone']) && isset($_POST['email']))
 							{
-								openRailwayCore::dbQuery("UPDATE `staff_master` SET `first_name` = '" . $_POST['fname'] . "', `middle_name` = '" . $_POST['mname'] . "', `surname` = '" . $_POST['lname'] . "', `date_of_birth` = '" . $_POST['dob'] . "', `address` = '" . $_POST['address'] . "', `email` = '" . $_POST['email'] . "', `home_phone` = '" . $_POST['hphone'] . "', `mobile_phone` = '" . $_POST['mphone'] . "', `work_phone` = '" . $_POST['wphone'] . "' WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'");
+								openRailwayCore::dbQuery("UPDATE `staff_master` SET `first_name` = '" . $_POST['fname'] . "', `middle_name` = '" . $_POST['mname'] . "', `surname` = '" . $_POST['sname'] . "', `date_of_birth` = '" . $_POST['dob'] . "', `address` = '" . $_POST['address'] . "', `email` = '" . $_POST['email'] . "', `home_phone` = '" . $_POST['hphone'] . "', `mobile_phone` = '" . $_POST['mphone'] . "', `work_phone` = '" . $_POST['wphone'] . "' WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'");
+								openRailwayCore::logAction($_SESSION['user_id'],"profile-update",$_SESSION['staff_id']);
+							} else
+							{
+								header("Location: {Root}user.php?mode=account");
+							}
+						break;
+						case "changepassword":
+							if(isset($_POST['oldpassword']) && isset($_POST['newpassword']) && isset($_POST['confirmpassword']))
+							{
+								// Change password code
 							}
 						break;
 						default:
@@ -69,6 +80,9 @@
 												));
 				$template->display('body');
 				openRailwayCore::pageFooter();
+			break;
+			// Staff management
+			case "manage":
 			break;
 			default:
 				// If invalid mode, redirect to account
