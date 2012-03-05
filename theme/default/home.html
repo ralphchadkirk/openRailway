@@ -8,8 +8,10 @@
 			<!-- END system_message -->
             <div class="row">
 				<div class="span12">
-					<div class="page-header">
-					<h1>{FULL_NAME} ({STAFF_ID})</h1>
+					<div>
+						<h6>Your dashboard</h6>
+						<h1>{FULL_NAME} ({STAFF_ID})</h1>
+						<hr />
 					</div>
 					<div class="row">
 						<div class="span4">
@@ -55,20 +57,20 @@
 									<td>{DATE_OF_BIRTH}</td>
 								</tr>
 							</table>
-							<a href="{ROOT}user.php?mode=account" class="btn btn-info">Update your personal details</a>
+							<a href="{ROOT}staff.php?mode=account" class="btn btn-info">Update your personal details</a>
 						</div>
 						<div class="span4">
 							<table class="table table-condensed table-bordered">
 								<tr>
 									<th>Department</th>
-									<th>Grade</th>
 									<th>Joined</th>
+									<th>Length of service</th>
 								</tr>
 								<!-- BEGIN dept_loop -->
 								<tr>
 									<td>{dept_loop.DEPARTMENT}</td>
-									<td>{dept_loop.POSITION}</td>
 									<td>{dept_loop.START_TIME}</td>
+									<td>{dept_loop.SERVICE}</td>
 								</tr>
 								<!-- END dept_loop -->
 								<!-- BEGIN no_departments -->
