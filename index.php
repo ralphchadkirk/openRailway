@@ -49,12 +49,13 @@
 	$result = openRailwayCore::dbQuery("SELECT * FROM dept_staff_link WHERE `staff_id` = '" . $staff['staff_id'] . "'");
 	while($row = mysql_fetch_assoc($result))
 	{
-		$start = date("d/m/Y G:i",$row['start_time']);
+		$start = date("d/m/Y",$row['start_time']);
 		$dept = openRailwayCore::dbQuery("SELECT * FROM departments WHERE `dept_id` = '" . $row['dept_id'] . "'");
 		$dept_row = mysql_fetch_assoc($dept);
+		$service = openRailwayCore::timeDiffConv($row['start_time'],time(),true);
 		$template->assign_block_vars('dept_loop',array(
 													   'DEPARTMENT' => $dept_row['dept_name'],
-													   'POSITION' => "",
+													   'SERVICE' => $service,
 													   'START_TIME' => $start,
 													   ));
 	}
