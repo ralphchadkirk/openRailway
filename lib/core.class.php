@@ -26,7 +26,7 @@
 		// Database
 		public static function dbConnect()
 		{
-			$con = mysql_connect(DB_HOST,DB_USER,DB_PASS);
+			$con = @mysql_connect(DB_HOST,DB_USER,DB_PASS);
     		if(!$con)
         	{
             	trigger_error("Could not connect to database with credentials supplied in config.php",E_USER_ERROR);
@@ -176,6 +176,58 @@
 			$row = mysql_fetch_assoc($result);
 			$sysmess = $row['value'];
 			return $sysmess;
+		}
+		
+		// Time diff func
+		public static function timeDiffConv($start, $s,$onlydays = boolean)
+		{
+			$string = null;
+			if($onlydays = true)
+			{
+				$t = array(
+						   ' days' => 86400,
+						   );
+			} else
+			{
+				$t = array( //suffixes
+						   'd' => 86400,
+						   'h' => 3600,
+						   'm' => 60,
+						   );
+			}
+			
+			$s = abs($s - $start);
+			
+			foreach($t as $key => &$val) 
+			{
+				$$key = floor($s/$val);
+				$s -= ($$key*$val);
+				$string .= ($$key==0) ? '' : $$key . "$key ";
+			}
+			if($onlydays = true)
+			{
+				return $string;
+			} else
+			{
+				return $string . $s. 's';
+			}
+		}
+		
+		// Random
+		public static function randomID($length)
+		{
+			$string = null;
+			if(!isset($length))
+			{
+				trigger_error("You must set a length for the random integer string",E_USER_WARNING);
+			}
+			while($i > $length)
+			{
+				$n = rand(0,9);
+				$string .= $n;
+				$i++;
+			}
+			return $string;
 		}
 	}
 ?>
