@@ -43,7 +43,7 @@
 								openRailwayCore::logAction($_SESSION['user_id'],"profile-update",$_SESSION['staff_id']);
 							} else
 							{
-								header("Location: {Root}user.php?mode=account");
+								header("Location: {Root}staff.php?mode=account");
 							}
 						break;
 						case "changepassword":
@@ -53,7 +53,7 @@
 							}
 						break;
 						default:
-							header("Location: " . ROOT . "user.php?mode=account");
+							header("Location: " . ROOT . "staff,php?mode=account");
 						break;
 					endswitch;
 				}
@@ -86,13 +86,13 @@
 			break;
 			default:
 				// If invalid mode, redirect to account
-				header("Location: " . ROOT . "user.php?mode=account");
+				header("Location: " . ROOT . "staff.php?mode=account");
 			break;
 		endswitch;
 	}
 	else
 	{
 		// If no mode then redirect to account
-		header("Location: " . ROOT . "user.php?mode=account");
+		header("Location: " . ROOT . "staff.php?mode=account");
 	}
 ?>
