@@ -108,13 +108,21 @@
 																 "MODULE_LINK" => ROOT . "modules/" . $module['directory'] . "/" . $module['landingpage'],
 																 ));
 			}
-
-			$template->assign_var('DATE',date("l jS F Y"));
-			if(isset($num))
+			// Bit of a hack below, will get it sorted when pages added
+			$currentFile = $_SERVER["PHP_SELF"];
+			$parts = Explode('/', $currentFile);
+			$active = $parts[count($parts) - 1];
+			if($active == "index.php")
 			{
-				$template->assign_var('UNREAD_MESSAGES',$num);
+				$template->assign_var('ACTIVE','active');
 			}
-                        
+			else
+			{
+				$template->assign_var('ACTIVE','');
+			}
+			
+			$template->assign_var('DATE',date("l jS F Y"));
+     
 			$template->set_filenames(array(
 											'head' => 'header.html',
 											));
@@ -202,15 +210,24 @@
 			{
 				$$key = floor($s/$val);
 				$s -= ($$key*$val);
-				$string .= ($$key==0) ? '' : $$key . "$key ";
+				$string .= ($$key==0) ? '' : $$key . "$key";
 			}
 			if($onlydays = true)
 			{
-				return $string;
+				$service = $string;
 			} else
 			{
-				return $string . $s. 's';
+				$service = $string . $s. 's';
 			}
+			if($service > 365)
+			{
+				$length = round($service / 365,1) . " years (" . $service . ")";
+			}
+			else 
+			{
+				$length = $service;
+			}
+			return $length;
 		}
 		
 		// Random
