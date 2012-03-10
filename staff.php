@@ -59,7 +59,7 @@
 				}
 				$result = openRailwayCore::dbQuery("SELECT * FROM `staff_master` WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'");
 				$staff = mysql_fetch_assoc($result);
-				openRailwayCore::pageHeader("Your account");
+				openRailwayCore::pageHeader("Account settings");
 				$template = new Template;
 				$template->set_custom_template("theme/" . STYLE,'default');
 				$template->assign_var('ROOT',ROOT);
