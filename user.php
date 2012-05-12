@@ -36,14 +36,14 @@
 							}
 						break;
 						case "update":
-							// Update user details - AJAX implementation - need to add rest of fields to if
+							// Update user details - AJAX implementation
 							if(isset($_POST['fname']) && isset($_POST['mname']) && isset($_POST['sname']) && isset($_POST['address']) && isset($_POST['dob']) && isset($_POST['mphone']) && isset($_POST['wphone']) && isset($_POST['hphone']) && isset($_POST['email']))
 							{
 								openRailwayCore::dbQuery("UPDATE `staff_master` SET `first_name` = '" . $_POST['fname'] . "', `middle_name` = '" . $_POST['mname'] . "', `surname` = '" . $_POST['sname'] . "', `date_of_birth` = '" . $_POST['dob'] . "', `address` = '" . $_POST['address'] . "', `email` = '" . $_POST['email'] . "', `home_phone` = '" . $_POST['hphone'] . "', `mobile_phone` = '" . $_POST['mphone'] . "', `work_phone` = '" . $_POST['wphone'] . "' WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'");
 								openRailwayCore::logAction($_SESSION['user_id'],"profile-update",$_SESSION['staff_id']);
 							} else
 							{
-								header("Location: {Root}staff.php?mode=account");
+								header("Location: {Root}user.php?mode=account");
 							}
 						break;
 						case "changepassword":
@@ -86,13 +86,13 @@
 			break;
 			default:
 				// If invalid mode, redirect to account
-				header("Location: " . ROOT . "staff.php?mode=account");
+				header("Location: " . ROOT . "user.php?mode=account");
 			break;
 		endswitch;
 	}
 	else
 	{
 		// If no mode then redirect to account
-		header("Location: " . ROOT . "staff.php?mode=account");
+		header("Location: " . ROOT . "user.php?mode=account");
 	}
 ?>
