@@ -1,5 +1,11 @@
 <?php
 	session_start();
+	/*!
+     @class Authentication
+     A class that deals with all authentication aspects, such as users logging in, out and securing pages.
+     @updated 2012-02-15
+     */
+
 	class Authentication extends openRailwayCore
 	{
 		public static function blockPageToVisitors()
