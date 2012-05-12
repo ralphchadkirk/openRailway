@@ -23,6 +23,7 @@
 							<img src="{ROOT}theme/default/img/logo.png" />
 						</li>
 					</ul>
+					<!-- BEGIN if_user_logged_in -->
      				<ul class="nav pull-right">
       					<li class="{ACTIVE}">
 							<a href="{ROOT}index.php">Your dashboard</a>
@@ -38,12 +39,11 @@
       						</ul>
       					</li>
 						<li class="divider-vertical"></li>
-    				<!-- BEGIN if_user_logged_in -->
     					<li class="dropdown">
     						<a href="#" class="dropdown-toggle" data-toggle="dropdown">{if_user_logged_in.NAME}<span class="caret"></span></a>
     						<ul class="dropdown-menu">
     							<li>
-									<a href="{ROOT}staff.php?mode=account">Account</a>
+									<a href="{ROOT}user.php?mode=account">Account</a>
 								</li>
     							<li class="divider"></li>
     							<li>
