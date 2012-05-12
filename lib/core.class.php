@@ -249,5 +249,14 @@
 			}
 			return $string;
 		}
+		
+		// Escape inputs
+		public static function escapeInput($input)
+		{
+			$st = strip_tags($input);
+			$es = mysql_escape_string($st);
+			$ht = htmlspecialchars($es);
+			return $clean;
+		}
 	}
 ?>
