@@ -2,17 +2,18 @@
 		<div class="row">
 			<div class="span12">
 				<div class="page-header">
-					<h1>Settings</h1>
+					<h1>User Settings</h1>
 				</div>
 				<ul class="nav nav-tabs">
-					<li class="active"><a href="#profile" data-toggle="tab">Profile</a></li>
-					<li><a href="#password" data-toggle="tab">Change your password</a></li>
-					<li><a href="#deactivate" data-toggle="tab">Deactivate</a></li>
+					<li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
+					<li><a href="#messages" data-toggle="tab">Change your password</a></li>
+					<li><a href="#settings" data-toggle="tab">Deactivate</a></li>
 				</ul>
 				<div class="tab-content">
-					<div class="tab-pane active" id="profile">
+					<div class="tab-pane active" id="home">
 						<h3>Profile</h3>
-						<p id="ability-message">You cannot edit some fields. If these fields are incorrect, then please contact your openRailway administrator</p>
+						<div id="update-wrapper">
+							<p id="ability-message">You cannot edit some fields. If these fields are incorrect, then please contact your openRailway administrator</p>
 							<form class="form-vertical">
 								<div class="row">
 									<div class="span6">
@@ -51,7 +52,7 @@
 							</form>
 						</div>
 					</div>
-					<div class="tab-pane" id="password">
+					<div class="tab-pane" id="messages">
 						<h3>Change your password</h3>
 						<div id="change-wrapper">
 							<form class="form-vertical">
@@ -68,7 +69,7 @@
 							</form>
 						</div>
 					</div>
-					<div class="tab-pane" id="deactivate">
+					<div class="tab-pane" id="settings">
 						<h3>Deactivate your account</h3>
 						<div class="row">
 							<div class="span2">
@@ -80,7 +81,6 @@
 								<p>By deactivating your account you will no longer be able to log in, or carry out any tasks, however your staff records will still remain in the database. These can only be removed by an administrator. <strong>This action cannot be undone</strong>; a new account would have to be created for you.</p>
 							</div>
 						</div>
-					</div>
 					</div>
 				</div>
 			</div>

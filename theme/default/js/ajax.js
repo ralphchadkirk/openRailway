@@ -19,7 +19,7 @@ $(document).ready(function(){
 											var dataString = 'sname='+ sname + '&mname=' + mname + '&fname=' + fname + '&email=' + email + '&hphone=' + hphone + '&wphone=' + wphone + '&mphone=' + mphone + '&address=' + address + '&dob=' + dob;
 											$.ajax({
 												   type: "POST",
-												   url:  "staff.php?mode=account&action=update",
+												   url:  "user.php?mode=account&action=update",
 												   data: dataString,
 												   success: function() {
 												   $('#ability-message').hide();
