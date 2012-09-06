@@ -8,6 +8,14 @@
 
 	class Authentication extends openRailwayCore
 	{
+		private static function encryptPassword($password)
+		{
+			
+		}
+		private static function checkPassword($password)
+		{
+			
+		}
 		public static function blockPageToVisitors()
 		{
 			openRailwayCore::dbConnect();
@@ -45,16 +53,21 @@
 		public static function logUserIn($username,$password)
 		{
 			openRailwayCore::dbConnect();
-			$query = "SELECT * FROM `" . USERS_TABLE . "` WHERE `username` = '" . $username . "' AND password = MD5('" . $password . "')";
+			$query = "SELECT * FROM `" . USERS_TABLE . "` WHERE `username` = '" . $username . "' AND password = '" . sha1($password) . "'";
 			$result = openRailwayCore::dbQuery($query);
 			if(mysql_num_rows($result) >0)
 			{
 				$row = mysql_fetch_assoc($result);
+				$query = "SELECT `level_description` FROM `" . ACCESS_TABLE . "` WHERE `access_level` = '" . $row['access_level'] . "'";
+				$result = openRailwayCore::dbQuery($query);
+				$access = mysql_fetch_assoc($result);
 				session_regenerate_id();
 				$_SESSION['session_id'] = session_id();
 				$_SESSION['user_id'] = $row['user_id'];
 				$_SESSION['log_in_time'] = time();
 				$_SESSION['staff_id'] = $row['staff_id'];
+				$_SESSION['access_level'] = $row['access_level'];
+				$_SESSION['access_level_desc'] = $access['level_description'];
 				if(isset($_SERVER['REMOTE_ADDR']))
 				{
 					$user_ip = $_SERVER['REMOTE_ADDR'];
