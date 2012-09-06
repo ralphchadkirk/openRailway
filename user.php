@@ -81,8 +81,17 @@
 				$template->display('body');
 				openRailwayCore::pageFooter();
 			break;
-			// Staff management
-			case "manage":
+			// Access Levels
+			case "access":
+				openRailwayCore::pageHeader("Access Levels");
+				$template = new Template;
+				$template->set_custom_template("theme/" . STYLE,'default');
+				$template->assign_var('ROOT',ROOT);
+				$template->set_filenames(array(
+											   'body' => 'access-levels.html'
+											   ));
+				$template->display('body');
+				openRailwayCore::pageFooter();
 			break;
 			default:
 				// If invalid mode, redirect to account

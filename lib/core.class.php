@@ -84,6 +84,8 @@
 				$row = mysql_fetch_assoc($result);
 				$template->assign_block_vars('if_user_logged_in',array(
 																		'NAME' => $row['first_name'] . " " . $row['surname'],
+																		'ACCESS_LEVEL' => $_SESSION['access_level_desc'] . " (" . $_SESSION['access_level'] . ")"
+																	   ,
 																		));
             }
                         
@@ -136,9 +138,9 @@
 			$template->set_custom_template(FROOT . 'theme/' . STYLE,'default');
 			$template->assign_var('RAILWAY_NAME',$railway_name);
 			$template->assign_var('CURRENT_YEAR',gmdate("Y"));
-			if(isset($_SESSION['session_id']))
+			if($_SESSION['access_level'] >= 9)
 			{
-				$template->assign_block_vars('if_user_logged_in','');
+				$template->assign_block_vars('if_access_greater_9','');
 			}
 			$template->set_filenames(array(
 											'foot' => 'footer.html',
@@ -257,6 +259,14 @@
 			$es = mysql_escape_string($st);
 			$ht = htmlspecialchars($es);
 			return $clean;
+		}
+		
+		// Standardise date
+		public static function standardiseDate($date)
+		{
+			$time = strtotime($date);
+			$date = date("d/m/Y",$time);
+			return $date;
 		}
 	}
 ?>
