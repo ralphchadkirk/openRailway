@@ -3,3 +3,5 @@ config.php
 errorlog.txt
 config.php
 lib/errorlog.txt
+
+config.php
