@@ -13,59 +13,99 @@
 					<div class="tab-pane active" id="home">
 						<h3>Profile</h3>
 						<div id="update-wrapper">
-							<p id="ability-message">You cannot edit some fields. If these fields are incorrect, then please contact your openRailway administrator</p>
-							<form class="form-vertical">
+							<p id="ability-message">This will edit your staff record. You cannot edit some fields. If these fields are incorrect, then please contact your openRailway administrator</p>
+							<form class="form-horizontal">
 								<div class="row">
 									<div class="span6">
-										<label for="sname">Surname
-											<input id="sname" name="sname" type="text" value="{SNAME}" disabled="disabled" />
-										</label>
-										<label for="mname">Middle name(s)
-											<input id="mname" name="mname" type="text" value="{MNAME}" disabled="disabled" />
-										</label>
-										<label for="fname">First name
-											<input id="fname" name="fname" type="text" value="{FNAME}" disabled="disabled" />
-										</label>
-										<label for="dob">Date of Birth
-											<input id="dob" name="dob" type="text" value="{DOB}" disabled="disabled" />
-										</label>
+										<div class="control-group">
+											<label class="control-label" for="sname">Surname</label>
+											<div class="controls">
+												<input id="sname" name="sname" type="text" value="{SNAME}" disabled="disabled" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="mname">Middle name(s)</label>
+											<div class="controls">
+												<input id="mname" name="mname" type="text" value="{MNAME}" disabled="disabled" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="fname">First name</label>
+											<div class="controls">
+												<input id="fname" name="fname" type="text" value="{FNAME}" disabled="disabled" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="dob">Date of Birth</label>
+											<div class="controls">
+												<input id="dob" name="dob" type="text" value="{DOB}" disabled="disabled" />
+											</div>
+										</div>
 									</div>
 									<div class="span6">
-										<label for="email">Email
-											<input id="email" name="email" type="text" value="{EMAIL}" />
-										</label>
-										<label for="hphone">Home phone
-											<input id="hphone" name="hphone" type="text" value="{HPHONE}" />
-										</label>
-										<label for="wphone">Work phone
-											<input id="wphone" name="wphone" type="text" value="{WPHONE}" />
-										</label>
-										<label for="mphone">Mobile phone
-											<input id="mphone" name="mphone" type="text" value="{MPHONE}" />
-										</label>
-										<label for="address">Address
-											<textarea rows="4" id="address" name="address">{ADDRESS}</textarea>
-										</label>
+										<div class="control-group">
+											<label class="control-label" for="email">Email</label>
+											<div class="controls">
+												<input id="email" name="email" type="text" value="{EMAIL}" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="hphone">Home phone</label>
+											<div class="controls">
+												<input id="hphone" name="hphone" type="text" value="{HPHONE}" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="wphone">Work phone</label>
+											<div class="controls">
+												<input id="wphone" name="wphone" type="text" value="{WPHONE}" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="mphone">Mobile phone</label>
+											<div class="controls">
+												<input id="mphone" name="mphone" type="text" value="{MPHONE}" />
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label" for="address">Address</label>
+											<div class="controls">
+												<textarea rows="4" id="address" name="address">{ADDRESS}</textarea>
+											</div>
+										</div>
 									</div>
 								</div>
-								<input type="submit" id="update-button" class="btn btn-success btn-large" value="Save changes" />
+								<div class="form-actions">
+									<input type="submit" id="update-button" class="btn btn-success btn-large" value="Save changes" />
+								</div>
 							</form>
 						</div>
 					</div>
 					<div class="tab-pane" id="messages">
 						<h3>Change your password</h3>
 						<div id="change-wrapper">
-							<form class="form-vertical">
-								<label for="oldpassword">Old password:
-									<input type="password" name="oldpassword" id="oldpassword" />
-								</label>
-								<label for="newpassword">New password:
-									<input type="password" name="newpassword" id="newpassword" />
-								</label>
-								<label for="confirmpassword">Confirm your new password:
-									<input type="password" name="confirmpassword" id="confirmpassword" />
-								</label>
-								<input type="submit" id="password-change-button" class="btn btn-success btn-large" value="Change password" />
+							<form class="form-horizontal">
+								<div class="control-group">
+									<label class="control-label" for="oldpassword">Old password:</label>
+									<div class="controls">
+										<input type="password" name="oldpassword" id="oldpassword" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="newpassword">New password:</label>
+									<div class="controls">
+										<input type="password" name="newpassword" id="newpassword" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label" for="confirmpassword">Confirm your new password:</label>
+									<div class="controls">
+										<input type="password" name="confirmpassword" id="confirmpassword" />
+									</div>
+								</div>
+								<div class="form-actions">
+									<input type="submit" id="password-change-button" class="btn btn-success btn-large" value="Change password" />
+								</div>
 							</form>
 						</div>
 					</div>
