@@ -8,12 +8,16 @@
 					<li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
 					<li><a href="#messages" data-toggle="tab">Change your password</a></li>
 					<li><a href="#settings" data-toggle="tab">Deactivate</a></li>
+					<li><a href="#system" data-toggle="tab">System</a></li>
 				</ul>
 				<div class="tab-content">
 					<div class="tab-pane active" id="home">
 						<h3>Profile</h3>
 						<div id="update-wrapper">
 							<p id="ability-message">This will edit your staff record. You cannot edit some fields. If these fields are incorrect, then please contact your openRailway administrator</p>
+							<noscript>
+								<form class="form-horizontal" method="post" action="user.php?mode=account&action=update">
+							</noscript>
 							<form class="form-horizontal">
 								<div class="row">
 									<div class="span6">
@@ -121,6 +125,66 @@
 								<p>By deactivating your account you will no longer be able to log in, or carry out any tasks, however your staff records will still remain in the database. These can only be removed by an administrator. <strong>This action cannot be undone</strong>; a new account would have to be created for you.</p>
 							</div>
 						</div>
+					</div>
+					<div class="tab-pane" id="system">
+						<h3>System settings</h3>
+						<form class="form-horizontal">
+							<div class="row">
+								<div class="span6">
+									<div class="control-group">
+										<label class="control-label" for="dateformat">Preferred date format:</label>
+										<div class="controls">
+											<input type="text" name="dateformat" id="dateformat" />
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="timeformat">Preferred time format:</label>
+										<div class="controls">
+											<input type="text" name="timeformat" id="timeformat" />
+										</div>
+									</div>
+									<div class="control-group">
+										<label class="control-label" for="timezone">Time zone:</label>
+										<div class="controls">
+											<select>
+												<option>UTC -12</option>
+												<option>UTC -11</option>
+												<option>UTC -10</option>
+												<option>UTC -9</option>
+												<option>UTC -8</option>
+												<option>UTC -7</option>
+												<option>UTC -6</option>
+												<option>UTC -5</option>
+												<option>UTC -4</option>
+												<option>UTC -3</option>
+												<option>UTC -2</option>
+												<option>UTC -1</option>
+												<option>UTC</option>
+												<option>UTC +1</option>
+												<option>UTC +2</option>
+												<option>UTC +3</option>
+												<option>UTC +4</option>
+												<option>UTC +5</option>
+												<option>UTC +6</option>
+												<option>UTC +7</option>
+												<option>UTC +8</option>
+												<option>UTC +9</option>
+												<option>UTC +10</option>
+												<option>UTC +11</option>
+												<option>UTC +12</option>
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="span12">
+									<div class="form-actions">
+										<input type="submit" id="system-change-button" class="btn btn-success btn-large" value="Save changes" />
+									</div>
+								</div>
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>
