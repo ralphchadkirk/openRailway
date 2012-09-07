@@ -1,0 +1,26 @@
+	<article>
+		<div class="row">
+			<div class="span12">
+				<div class="page-header">
+					<h1>Activate your account</h1>
+				</div>
+				<!-- BEGIN if_activation_unsuccessful -->
+				<div class="alert alert-error">
+					<p>Your account could not be activated. Please try again.</p>
+				</div>
+				<!-- END if_activation_unsuccessful -->
+				<p>You must activate your account before you can use it. This verifies that your email address is live, and that the system is not allowing access to a third party.</p>
+				<form class="form-horizontal" method="post" action="{ROOT}user.php?mode=activate&action=activate">
+					<div class="control-group">
+						<label class="control-label" for="actkey">Activation key:</label>
+						<div class="controls">
+							<input type="text" name="actkey" id="actkey" /> <span class="label label-info">Paste the key you recieved in your welcome email here</span>
+						</div>
+					</div>
+					<div class="form-actions">
+						<input type="submit" class="btn btn-large btn-success" value="Activate your account" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</article>

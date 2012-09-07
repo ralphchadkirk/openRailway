@@ -41,6 +41,13 @@
 				{
 					$template->assign_block_vars('if_logged_out',array());
 				}
+				if((isset($_GET['l'])) && ($_GET['l'] == 'reauth'))
+				{
+					$template->assign_block_vars('if_reauth',array());
+				} else
+				{
+					$template->assign_block_vars('if_not_reauth',array());
+				}
 				$template->assign_var('ROOT',ROOT);
 				$template->set_filenames(array(
                                    				'body' => 'login.html'
@@ -58,6 +65,12 @@
 			if(mysql_num_rows($result) >0)
 			{
 				$row = mysql_fetch_assoc($result);
+				// Make sure account is activated, if not, go to activation page
+				if($row['activated'] == false)
+				{
+					header("Location: " . ROOT . "user.php?mode=activate");
+					die();
+				}
 				$query = "SELECT `level_description` FROM `" . ACCESS_TABLE . "` WHERE `access_level` = '" . $row['access_level'] . "'";
 				$result = openRailwayCore::dbQuery($query);
 				$access = mysql_fetch_assoc($result);
@@ -126,9 +139,23 @@
 			openRailwayCore::deleteFrom(USERS_TABLE,'user_id','=',$uid);
 		}
 		
-		public static function activateUser($uid,$sid,$token)
+		public static function activateUser($token)
 		{
-			
+			$query = "SELECT `user_id` FROM " . USERS_TABLE . " WHERE `activation_key` = '" . $token . "'";
+			$result = openRailwayCore::dbQuery($query);
+			$row = mysql_fetch_assoc($result);
+			if(mysql_num_rows($result) == 0)
+			{
+				header("Location: " . ROOT . "user.php?mode=activate&l=fail");
+			} elseif(isset($row['user_id']))
+			{
+				$query = "UPDATE " . USERS_TABLE . " SET `activated` = '1' WHERE `user_id` = '" . $row['user_id'] . "'";
+				$result = openRailwayCore::dbQuery($query);
+				header("Location: " . ROOT . "index.php?l=reauth");
+			} else
+			{
+				header("Location: " . ROOT . "user.php?mode=activate&l=fail");
+			}
 		}
 	}
 ?>

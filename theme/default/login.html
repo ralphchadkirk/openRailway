@@ -2,9 +2,16 @@
         <article>
         	<div class="row">
         		<div class="span12">
+					<!-- BEGIN if_not_reauth -->
 					<div class="page-header">
 						<h1>You need to be logged in to see this page</h1>
 					</div>
+					<!-- END if_not_reauth -->
+					<!-- BEGIN if_reauth -->
+					<div class="page-header">
+						<h1>You must re-authenticate to access this page</h1>
+					</div>
+					<!-- END if_reauth -->
         			<!-- BEGIN if_login_failed -->
         			<div class="alert alert-error">
         				<p>Sorry, either your username or password was not correct. Please try again. <a href="#">Forgotton your password?</a><br /> If you deactivated your account then you will not be able to log back in</p>

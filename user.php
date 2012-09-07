@@ -3,7 +3,6 @@
 	session_start();
 	openRailwayCore::initialisation();
 	openRailwayCore::dbConnect();
-	Authentication::blockPageToVisitors();
 	if((isset($_GET['mode'])) && (isset($_GET['uid'])))
 	{
 		trigger_error("UID and MODE are set",E_USER_ERROR);
@@ -15,6 +14,7 @@
 			trigger_error("UID parameter should be integer",E_USER_ERROR);
 		}
 		// Display profile
+		Authentication::blockPageToVisitors();
 		openRailwayCore::pageHeader("");
 		openRailwayCore::pageFooter();
 	}
@@ -23,6 +23,7 @@
 		// Modes
 		switch($_GET['mode']):
 			case "account":
+				Authentication::blockPageToVisitors();
 				// Account actions
 				if(isset($_GET['action']))
 				{
@@ -43,7 +44,7 @@
 								openRailwayCore::logAction($_SESSION['user_id'],"profile-update",$_SESSION['staff_id']);
 							} else
 							{
-								header("Location: {Root}user.php?mode=account");
+								header("Location: " . ROOT . "user.php?mode=account");
 							}
 						break;
 						case "changepassword":
@@ -53,7 +54,7 @@
 							}
 						break;
 						default:
-							header("Location: " . ROOT . "staff,php?mode=account");
+							header("Location: " . ROOT . "user.php?mode=account");
 						break;
 					endswitch;
 				}
@@ -83,6 +84,7 @@
 			break;
 			// Access Levels
 			case "access":
+				Authentication::blockPageToVisitors();
 				openRailwayCore::pageHeader("Access Levels");
 				$template = new Template;
 				$template->set_custom_template("theme/" . STYLE,'default');
@@ -93,7 +95,32 @@
 				$template->display('body');
 				openRailwayCore::pageFooter();
 			break;
+			// Account activation
+			case "activate":
+				if(isset($_GET['action']))
+				{
+					switch($_GET['action']):
+						case "activate":
+							Authentication::activateUser($_POST['actkey']);
+						break;
+					endswitch;
+				}
+				openRailwayCore::pageHeader("Activate your account");
+				$template = new Template;
+				$template->set_custom_template("theme/" . STYLE,'default');
+				$template->assign_var('ROOT',ROOT);
+				if(isset($_GET['l']) && $_GET['l'] == 'fail')
+				{
+					$template->assign_block_vars('if_activation_unsuccessful',array());
+				}
+				$template->set_filenames(array(
+											   'body' => 'activate.html'
+											   ));
+				$template->display('body');
+				openRailwayCore::pageFooter();
+			break;
 			default:
+				Authentication::blockPageToVisitors();
 				// If invalid mode, redirect to account
 				header("Location: " . ROOT . "user.php?mode=account");
 			break;
