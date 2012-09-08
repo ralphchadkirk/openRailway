@@ -1,0 +1,16 @@
+Hi {NAME},
+
+You have successfully activated your account at openRailway for {RAILWAY_NAME} ({URL}).
+
+You can now log into the service.
+
+Username: {USERNAME}
+Access Level: {ACCESS_LEVEL} ({LEVEL})
+
+Please note that your password has been encrypted in our database. It cannot be recovered. If you forget your password, please contact an Administrator.
+
+
+Regards,
+
+
+openRailway Automated Management
