@@ -141,7 +141,7 @@
 		
 		public static function activateUser($token)
 		{
-			$query = "SELECT `user_id` FROM " . USERS_TABLE . " WHERE `activation_key` = '" . $token . "'";
+			$query = "SELECT * FROM " . USERS_TABLE . " WHERE `activation_key` = '" . $token . "'";
 			$result = openRailwayCore::dbQuery($query);
 			$row = mysql_fetch_assoc($result);
 			if(mysql_num_rows($result) == 0)
@@ -149,13 +149,47 @@
 				header("Location: " . ROOT . "user.php?mode=activate&l=fail");
 			} elseif(isset($row['user_id']))
 			{
+				// Activate user
 				$query = "UPDATE " . USERS_TABLE . " SET `activated` = '1' WHERE `user_id` = '" . $row['user_id'] . "'";
 				$result = openRailwayCore::dbQuery($query);
 				header("Location: " . ROOT . "index.php?l=reauth");
+				
+				// Get Staff Member details
+				$query = "SELECT * FROM " . STAFF_MASTER_TABLE . " WHERE `staff_id` = '" . $row['staff_id'] . "'";
+				$result = openRailwayCore::dbQuery($query);
+				$staff = mysql_fetch_assoc($result);
+				
+				// Get Access Level Desc
+				$query = "SELECT * FROM " . ACCESS_TABLE . " WHERE `access_level` = '" . $row['access_level'] . "'";
+				$result = openRailwayCore::dbQuery($query);
+				$access = mysql_fetch_assoc($result);
+				
+				// Alert user of activation
+				$template = new Template;
+				$template->set_custom_template("lib/emails",'default');
+				$template->assign_var('URL',ROOT);
+				$template->assign_var('NAME',$staff['first_name'] . " " . $staff['surname']);
+				$template->assign_var('USERNAME',$row['username']);
+				$template->assign_var('ACCESS_LEVEL',$access['level_description']);
+				$template->assign_var('LEVEL',$row['access_level']);
+				$template->set_filenames(array(
+											   'email' => 'after-activation.txt'
+											   ));
+			echo	mail($staff['email'],"openRailway Account Activated",$template->display('email'),"From: no-reply@openrailway");
 			} else
 			{
 				header("Location: " . ROOT . "user.php?mode=activate&l=fail");
 			}
+		}
+		// Access level greater than OET given
+		public static function accessLevelGreaterThan($level)
+		{
+
+		}
+		// Only access level given
+		public static function accessLevel($level)
+		{
+			
 		}
 	}
 ?>
