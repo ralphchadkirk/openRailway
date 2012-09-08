@@ -156,11 +156,17 @@
 			$module = parse_ini_file($path . "module.cfg");
 		}
 		
-		// Action Logger
-		public static function logAction($uid = null,$type,$onstaffid = null)
+		// Event Logger
+		public static function logEvent($eventTimestamp,$interactionIdentifier,$codeLocation,$userIdentity = null,$eventSeverity,$securityRelevant,$desc)
 		{
-			$sql = "INSERT INTO activity_log(user_id,on_staff_id,time,type,ip) VALUES('" . $uid . "','" . $onstaffid . "','" . time() . "','" . $type . "','" . $_SERVER['REMOTE_ADDR'] . "')";
+			$sql = "INSERT INTO " . LOG_TABLE . "(log_timestamp,event_timestamp,interaction_identifier,code_location,source_ip,user_identity,event_severity,security_relevant,description) VALUES('" . time() . "','" . $eventTimestamp . "','" . $interactionIdentifier . "','" . $codeLocation . "','" . $_SERVER['REMOTE_ADDR'] . "','" . $userIdentity . "','" . $eventSeverity . "','" . $securityRelevant . "','" . $desc . "')";
 			$result = openRailwayCore::dbQuery($sql);
+		}
+		// Interaction ID creator
+		public static function createInteractionIdentifier()
+		{
+			$id = md5(time());
+			return $id;
 		}
 		
 		// Config Array
