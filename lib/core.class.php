@@ -157,9 +157,9 @@
 		}
 		
 		// Event Logger
-		public static function logEvent($eventTimestamp,$interactionIdentifier,$codeLocation,$userIdentity = null,$eventSeverity,$securityRelevant,$desc)
+		public static function logEvent($eventTimestamp,$interactionIdentifier,$userIdentity = null,$eventSeverity,$securityRelevant,$desc)
 		{
-			$sql = "INSERT INTO " . LOG_TABLE . "(log_timestamp,event_timestamp,interaction_identifier,code_location,source_ip,user_identity,event_severity,security_relevant,description) VALUES('" . time() . "','" . $eventTimestamp . "','" . $interactionIdentifier . "','" . $codeLocation . "','" . $_SERVER['REMOTE_ADDR'] . "','" . $userIdentity . "','" . $eventSeverity . "','" . $securityRelevant . "','" . $desc . "')";
+			$sql = "INSERT INTO " . LOG_TABLE . "(log_timestamp,event_timestamp,interaction_identifier,source_ip,user_identity,event_severity,security_relevant,description) VALUES('" . time() . "','" . $eventTimestamp . "','" . $interactionIdentifier . "','" . $_SERVER['REMOTE_ADDR'] . "','" . $userIdentity . "','" . $eventSeverity . "','" . $securityRelevant . "','" . $desc . "')";
 			$result = openRailwayCore::dbQuery($sql);
 		}
 		// Interaction ID creator
