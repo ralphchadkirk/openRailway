@@ -121,12 +121,13 @@
 				$_SESSION['last_active'] = time();
 			}
 		}
-		public static function updateActiveTime($sid)
+		public static function updateActiveTime()
 		{
 			if(isset($_SESSION))
 			{
-				//	$sql = "UPDATE " . SESSIONS_TABLE . " SET last_active_time='" . time() . "' WHERE session_id = '" . $sid . "'";
-				//openRailwayCore::dbQuery($sql);
+				openRailwayCore::dbConnect();
+				$sql = "UPDATE " . SESSIONS_TABLE . " SET last_active_time = '" . time() . "' WHERE session_id = '" . $_SESSION['session_id'] . "'";
+				$result = openRailwayCore::dbQuery($sql);
 			}
 		}
 
