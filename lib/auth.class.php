@@ -110,17 +110,8 @@
 			session_destroy();
 			header("Location: " . ROOT . "index.php?l=logout");
 		}
-		public static function pollInactiveUsers()
-		{
-			$config = openRailwayCore::populateConfigurationArray();
-			if((time() - $_SESSION['last_active']) > $config['user-inactive'])
-			{
-				Authentication::logUserOut();
-			} else
-			{
-				$_SESSION['last_active'] = time();
-			}
-		}
+
+		// Update User active time
 		public static function updateActiveTime()
 		{
 			if(isset($_SESSION))
@@ -128,6 +119,14 @@
 				openRailwayCore::dbConnect();
 				$sql = "UPDATE " . SESSIONS_TABLE . " SET last_active_time = '" . time() . "' WHERE session_id = '" . $_SESSION['session_id'] . "'";
 				$result = openRailwayCore::dbQuery($sql);
+				$_SESSION['last_active'] = time();
+				
+				$config = openRailwayCore::populateConfigurationArray();
+				
+				if((time() - $_SESSION['last_active']) > (isset($config['user-inactive'])))
+				{
+					Authentication::logUserOut();
+				}
 			}
 		}
 
