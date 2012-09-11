@@ -1,12 +1,8 @@
 <?php
-    /*  
-        File:        template.php
-        Purpose:     To provide the templating system and UI functions.
-    */
-    
     /**
      * Base Template class.
-     * @package phpBB3
+     * @package openRailway
+	 * @copyright From phpBB
      */
     class template
     {

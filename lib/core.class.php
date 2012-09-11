@@ -1,13 +1,21 @@
 <?php
+	
+	/**
+	 * Core Application class
+	 *
+	 * @author Ralph Chadkirk
+	 * @package openRailway
+	 */
 	class openRailwayCore
 	{
+		/**
+		 * Initialises all other classes and global activities
+		 */
 		public static function initialisation()
 		{
 			// Include required files
 			include(FROOT . "lib/auth.class.php");
-			include(FROOT . "lib/perm.class.php");
 			include(FROOT . "lib/temp.class.php");
-			include(FROOT . "lib/mailer.class.php");
 			error_reporting(E_ALL & ~E_STRICT);
 			//set_error_handler("openRailwayCore::error_handler",E_NONE);
 			ini_set('log_errors','1');
@@ -16,14 +24,26 @@
 				Authentication::updateActiveTime($_SESSION['session_id']);
 			}
 		}
-		// Error Handler
+		
+		/**
+		 * Handles all errors
+		 *
+		 * @param integer $errno Error level
+		 * @param string $errstr Error message
+		 * @param string $errfile File that error occured in
+		 * @param integer $errline Line that error occured on
+		 * @param array $errcontext An array of all variables at the time of the error
+		 */
 		public static function error_handler($errno,$errstr,$errfile,$errline,$errcontext)
 		{
 			// Display error page
 			include("lib/pages/error.php");
 			die();
 		}
-		// Database
+		
+		/**
+		 * Connects to the database
+		 */
 		public static function dbConnect()
 		{
 			$con = @mysql_connect(DB_HOST,DB_USER,DB_PASS);
@@ -38,6 +58,12 @@
         	}
 		}
 		
+		/**
+		 * Executes SQL query
+		 *
+		 * @param string $query The query to run
+		 * @return resource $result The output from the database
+		 */
 		public static function dbQuery($query)
 		{
    			$result = mysql_query($query);
@@ -48,6 +74,14 @@
   			return $result; 
 		}
 		
+		/**
+		 * Deletes a row from a table
+		 *
+		 * @param string $table The name of the table
+		 * @param string $wherefield the database field for use in the query
+		 * @param string $operator The operator to use between the field and the parameter
+		 * @param string $whereparameter The parameter to use
+		 */
 		public static function deleteFrom($table,$wherefield,$operator,$whereparameter)
 		{
 			$sql = "DELETE FROM `" . $table . "` WHERE `" . $wherefield . "` " . $operator . " '" .$whereparameter . "'";
@@ -58,7 +92,12 @@
 			}
 		}
 		
-		// Templates
+		/**
+		 * Displays the page header
+		 *
+		 * @param string $title The title of the page to use
+		 * @param string $modulename The name of the current module
+		 */
 		public static function pageHeader($title,$modulename = null)
 		{
 			global $railway_name;
@@ -131,6 +170,9 @@
 			$template->display('head');
 		}
 		
+		/**
+		 * Displays the page footer
+		 */
 		public static function pageFooter()
 		{
 			global $railway_name;
@@ -148,7 +190,14 @@
 			$template->display('foot');
 		}
 		
-		// Modules
+		/**
+		 * Gets the module config
+		 *
+		 * Retrieves the module config in an array from the CFG file in the given directory
+		 *
+		 * @param string $directory The directory to look for the CFG file in
+		 * @global array $module
+		 */
 		public static function getModuleConfig($directory)
 		{
 			global $module;
@@ -156,20 +205,38 @@
 			$module = parse_ini_file($path . "module.cfg");
 		}
 		
-		// Event Logger
+		/**
+		 * Logs events
+		 *
+		 * @param DateTime $eventTimestamp The timestamp of the event
+		 * @param string $interactionIdentifier The unique interaction identifer to associate events
+		 * @param integer $userIdentity The user ID, if available
+		 * @param integer $eventSeverity The event severity
+		 * @param bool $securityRelevant If the event is relevant to security or not
+		 * @param string $desc A description of the event
+		 */
 		public static function logEvent($eventTimestamp,$interactionIdentifier,$userIdentity = null,$eventSeverity,$securityRelevant,$desc)
 		{
 			$sql = "INSERT INTO " . LOG_TABLE . "(log_timestamp,event_timestamp,interaction_identifier,source_ip,user_identity,event_severity,security_relevant,description) VALUES('" . time() . "','" . $eventTimestamp . "','" . $interactionIdentifier . "','" . $_SERVER['REMOTE_ADDR'] . "','" . $userIdentity . "','" . $eventSeverity . "','" . $securityRelevant . "','" . $desc . "')";
 			$result = openRailwayCore::dbQuery($sql);
 		}
-		// Interaction ID creator
+		
+		/**
+		 * Creates the interaction IDs for logEvent()
+		 *
+		 * @return string $id The interaction ID
+		 */
 		public static function createInteractionIdentifier()
 		{
 			$id = md5(time());
 			return $id;
 		}
 		
-		// Config Array
+		/**
+		 * Creates a configuration array
+		 *
+		 * @return array $config The configuration array
+		 */
 		public static function populateConfigurationArray()
 		{
 			$result = openRailwayCore::dbQuery("SELECT * FROM " . CONFIG_TABLE);
@@ -184,7 +251,11 @@
 			return $config;
 		}
 		
-		// System Messages
+		/**
+		 * Gets the system message
+		 *
+		 * @return string $sysmess The system message
+		 */
 		public static function getSystemMessage()
 		{
 			$sql = "SELECT `value` FROM `" . CONFIG_TABLE . "` WHERE `key` = 'sysmess'";
@@ -194,51 +265,12 @@
 			return $sysmess;
 		}
 		
-		// Time diff func
-		public static function timeDiffConv($start, $s,$onlydays = boolean)
-		{
-			$string = null;
-			if($onlydays = true)
-			{
-				$t = array(
-						   ' days' => 86400,
-						   );
-			} else
-			{
-				$t = array( //suffixes
-						   'd' => 86400,
-						   'h' => 3600,
-						   'm' => 60,
-						   );
-			}
-			
-			$s = abs($s - $start);
-			
-			foreach($t as $key => &$val) 
-			{
-				$$key = floor($s/$val);
-				$s -= ($$key*$val);
-				$string .= ($$key==0) ? '' : $$key . "$key";
-			}
-			if($onlydays = true)
-			{
-				$service = $string;
-			} else
-			{
-				$service = $string . $s. 's';
-			}
-			if($service > 365)
-			{
-				$length = round($service / 365,1) . " years (" . $service . ")";
-			}
-			else 
-			{
-				$length = $service;
-			}
-			return $length;
-		}
-		
-		// Random
+		/**
+		 * Generates a random ID
+		 *
+		 * @param integer $length The length of the ID required
+		 * @return string $string The random ID
+		 */
 		public static function randomID($length)
 		{
 			$string = null;
@@ -258,21 +290,18 @@
 			return $string;
 		}
 		
-		// Escape inputs
+		/**
+		 * Escapes the given input
+		 *
+		 * @param mixed $input The resource to escape
+		 * @return mixed $clean The escaped resource
+		 */
 		public static function escapeInput($input)
 		{
 			$st = strip_tags($input);
 			$es = mysql_escape_string($st);
 			$ht = htmlspecialchars($es);
 			return $clean;
-		}
-		
-		// Standardise date
-		public static function standardiseDate($date)
-		{
-			$time = strtotime($date);
-			$date = date("d/m/Y",$time);
-			return $date;
 		}
 	}
 ?>

@@ -1,21 +1,44 @@
 <?php
-	session_start();
-	/*!
-     @class Authentication
-     A class that deals with all authentication aspects, such as users logging in, out and securing pages.
-     @updated 2012-02-15
-     */
-
+	
+	/**
+	 * User authentication class
+	 * @author Ralph Chadkirk
+	 * @package openRailway
+	 */
 	class Authentication extends openRailwayCore
 	{
+		/**
+		 * Starts the session
+		 */
+		function __construct()
+		{
+			session_start();
+		}
+		
+		/**
+		 * Encrypts a given password
+		 *
+		 * @param string $password The given password
+		 */
 		private static function encryptPassword($password)
 		{
 			
 		}
+		
+		/**
+		 * Encrypts a given password
+		 *
+		 * @param string $password The password to check
+		 */
 		private static function checkPassword($password)
 		{
 			
 		}
+		
+		/**
+		 * Locks page to non-authenticated browsers
+		 *
+		 */
 		public static function blockPageToVisitors()
 		{
 			openRailwayCore::dbConnect();
@@ -57,6 +80,12 @@
                 die();
 			}
 		}
+		
+		/**
+		 * Logs a user in, checks if account activated
+		 * @param string $username The provided username
+		 * @param string $password The provided password
+		 */
 		public static function logUserIn($username,$password)
 		{
 			openRailwayCore::dbConnect();
@@ -101,6 +130,10 @@
 				header("Location: " . ROOT . "index.php?l=fail");
 			}
 		}
+		
+		/**
+		 * Logs the current user out
+		 */
 		public static function logUserOut()
 		{
 			if(isset($_SESSION['session_id']))
@@ -111,7 +144,9 @@
 			header("Location: " . ROOT . "index.php?l=logout");
 		}
 
-		// Update User active time
+		/**
+		 * Updates the user last active timestamp
+		 */
 		public static function updateActiveTime()
 		{
 			if(isset($_SESSION))
@@ -130,11 +165,20 @@
 			}
 		}
 
+		/**
+		 * Registers a new user
+		 * @param integer $sid The staff record ID to generate a user from
+		 * @todo Complete
+		 */
 		public static function registerUser($sid)
 		{
 			
 		}
 		
+		/**
+		 * Deactivates a user
+		 * @param integer $uid The user ID to delete
+		 */
 		public static function deactivateUser($uid)
 		{
 			openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),"auth::deactivateUser()",$_SESSION['user_id'],5,0,"deactivate-account");
@@ -143,6 +187,10 @@
 			openRailwayCore::deleteFrom(USERS_TABLE,'user_id','=',$uid);
 		}
 		
+		/**
+		 * Activates a user
+		 * @param string $token The user activation token
+		 */
 		public static function activateUser($token)
 		{
 			$query = "SELECT * FROM " . USERS_TABLE . " WHERE `activation_key` = '" . $token . "'";
@@ -185,12 +233,20 @@
 				header("Location: " . ROOT . "user.php?mode=activate&l=fail");
 			}
 		}
-		// Access level greater than OET given
+		
+		/**
+		 * Allows usage to only access level given, or greater
+		 * @param integer $level The given access level
+		 */
 		public static function accessLevelGreaterThan($level)
 		{
 
 		}
-		// Only access level given
+		
+		/**
+		 * Allows usage to only access level given
+		 * @param integer $level The given access level
+		 */
 		public static function accessLevel($level)
 		{
 			
