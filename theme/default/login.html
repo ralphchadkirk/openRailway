@@ -14,20 +14,30 @@
 					<!-- END if_reauth -->
         			<!-- BEGIN if_login_failed -->
         			<div class="alert alert-error">
-        				<p>Sorry, either your username or password was not correct. Please try again. <a href="#">Forgotton your password?</a><br /> If you deactivated your account then you will not be able to log back in</p>
+        				Sorry, either your username or password was not correct. Please try again. <a href="#">Forgotton your password?</a><br /> If you deactivated your account then you will not be able to log back in
         			</div>
         			<!-- END if_login_failed -->
         			<!-- BEGIN if_logged_out -->
         			<div class="alert alert-success">
-        				<p>Your account has been successfully logged out.</p>
+        				Your account has been successfully logged out.
         			</div>
         			<!-- END if_logged_out -->
-        			<form class="form" method="post" action="{ROOT}index.php">
-        				<label>Username</label>
-        				<input name="username" type="text" class="span4" />
-        				<label>Password</label>
-        				<input name="password" type="password" class="span4" /><br />
-        				<button type="submit" class="btn btn-large btn-primary">Log in</button>
+        			<form class="form-horizontal" method="post" action="{ROOT}index.php">
+						<div class="control-group">
+							<label for="username" class="control-label">Username</label>
+							<div class="controls">
+								<input name="username" type="text" class="span4" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label for="password" class="control-label">Password</label>
+							<div class="controls">
+								<input name="password" type="password" class="span4" /><br />
+							</div>
+						</div>
+						<div class="form-actions">
+							<button type="submit" class="btn btn-large btn-primary">Log in</button>
+						</div>
         			</form>
         		</div>
         	</div>
