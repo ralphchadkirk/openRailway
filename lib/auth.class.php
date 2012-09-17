@@ -121,12 +121,12 @@
 				$_SESSION['user_ip'] = $user_ip;
 				$sql = "INSERT INTO " . SESSIONS_TABLE . " VALUES ('" . $_SESSION['session_id'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['user_id'] . "','" . $_SESSION['staff_id'] . "','" . $_SESSION['user_ip'] . "')";
 				$result = openRailwayCore::dbQuery($sql);
-				openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),"auth::logUserIn()",$_SESSION['user_id'],5,1,"login");
+				openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),"auth::logUserIn()",$_SESSION['user_id'],5,1,"User logged in");
 				header("Location: " . ROOT . "index.php");
 			}
 			else 
 			{
-				openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),"auth::logUserIn()",null,4,1,"failed-login");
+				openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),"auth::logUserIn()",null,4,1,"Failed login attempt");
 				header("Location: " . ROOT . "index.php?l=fail");
 			}
 		}
@@ -181,7 +181,7 @@
 		 */
 		public static function deactivateUser($uid)
 		{
-			openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),"auth::deactivateUser()",$_SESSION['user_id'],5,0,"deactivate-account");
+			openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),"auth::deactivateUser()",$_SESSION['user_id'],5,0,"User account deactivated");
 			Authentication::logUserOut();
 			Mailer::mailUser($uid,'openRailway for ' . $railway_name . ' Account deactivated','test','test');
 			openRailwayCore::deleteFrom(USERS_TABLE,'user_id','=',$uid);
