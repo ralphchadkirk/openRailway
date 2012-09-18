@@ -110,6 +110,7 @@
 				$_SESSION['staff_id'] = $row['staff_id'];
 				$_SESSION['access_level'] = $row['access_level'];
 				$_SESSION['access_level_desc'] = $access['level_description'];
+				$_SESSION['user_agent'] = $_SERVER['HTTP_USER_AGENT'];
 				if(isset($_SERVER['REMOTE_ADDR']))
 				{
 					$user_ip = $_SERVER['REMOTE_ADDR'];
@@ -119,7 +120,7 @@
 				}
 				
 				$_SESSION['user_ip'] = $user_ip;
-				$sql = "INSERT INTO " . SESSIONS_TABLE . " VALUES ('" . $_SESSION['session_id'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['user_id'] . "','" . $_SESSION['staff_id'] . "','" . $_SESSION['user_ip'] . "')";
+				$sql = "INSERT INTO " . SESSIONS_TABLE . " VALUES ('" . $_SESSION['session_id'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['user_id'] . "','" . $_SESSION['staff_id'] . "','" . $_SESSION['user_ip'] . "','" . $_SESSION['user_agent'] . "')";
 				$result = openRailwayCore::dbQuery($sql);
 				openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),"auth::logUserIn()",$_SESSION['user_id'],5,1,"User logged in");
 				header("Location: " . ROOT . "index.php");
