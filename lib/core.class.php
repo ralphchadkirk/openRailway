@@ -84,7 +84,7 @@
 		 */
 		public static function deleteFrom($table,$wherefield,$operator,$whereparameter)
 		{
-			$sql = "DELETE FROM `" . $table . "` WHERE `" . $wherefield . "` " . $operator . " '" .$whereparameter . "'";
+			$sql = "DELETE FROM `" . $table . "` WHERE `" . $wherefield . "` " . $operator . " '" . $whereparameter . "'";
 			$result = mysql_query($sql);
 			if(!$result)
 			{
@@ -215,9 +215,28 @@
 		 * @param bool $securityRelevant If the event is relevant to security or not
 		 * @param string $desc A description of the event
 		 */
-		public static function logEvent($eventTimestamp,$interactionIdentifier,$userIdentity = null,$eventSeverity,$securityRelevant,$desc)
+		public static function logEvent($eventTimestamp,$interactionIdentifier,$userIdentity,$eventSeverity,$securityRelevant,$desc)
 		{
-			$sql = "INSERT INTO " . LOG_TABLE . "(log_timestamp,event_timestamp,interaction_identifier,source_ip,user_identity,event_severity,security_relevant,description) VALUES('" . time() . "','" . $eventTimestamp . "','" . $interactionIdentifier . "','" . $_SERVER['REMOTE_ADDR'] . "','" . $userIdentity . "','" . $eventSeverity . "','" . $securityRelevant . "','" . $desc . "')";
+			$sql = "INSERT INTO " . LOG_TABLE . " (
+													log_timestamp,
+													event_timestamp,
+													interaction_identifier,
+													source_ip,
+													user_identity,
+													event_severity,
+													security_relevant,
+													description
+											)
+											VALUES (
+													'" . time() . "',
+													'" . $eventTimestamp . "',
+													'" . $interactionIdentifier . "',
+													'" . $_SERVER['REMOTE_ADDR'] . "',
+													'" . $userIdentity . "',
+													'" . $eventSeverity . "',
+													'" . $securityRelevant . "',
+													'" . $desc . "'
+											)";
 			$result = openRailwayCore::dbQuery($sql);
 		}
 		
@@ -302,6 +321,54 @@
 			$es = mysql_escape_string($st);
 			$ht = htmlspecialchars($es);
 			return $clean;
+		}
+		
+		/**
+		 * Builds the file integrity table
+		 *
+		 */
+		public static function buildFileIntegrity()
+		{
+			$files = array();
+			
+			// Extensions to fetch, an empty array will return all extensions
+			$ext = array("php","html");
+			
+			// Directories to ignore, an empty array will check all directories
+			$skip = array();
+		
+			// Build profile
+			$dir = new RecursiveDirectoryIterator(FROOT);
+			$iter = new RecursiveIteratorIterator($dir);
+			while ($iter->valid())
+			{
+				// Skip unwanted directories
+				if (!$iter->isDot() && !in_array($iter->getSubPath(), $skip))
+				{
+					// get specific file extensions
+					if (!empty($ext))
+					{
+						// PHP 5.3.4: if (in_array($iter->getExtension(), $ext)) {
+						if (in_array(pathinfo($iter->key(), PATHINFO_EXTENSION), $ext))
+						{
+							$files[$iter->key()] = hash_file("sha1", $iter->key());
+						}
+					}
+					else {
+						// ignore file extensions
+						$files[$iter->key()] = hash_file("sha1", $iter->key());
+					}
+				}
+				$iter->next();
+			}
+			
+			// Add hashes to databases
+			openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),null,5,1,"File integrity hash table built");
+			foreach($files as $k => $v)
+			{
+				$sql = "INSERT INTO integrity_hashes (file_path,file_hash) VALUES ('" . $k . "','" . $v . "')";
+				openRailwayCore::dbQuery($sql);
+			}
 		}
 	}
 ?>
