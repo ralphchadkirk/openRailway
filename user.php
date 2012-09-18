@@ -119,6 +119,32 @@
 				$template->display('body');
 				openRailwayCore::pageFooter();
 			break;
+			// Authentication
+			case "auth":
+				if(isset($_GET['action']))
+				{
+					switch($_GET['action']):
+						case "login":
+							if(isset($_POST['username']) && isset($_POST['password']))
+							{
+								Authentication::logUserIn($_POST['username'],$_POST['password']);
+							}
+							else
+							{
+								header(ROOT . "user.php?mode=auth&action=login");
+							}
+							Authentication::blockPageToVisitors();
+						break;
+						case "logout":
+							Authentication::logUserOut();
+						break;
+						case "activate":
+						break;
+						case "deactivate":
+						break;
+					endswitch;
+				}
+			break;
 			default:
 				Authentication::blockPageToVisitors();
 				// If invalid mode, redirect to account

@@ -127,7 +127,7 @@
 			else 
 			{
 				openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),"auth::logUserIn()",null,4,1,"Failed login attempt");
-				header("Location: " . ROOT . "index.php?l=fail");
+				header("Location: " . ROOT . "user.php?mode=auth&action=login&l=fail");
 			}
 		}
 		
@@ -141,7 +141,7 @@
 				openRailwayCore::deleteFrom(SESSIONS_TABLE,'session_id','=',$_SESSION['session_id']);
 			}
 			session_destroy();
-			header("Location: " . ROOT . "index.php?l=logout");
+			header("Location: " . ROOT . "user.php?mode=auth&action=login&l=logout");
 		}
 
 		/**
