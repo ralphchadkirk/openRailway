@@ -138,10 +138,6 @@
 						case "logout":
 							Authentication::logUserOut();
 						break;
-						case "activate":
-						break;
-						case "deactivate":
-						break;
 					endswitch;
 				}
 			break;
