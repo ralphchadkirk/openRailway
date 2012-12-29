@@ -372,5 +372,16 @@
 				openRailwayCore::dbQuery($sql);
 			}
 		}
+        
+        /**
+         * Checks file integrity
+         *
+         * @param string $file The filename or filepath to check. Leave blank to check entire system
+         *
+         */
+        public static function checkFileIntegrity($file)
+        {
+            
+        }
 	}
 ?>
