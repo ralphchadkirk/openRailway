@@ -1,0 +1,28 @@
+#auth-panel
+{
+	border: solid 1px #D8DEE2;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+}
+#auth-panel-header
+{
+	color: white;
+	font-size: 16px;
+	font-weight: bold;
+	background-image: -webkit-linear-gradient(top, #7F95A5, #6C8393);
+	background-repeat: repeat-x;
+	padding: 12px;
+	-webkit-border-top-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+#auth-panel-controls
+{
+	padding-left: 7px;
+	padding-top: 15px;
+	padding-bottom: 7px;
+}

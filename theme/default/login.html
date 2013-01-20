@@ -2,16 +2,6 @@
         <article>
         	<div class="row">
         		<div class="span12">
-					<!-- BEGIN if_not_reauth -->
-					<div class="page-header">
-						<h1>You need to be logged in to see this page</h1>
-					</div>
-					<!-- END if_not_reauth -->
-					<!-- BEGIN if_reauth -->
-					<div class="page-header">
-						<h1>You must re-authenticate to access this page</h1>
-					</div>
-					<!-- END if_reauth -->
         			<!-- BEGIN if_login_failed -->
         			<div class="alert alert-error">
         				Sorry, either your username or password was not correct. Please try again. <a href="#">Forgotton your password?</a><br /> If you deactivated your account then you will not be able to log back in
@@ -22,23 +12,31 @@
         				Your account has been successfully logged out.
         			</div>
         			<!-- END if_logged_out -->
-        			<form class="form-horizontal" method="post" action="{ROOT}user.php?mode=auth&action=login">
-						<div class="control-group">
-							<label for="username" class="control-label">Username</label>
-							<div class="controls">
-								<input name="username" type="text" class="span4" />
+					<form method="post" action="{ROOT}user.php?mode=auth&action=login">
+						<div class="span3 offset4" id="auth-panel">
+							<!-- BEGIN if_not_reauth -->
+							<div id="auth-panel-header">Sign in</div>
+							<!-- END if_not_reauth -->
+							<!-- BEGIN if_reauth -->
+							<div id="auth-panel-header">Please re-authenticate</div>
+							<!-- END if_reauth -->
+							<div id="auth-panel-controls">
+								<div class="control-group">
+									<label for="username" class="control-label">Username</label>
+									<div class="controls">
+										<input name="username" type="text" class="span2" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label for="password" class="control-label">Password</label>
+									<div class="controls">
+										<input name="password" type="password" class="span2" /><br />
+									</div>
+								</div>
+								<button type="submit" class="btn">Log in</button>
 							</div>
 						</div>
-						<div class="control-group">
-							<label for="password" class="control-label">Password</label>
-							<div class="controls">
-								<input name="password" type="password" class="span4" /><br />
-							</div>
-						</div>
-						<div class="form-actions">
-							<button type="submit" class="btn btn-large btn-primary">Log in</button>
-						</div>
-        			</form>
+					</form>
         		</div>
         	</div>
         </article>
