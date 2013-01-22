@@ -4,12 +4,21 @@
 	openRailwayCore::initialisation();
 	openRailwayCore::dbConnect();
 	// Get the admin module needed. If none, then assume the stats page
-	if(isset($_GET['i']))
+	if(isset($_GET['module']))
 	{
-		$i = $_GET['i'];
+		$module = $_GET['module'];
 	}
-	else
+	if(isset($module))
 	{
-		$i = "stats";
+		switch ($module)
+		{
+			case "logs":
+					openRailwayCore::pageHeader("Activity Logs | Control Panel");
+					include(FROOT . "admincp/includes/layout.html");
+					openRailwayCore::pageFooter();
+				break;
+			default:
+				break;
+		}
 	}
 ?>
