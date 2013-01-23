@@ -184,7 +184,6 @@
 		{
 			openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),"auth::deactivateUser()",$_SESSION['user_id'],5,0,"User account deactivated");
 			Authentication::logUserOut();
-			Mailer::mailUser($uid,'openRailway for ' . $railway_name . ' Account deactivated','test','test');
 			openRailwayCore::deleteFrom(USERS_TABLE,'user_id','=',$uid);
 		}
 		
