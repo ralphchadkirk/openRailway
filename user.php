@@ -141,6 +141,29 @@
 					endswitch;
 				}
 			break;
+			case "suspended":
+				if(isset($_SESSION['user_id_suspended']))
+				{
+					$sql = "SELECT * FROM `users` WHERE user_id = '" . $_SESSION['user_id_suspended'] . "'";
+					$result = openRailwayCore::dbQuery($sql);
+					$user = mysql_fetch_assoc($result);
+					if($user['suspended'] == true)
+					{
+						openRailwayCore::pageHeader("Account suspended");
+						$template = new Template;
+						$template->set_custom_template("theme/" . STYLE,'default');
+						$template->set_filenames(array(
+													   'body' => 'suspended.html'
+													   ));
+						$template->display('body');
+						openRailwayCore::pageFooter();
+					}
+				}
+				else
+				{
+					header("Location: " . ROOT . "index.php");
+				}
+			break;
 			default:
 				Authentication::blockPageToVisitors();
 				// If invalid mode, redirect to account

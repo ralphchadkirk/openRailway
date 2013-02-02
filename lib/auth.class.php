@@ -94,6 +94,13 @@
 			if(mysql_num_rows($result) >0)
 			{
 				$row = mysql_fetch_assoc($result);
+				// Make sure accound is not suspended
+				if($row['suspended'] == true)
+				{
+					$_SESSION['user_id_suspended'] = $row['user_id'];
+					header("Location: " . ROOT . "user.php?mode=suspended");
+					die();
+				}
 				// Make sure account is activated, if not, go to activation page
 				if($row['activated'] == false)
 				{
