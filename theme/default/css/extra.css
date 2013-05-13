@@ -1,3 +1,7 @@
+body 
+{
+	-webkit-font-smoothing: antialiased;
+}
 #auth-panel
 {
 	border: solid 1px #D8DEE2;

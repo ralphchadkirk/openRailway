@@ -5,6 +5,19 @@
 					<h1>Access levels</h1>
 				</div>
 				<p>Your access level defines what actions you can carry out and what areas of the system you are able to access. If you feel that your access level is wrong please contact your openRailway Global Systems Manager.</p>
+				<p>The current defined access levels are:</p>
+				<table class="table">
+					<tr>
+						<th>#</th>
+						<th>Level Descriptor</th>
+					</tr>
+					<!-- BEGIN level_loop -->
+					<tr>
+						<td>{level_loop.LVL}</td>
+						<td>{level_loop.LVL_DESC}</td>
+					</tr>
+					<!-- END level_loop -->
+				</table>
 			</div>
 		</div>
 	</article>
