@@ -3,6 +3,7 @@
 	session_start();
 	openRailwayCore::initialisation();
 	openRailwayCore::dbConnect();
+	Authentication::blockPageToVisitors();
 	// Get the admin module needed. If none, then assume the stats page
 	if(isset($_GET['module']))
 	{
@@ -24,10 +25,39 @@
 					$title = "Help & Support";
 					$active_var = "HELP";
 				break;
+			case "usr_create":
+					$title = "Create a User";
+					$active_var = "USR_CREATE";
+				break;
+			case "usr_manage":
+					$title = "Manage Users";
+					$active_var = "USR_MANAGE";
+				break;
+			case "usr_ban":
+					$title = "Ban a User";
+					$active_var = "USR_BAN";
+				break;
+			case "usr_del":
+					$title = "Delete a User";
+					$active_var = "USR_DEL";
+				break;
+			case "log_act":
+					$title = "Activity Logs";
+					$active_var = "LOG_ACT";
+				break;
+			case "log_err":
+					$title = "Security Logs";
+					$active_var = "LOG_ERR";
+				break;
 			default:
 					$title = "Statistics";
 					$active_var = "STATS";
 				break;
+		}
+		
+		if(!isset($active_var))
+		{
+			$active_var = "error";
 		}
 		
 		// Load layout
@@ -38,9 +68,30 @@
 		$template->assign_var($active_var,"active");
 		$template->assign_var('MAIN_TITLE',$title);
 		$template->set_filenames(array(
-									   'body' => 'layout.html'
+									   'layout' => 'layout.html'
 									   ));
-		$template->display('body');
+		$template->display('layout');
+		
+		if(file_exists("includes/" . strtolower($active_var) . ".html"))
+		{
+			$main = new Template;
+			$main->set_custom_template("includes/",'default');
+			$main->assign_var('ROOT',ROOT);
+			$main->set_filenames(array(
+									   'main' => strtolower($active_var) . ".html"
+									   ));
+			$main->display('main');
+		} else
+		{
+			$main = new Template;
+			$main->set_custom_template("includes/",'default');
+			$main->assign_var('ROOT',ROOT);
+			$main->set_filenames(array(
+									   'main' => "error.html"
+									   ));
+			$main->display('main');
+		}
+		
 		openRailwayCore::pageFooter();
 	}
 ?>

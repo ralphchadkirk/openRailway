@@ -1,5 +1,5 @@
 		<article>
-			<h4>Admin Control Panel</h4>
+			<h4>Administrator's Control Panel</h4>
 			<div class="row">
 				<div class="span2">
 					<ul class="nav nav-list">
@@ -8,18 +8,15 @@
 						<li class="{HELP}"><a href="{ROOT}admincp/index.php?module=help">Help and Support</a></li>
 						<li class="{BUG}"><a href="{ROOT}admincp/index.php?module=bug">Report a Bug</a></li>
 						<li class="nav-header">Users</li>
-						<li class="{USR_CREATE}"><a href="#">Create a User</a></li>
-						<li class="{USR_MANAGE}"><a href="#">Manage Access Levels</a></li>
-						<li class="{USR_BAN}"><a href="#">Ban Users</a></li>
-						<li class="{USR_DEL}"><a href="#">Delete Users</a></li>
+						<li class="{USR_CREATE}"><a href="{ROOT}admincp/index.php?module=usr_create">Create a User</a></li>
+						<li class="{USR_MANAGE}"><a href="{ROOT}admincp/index.php?module=usr_manage">Manage Access Levels</a></li>
+						<li class="{USR_BAN}"><a href="{ROOT}admincp/index.php?module=usr_ban">Ban Users</a></li>
+						<li class="{USR_DEL}"><a href="{ROOT}admincp/index.php?module=usr_del">Delete Users</a></li>
 						<li class="nav-header">Logs</li>
-						<li class="{LOG_ACT}"><a href="#">Activity Logs</a></li>
-						<li class="{LOG_ERR"><a href="#">Error and Security Logs</a></li>
+						<li class="{LOG_ACT}"><a href="{ROOT}admincp/index.php?module=log_act">Activity Logs</a></li>
+						<li class="{LOG_ERR}"><a href="{ROOT}admincp/index.php?module=log_err">Error and Security Logs</a></li>
 					</ul>
 				</div>
 				<div class="span10">
 					<h2>{MAIN_TITLE}</h2>
-					{MAIN_PANEL}
 				</div>
-			</div>
-		</article>
