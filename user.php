@@ -84,11 +84,21 @@
 			break;
 			// Access Levels
 			case "access":
+				$sql = "SELECT * FROM `access_levels` ORDER BY `access_level` ASC";
+				$result = openRailwayCore::dbQuery($sql);
+		
 				Authentication::blockPageToVisitors();
 				openRailwayCore::pageHeader("Access Levels");
 				$template = new Template;
 				$template->set_custom_template("theme/" . STYLE,'default');
 				$template->assign_var('ROOT',ROOT);
+				while($levels = mysql_fetch_assoc($result))
+				{
+					$template->assign_block_vars('level_loop',array(
+																	'LVL' => $levels['access_level'],
+																	'LVL_DESC' => $levels['level_description'],
+																	));
+				}
 				$template->set_filenames(array(
 											   'body' => 'access-levels.html'
 											   ));
@@ -147,16 +157,14 @@
 					$sql = "SELECT * FROM `users` WHERE user_id = '" . $_SESSION['user_id_suspended'] . "'";
 					$result = openRailwayCore::dbQuery($sql);
 					$user = mysql_fetch_assoc($result);
-					if($user['suspended'] == true)
+					if($user['suspended'] == 1)
 					{
-						openRailwayCore::pageHeader("Account suspended");
 						$template = new Template;
-						$template->set_custom_template("theme/" . STYLE,'default');
+						$template->set_custom_template(FROOT . "theme/" . STYLE,'default');
 						$template->set_filenames(array(
 													   'body' => 'suspended.html'
 													   ));
 						$template->display('body');
-						openRailwayCore::pageFooter();
 					}
 				}
 				else
