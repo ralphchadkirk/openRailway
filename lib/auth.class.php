@@ -35,6 +35,19 @@
 			
 		}
 		
+		private static function blockPageToUser()
+		{
+			openRailwayCore::pageHeader("Access denied");
+			$template = new Template;
+			$template->set_custom_template(FROOT. 'theme/' . STYLE,'default');
+			$template->set_filenames(array(
+											'body' => 'noaccess.html'
+										   ));
+			$template->display('body');
+			openRailwayCore::pageFooter();
+			die();
+		}
+		
 		/**
 		 * Locks page to non-authenticated browsers
 		 *
@@ -80,7 +93,7 @@
                 die();
 			}
 		}
-		
+				
 		/**
 		 * Logs a user in, checks if account activated
 		 * @param string $username The provided username
@@ -242,21 +255,21 @@
 		}
 		
 		/**
-		 * Allows usage to only access level given, or greater
+		 * Allows usage to specific access levels
 		 * @param integer $level The given access level
+		 * @param
 		 */
-		public static function accessLevelGreaterThan($level)
+		public static function accessLevelController($level,$operator)
 		{
-
-		}
-		
-		/**
-		 * Allows usage to only access level given
-		 * @param integer $level The given access level
-		 */
-		public static function accessLevel($level)
-		{
-			
+			switch($operator)
+			{
+				case ">":
+					if($_SESSION['access_level'] < $level)
+					{
+						Authentication::blockPageToUser();
+					}
+				break;
+			}
 		}
 	}
 ?>
