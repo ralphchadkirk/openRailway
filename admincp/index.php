@@ -61,6 +61,7 @@
 		}
 		
 		// Load layout
+		ob_start();
 		openRailwayCore::pageHeader($title . " | Control Panel");
 		$template = new Template;
 		$template->set_custom_template("includes/",'default');
@@ -75,6 +76,7 @@
 		if(file_exists(strtolower($active_var) . ".php"))
 		{
 			include($active_var . ".php");
+			ob_end_flush();
 		} else
 		{
 			$main = new Template;
@@ -84,6 +86,7 @@
 									   'main' => "error.html"
 									   ));
 			$main->display('main');
+			ob_end_flush();
 		}
 		
 		openRailwayCore::pageFooter();

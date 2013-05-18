@@ -12,6 +12,11 @@
         				Your account has been successfully logged out.
         			</div>
         			<!-- END if_logged_out -->
+					<!-- BEGIN if_force_logged_out -->
+        			<div class="alert alert-warning">
+        				Your account has been logged out by the openRailway system or an administrator.
+        			</div>
+        			<!-- END if_force_logged_out -->
 					<form method="post" action="{ROOT}user.php?mode=auth&action=login">
 						<div class="span3 offset4" id="auth-panel">
 							<!-- BEGIN if_not_reauth -->

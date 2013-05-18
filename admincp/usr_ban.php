@@ -5,6 +5,7 @@
 		if(($_GET['action'] == 'ban') && isset($_POST['user']))
 		{
 			Authentication::suspendUser($_POST['user']);
+			Authentication::logUserOut($_POST['user']);
 			$successAlert = 1;
 		
 		}

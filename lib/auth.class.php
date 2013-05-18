@@ -77,6 +77,10 @@
 				{
 					$template->assign_block_vars('if_logged_out',array());
 				}
+				if((isset($_GET['l'])) && ($_GET['l'] == "flogout"))
+				{
+					$template->assign_block_vars('if_force_logged_out',array());
+				}
 				if((isset($_GET['l'])) && ($_GET['l'] == 'reauth'))
 				{
 					$template->assign_block_vars('if_reauth',array());
@@ -155,14 +159,22 @@
 		/**
 		 * Logs the current user out
 		 */
-		public static function logUserOut()
+		public static function logUserOut($uid = null)
 		{
+			if(isset($uid))
+			{
+				openRailwayCore::deleteFrom(SESSIONS_TABLE,'user_id','=',$uid);
+				openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),$_SESSION['user_id'],5,1,"User (UID: " .$uid . ") forced log out");
+				session_destroy();
+				header("Location: " . ROOT . "user.php?mode=auth&action=login&l=flogout");
+				die();
+			}
 			if(isset($_SESSION['session_id']))
 			{
 				openRailwayCore::deleteFrom(SESSIONS_TABLE,'session_id','=',$_SESSION['session_id']);
+				session_destroy();
+				header("Location: " . ROOT . "user.php?mode=auth&action=login&l=logout");
 			}
-			session_destroy();
-			header("Location: " . ROOT . "user.php?mode=auth&action=login&l=logout");
 		}
 
 		/**
