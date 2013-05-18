@@ -72,15 +72,9 @@
 									   ));
 		$template->display('layout');
 		
-		if(file_exists("includes/" . strtolower($active_var) . ".html"))
+		if(file_exists(strtolower($active_var) . ".php"))
 		{
-			$main = new Template;
-			$main->set_custom_template("includes/",'default');
-			$main->assign_var('ROOT',ROOT);
-			$main->set_filenames(array(
-									   'main' => strtolower($active_var) . ".html"
-									   ));
-			$main->display('main');
+			include($active_var . ".php");
 		} else
 		{
 			$main = new Template;

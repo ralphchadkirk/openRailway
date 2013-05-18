@@ -1,0 +1,25 @@
+				<div class="span10">
+					<table class="table">
+						<tr>
+							<th>Event timestamp</th>
+							<th>Event severity</th>
+							<th>Interaction Identifier</th>
+							<th>Source IP address</th>
+							<th>Source User Agent</th>
+							<th>Description</th>
+						</tr>
+						<!-- BEGIN log_err -->
+						<tr>
+							<td><a href="{ROOT}/admincp/index.php?module=log&id={log_err.ID}">{log_err.TIME}</a></td>
+							<td>{log_err.SEV}</td>
+							<td>{log_err.INTID}</td>
+							<td>{log_err.IP}</td>
+							<td>{log_err.SUA}</td>
+							<td>{log_err.DESC}</td>
+						</tr>
+						<!-- END log_err -->
+					</table>
+				</div>
+			</div>
+		</div>
+	</article>
