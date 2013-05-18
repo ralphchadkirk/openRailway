@@ -1,0 +1,47 @@
+			<div class="span10">
+				<form class="form-horizontal" action="{ROOT}admincp/index.php?module=usr_ban&action=ban" method="post">
+					<fieldset>
+						<legend>Account suspension</legend>
+						<div class="control-group">
+							<label class="control-label" for="user">Select user:</label>
+							<div class="controls">
+								<select name="user">
+									<!-- BEGIN user_loop -->
+									<option value="{user_loop.UID}">{user_loop.NAME} (SID: {user_loop.SID})</option>
+									<!-- END user_loop -->
+								</select>
+							</div>
+						</div>
+						<div class="form-actions">
+							<button type="submit" class="btn btn-warning">Suspend account</button>
+						</div>
+					</fieldset>
+				</form>
+				<p>By clicking the button below, you will suspend the selected user. They will not be able to log back into the openRailway system until their account is reinstated using the form below.</p>
+				<form class="form-horizontal" action="{ROOT}admincp/index.php?module=usr_ban&action=unban" method="post">
+					<fieldset>
+						<legend>Account reinstatement</legend>
+						<p>This shows a list of suspended users with the option to reinstate access to the openRailway system</p>
+						<table class="table table-striped table-condensed">
+							<tr>
+								<th>User ID (Staff ID)</th>
+								<th>Username</th>
+								<th>Controls</th>
+							</tr>
+							<!-- BEGIN user_sus_loop -->
+							<tr>
+								<td>{user_sus_loop.UID} ({user_sus_loop.SID})</td>
+								<td>{user_sus_loop.NAME}</td>
+								<td>
+									<input type="hidden" value="{user_sus_loop.UID}" name="unbanID" />
+									<button type="submit" class="btn btn-success">Reinstate user</button>
+								</td>
+							</tr>
+							<!-- END user_sus_loop -->
+						</table>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+</article>

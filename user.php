@@ -40,7 +40,7 @@
 							if(isset($_POST['fname']) && isset($_POST['mname']) && isset($_POST['sname']) && isset($_POST['address']) && isset($_POST['dob']) && isset($_POST['mphone']) && isset($_POST['wphone']) && isset($_POST['hphone']) && isset($_POST['email']))
 							{
 								openRailwayCore::dbQuery("UPDATE `staff_master` SET `first_name` = '" . $_POST['fname'] . "', `middle_name` = '" . $_POST['mname'] . "', `surname` = '" . $_POST['sname'] . "', `date_of_birth` = '" . $_POST['dob'] . "', `address` = '" . $_POST['address'] . "', `email` = '" . $_POST['email'] . "', `home_phone` = '" . $_POST['hphone'] . "', `mobile_phone` = '" . $_POST['mphone'] . "', `work_phone` = '" . $_POST['wphone'] . "' WHERE `staff_id` = '" . $_SESSION['staff_id'] . "'");
-								openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),"user::case::update",$_SESSION['user_id'],5,0,"User profile updated");
+								openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),$_SESSION['user_id'],5,0,"User (SID: " . $_SESSION['staff_id'] . ") own profile updated");
 
 							} else
 							{

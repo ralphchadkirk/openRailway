@@ -142,12 +142,12 @@
 				$_SESSION['user_ip'] = $user_ip;
 				$sql = "INSERT INTO " . SESSIONS_TABLE . " VALUES ('" . $_SESSION['session_id'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['user_id'] . "','" . $_SESSION['staff_id'] . "','" . $_SESSION['user_ip'] . "','" . $_SESSION['user_agent'] . "')";
 				$result = openRailwayCore::dbQuery($sql);
-				openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),"auth::logUserIn()",$_SESSION['user_id'],5,1,"User logged in");
+				openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),$_SESSION['user_id'],5,1,"User (UID: " .$_SESSION['user_id'] . ") logged in");
 				header("Location: " . ROOT . "index.php");
 			}
 			else 
 			{
-				openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),"auth::logUserIn()",null,4,1,"Failed login attempt");
+				openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),null,4,1,"Failed login attempt");
 				header("Location: " . ROOT . "user.php?mode=auth&action=login&l=fail");
 			}
 		}
@@ -226,6 +226,8 @@
 				$result = openRailwayCore::dbQuery($query);
 				header("Location: " . ROOT . "index.php?l=reauth");
 				
+				openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),null,4,1,"User (UID:" . $row['user_id'] .  ") account activated");
+				
 				// Get Staff Member details
 				$query = "SELECT * FROM " . STAFF_MASTER_TABLE . " WHERE `staff_id` = '" . $row['staff_id'] . "'";
 				$result = openRailwayCore::dbQuery($query);
@@ -270,6 +272,30 @@
 					}
 				break;
 			}
+		}
+		
+		/**
+		 * Suspends a user account
+		 * @param integer $uid The user account to suspend
+		 */
+		public static function suspendUser($uid)
+		{
+			$sql = "UPDATE `users` SET `suspended` = '1' WHERE user_id = '" . $uid . "'";
+			$result = openRailwayCore::dbQuery($sql);
+			
+			openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),$_SESSION['user_id'],5,1,"User " . $uid . " suspended by user " . $_SESSION['user_id']);
+		}
+		
+		/**
+		 * Suspends a user account
+		 * @param integer $uid The user account to suspend
+		 */
+		public static function reinstateUser($uid)
+		{
+			$sql = "UPDATE `users` SET `suspended` = '0' WHERE user_id = '" . $uid . "'";
+			$result = openRailwayCore::dbQuery($sql);
+			
+			openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),$_SESSION['user_id'],5,1,"User " . $uid . " reinstated by user " . $_SESSION['user_id']);
 		}
 	}
 ?>
