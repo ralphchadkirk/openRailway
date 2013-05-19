@@ -1,0 +1,34 @@
+<div class="span10">
+	<table class="table">
+		<tr>
+			<th>Session ID</th>
+			<th>Login time</th>
+			<th>Last active time</th>
+			<th>User ID</th>
+			<th>Staff ID</th>
+			<th>IP Address</th>
+			<th>User Agent</th>
+			<th>Controls</th>
+		</tr>
+		<!-- BEGIN usr_sess -->
+		<tr>
+			<td>{usr_sess.SESSID}</td>
+			<td>{usr_sess.LOGIN}</td>
+			<td>{usr_sess.LASTACTIVE}</td>
+			<td>{usr_sess.UID}</td>
+			<td>{usr_sess.SID}</td>
+			<td>{usr_sess.IP}</td>
+			<td>{usr_sess.UA}</td>
+			<td>
+				<form method="post" action="{ROOT}admincp/index.php?module=usr_sess&action=force">
+					<input type="hidden" value="{usr_sess.UID}" name="uid" />
+					<button type="submit" class="btn">Force log out</button>
+				</form>
+			</td>
+		</tr>
+		<!-- END usr_sess -->
+	</table>
+</div>
+</div>
+</div>
+</article>

@@ -41,6 +41,10 @@
 					$title = "Delete a User";
 					$active_var = "USR_DEL";
 				break;
+			case "usr_sess":
+					$title = "View sessions";
+					$active_var = "USR_SESS";
+				break;
 			case "log_act":
 					$title = "Activity Logs";
 					$active_var = "LOG_ACT";
