@@ -159,12 +159,18 @@
 					$user = mysql_fetch_assoc($result);
 					if($user['suspended'] == 1)
 					{
+						openRailwayCore::pageHeader("Account suspended");
 						$template = new Template;
 						$template->set_custom_template(FROOT . "theme/" . STYLE,'default');
 						$template->set_filenames(array(
-													   'body' => 'suspended.html'
-													   ));
+													   'body' => 'suspended.html',
+													));
 						$template->display('body');
+						openRailwayCore::pageFooter();
+					}
+					else
+					{
+						header("Location: " . ROOT . "index.php");
 					}
 				}
 				else

@@ -253,8 +253,8 @@
                         // reload these settings to have the values they had when this object was initialised
                         // using set_template or set_custom_template, they might otherwise have been overwritten
                         // by other template class instances in between.
-                        $user->theme['template_storedb'] = $this->orig_tpl_storedb;
-                        $user->theme['template_inherits_id'] = $this->orig_tpl_inherits_id;
+                        //$user->theme['template_storedb'] = $this->orig_tpl_storedb;
+                        //$user->theme['template_inherits_id'] = $this->orig_tpl_inherits_id;
                         
                         $filename = $this->cachepath . str_replace('/', '.', $this->filename[$handle]) . '.' . $phpEx;
                         $this->files_template[$handle] = (isset($user->theme['template_id'])) ? $user->theme['template_id'] : 0;
