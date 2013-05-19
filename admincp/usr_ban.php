@@ -6,8 +6,7 @@
 		{
 			Authentication::suspendUser($_POST['user']);
 			Authentication::logUserOut($_POST['user']);
-			$successAlert = 1;
-		
+			$successAlert = 1;		
 		}
 
 		// Deal with unban form
