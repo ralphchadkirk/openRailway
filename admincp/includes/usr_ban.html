@@ -1,23 +1,17 @@
 			<div class="span10">
-				<form class="form-horizontal" action="{ROOT}admincp/index.php?module=usr_ban&action=ban" method="post">
+				<form class="form-inline" action="{ROOT}admincp/index.php?module=usr_ban&action=ban" method="post">
 					<fieldset>
 						<legend>Account suspension</legend>
-						<div class="control-group">
-							<label class="control-label" for="user">Select user:</label>
-							<div class="controls">
-								<select name="user">
-									<!-- BEGIN user_loop -->
-									<option value="{user_loop.UID}">{user_loop.NAME} (SID: {user_loop.SID})</option>
-									<!-- END user_loop -->
-								</select>
-							</div>
-						</div>
-						<div class="form-actions">
-							<button type="submit" class="btn btn-warning">Suspend account</button>
-						</div>
+						<p>By clicking the button below, you will suspend the selected user. They will not be able to log back into the openRailway system until their account is reinstated using the form below.</p>
+						<label for="user">Select user:</label>
+						<select name="user">
+							<!-- BEGIN user_loop -->
+							<option value="{user_loop.UID}">{user_loop.NAME} (SID: {user_loop.SID})</option>
+							<!-- END user_loop -->
+						</select>
+						<button type="submit" class="btn btn-warning">Suspend account</button>
 					</fieldset>
 				</form>
-				<p>By clicking the button below, you will suspend the selected user. They will not be able to log back into the openRailway system until their account is reinstated using the form below.</p>
 				<form class="form-horizontal" action="{ROOT}admincp/index.php?module=usr_ban&action=unban" method="post">
 					<fieldset>
 						<legend>Account reinstatement</legend>
@@ -38,6 +32,11 @@
 								</td>
 							</tr>
 							<!-- END user_sus_loop -->
+							<!-- BEGIN if_no_results -->
+							<tr>
+								<td colspan="3">There are no accounts suspended at this time</td>
+							</tr>
+							<!-- END if_no_results -->
 						</table>
 					</fieldset>
 				</form>

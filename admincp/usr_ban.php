@@ -47,6 +47,11 @@
 												   ));
 	}
 	
+	if(mysql_num_rows($resultReinstate) == 0)
+	{
+		$main->assign_block_vars('if_no_results',array());
+	}
+	
 	$main->set_filenames(array(
 							   'main' => "usr_ban.html"
 							   ));
