@@ -165,9 +165,6 @@
 			{
 				openRailwayCore::deleteFrom(SESSIONS_TABLE,'user_id','=',$uid);
 				openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),$_SESSION['user_id'],5,1,"User (UID: " .$uid . ") forced log out");
-				session_destroy();
-				header("Location: " . ROOT . "user.php?mode=auth&action=login&l=flogout");
-				die();
 			}
 			if(isset($_SESSION['session_id']))
 			{
