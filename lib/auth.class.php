@@ -297,8 +297,8 @@
 		}
 		
 		/**
-		 * Suspends a user account
-		 * @param integer $uid The user account to suspend
+		 * Reinstates a user account
+		 * @param integer $uid The user account to reinstate
 		 */
 		public static function reinstateUser($uid)
 		{
