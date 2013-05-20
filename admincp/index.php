@@ -34,12 +34,8 @@
 					$active_var = "USR_MANAGE";
 				break;
 			case "usr_ban":
-					$title = "Ban a User";
+					$title = "Manage Suspensions";
 					$active_var = "USR_BAN";
-				break;
-			case "usr_del":
-					$title = "Delete a User";
-					$active_var = "USR_DEL";
 				break;
 			case "usr_sess":
 					$title = "View sessions";
