@@ -1,4 +1,5 @@
 <?php
+	Authentication::accessLevelController(8,'>');
 	$sql = "SELECT * FROM `log` WHERE `security_relevant` = '1' ORDER BY `event_id` DESC";
 	$result = openRailwayCore::dbQuery($sql);
 	

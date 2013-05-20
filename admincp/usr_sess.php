@@ -1,4 +1,5 @@
 <?php
+	Authentication::accessLevelController(8,'>');
 	// Deal with logout form
 	if(isset($_GET['action']) && $_GET['action'] == "force" && isset($_POST['uid']))
 	{

@@ -1,4 +1,7 @@
 <?php
+	// Access level restriction
+	Authentication::accessLevelController(8,">");
+	
 	// Deal with usr_ban form
 	if(isset($_GET['action']))
 	{
