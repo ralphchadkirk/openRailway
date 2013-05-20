@@ -181,9 +181,9 @@
 			$template->assign_var('RAILWAY_NAME',$railway_name);
 			$template->assign_var('CURRENT_YEAR',gmdate("Y"));
 			$template->assign_var('ROOT',ROOT);
-			if(isset($_SESSION['access_level']) && $_SESSION['access_level'] >= 9)
+			if(isset($_SESSION['access_level']) && $_SESSION['access_level'] > 5)
 			{
-				$template->assign_block_vars('if_access_greater_9','');
+				$template->assign_block_vars('if_access_greater_5','');
 			}
 			$template->set_filenames(array(
 											'foot' => 'footer.html',
