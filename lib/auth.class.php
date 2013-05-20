@@ -276,9 +276,11 @@
 			switch($operator)
 			{
 				case ">":
-					if($_SESSION['access_level'] < $level)
+					if($level > $_SESSION['access_level'])
 					{
 						Authentication::blockPageToUser();
+						openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),$_SESSION['user_id'],5,1,"User " . $_SESSION['user_id'] . "tried to access page without correct permission level");
+						die();
 					}
 				break;
 			}
