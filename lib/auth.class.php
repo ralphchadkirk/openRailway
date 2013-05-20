@@ -115,6 +115,7 @@
 				if($row['suspended'] == true)
 				{
 					$_SESSION['user_id_suspended'] = $row['user_id'];
+					openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),$row['user_id'],5,1,"User (UID: " . $row['user_id'] . ") tried to login whilst suspended");
 					header("Location: " . ROOT . "user.php?mode=suspended");
 					die();
 				}
