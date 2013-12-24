@@ -40,7 +40,6 @@
 			include("lib/pages/error.php");
 			die();
 		}
-		
 		/**
 		 * Connects to the database
 		 */
