@@ -1,11 +1,13 @@
-<div class="span10">
-	<table class="table">
+<div class="panel-body">
+	<p>In this screen you can see all active sessions along with the user, source IP address, user agent and the last time that user was active. Using the 'End Session' button will immediately force the user to log in again, regardless of what they are doing at the time. For this reason, it should be used with care.'</p>
+	<table class="table table-hover table-condensed">
 		<tr>
 			<th>Session ID</th>
 			<th>Login time</th>
 			<th>Last active time</th>
 			<th>User ID</th>
 			<th>Staff ID</th>
+			<th>Session Access Level</th>
 			<th>IP Address</th>
 			<th>User Agent</th>
 			<th>Controls</th>
@@ -17,12 +19,13 @@
 			<td>{usr_sess.LASTACTIVE}</td>
 			<td>{usr_sess.UID}</td>
 			<td>{usr_sess.SID}</td>
+			<td>{usr_sess.SAL}</td>
 			<td>{usr_sess.IP}</td>
 			<td>{usr_sess.UA}</td>
 			<td>
 				<form method="post" action="{ROOT}admincp/index.php?module=usr_sess&action=force">
 					<input type="hidden" value="{usr_sess.UID}" name="uid" />
-					<button type="submit" class="btn">Force log out</button>
+					<button type="submit" class="btn">End session</button>
 				</form>
 			</td>
 		</tr>

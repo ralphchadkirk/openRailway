@@ -1,5 +1,9 @@
-				<div class="span10">
-					<table class="table">
+				<div class="panel-body">
+					<!-- BEGIN if_detail_display -->
+					<p><a href="{ROOT}admincp/index.php?module=log_err">Back to main table</a></p>
+					<!-- END if_detail_display -->
+					<table class="table table-hover table-condensed">
+						<!-- BEGIN if_table_display -->
 						<tr>
 							<th>Event timestamp</th>
 							<th>Event severity</th>
@@ -8,9 +12,10 @@
 							<th>Source User Agent</th>
 							<th>Description</th>
 						</tr>
+						<!-- END if_table_display -->
 						<!-- BEGIN log_err -->
 						<tr>
-							<td><a href="{ROOT}/admincp/index.php?module=log&id={log_err.ID}">{log_err.TIME}</a></td>
+							<td><a href="{ROOT}admincp/index.php?module=log_err&id={log_err.ID}">{log_err.TIME}</a></td>
 							<td>{log_err.SEV}</td>
 							<td>{log_err.INTID}</td>
 							<td>{log_err.IP}</td>

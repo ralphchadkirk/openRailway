@@ -1,13 +1,12 @@
 body 
 {
 	-webkit-font-smoothing: antialiased;
+	font-size: 13px;
+	padding-top: 70px;
 }
 #auth-panel
 {
-	border: solid 1px #D8DEE2;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	padding: 0;
 }
 #auth-panel-header
 {
@@ -30,4 +29,38 @@ body
 	padding-left: 7px;
 	padding-top: 15px;
 	padding-bottom: 7px;
+	border-left: solid 1px #D8DEE2;
+	border-right: solid 1px #D8DEE2;
+	border-bottom: solid 1px #D8DEE2;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-bottom-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+.page-header
+{
+	margin-top: 0;
+	padding-top: 0;
+	background-color:;
+}
+footer
+{
+	font-size: 11px;
+}
+#acp-banner
+{
+	background-color: #D9534F;
+	padding: 5px;
+	border-radius: 10px;
+	margin-bottom: 20px;
+}
+#acp-banner h1
+{
+	color: white;
+	font-size: 20px;
+	text-align: center;
+	padding: 0;
+	margin: 0;
 }
