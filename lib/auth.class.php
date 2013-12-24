@@ -187,11 +187,9 @@
 				$result = openRailwayCore::dbQuery($sql);
 				$_SESSION['last_active'] = time();
 				
-				$config = openRailwayCore::populateConfigurationArray();
-				
-				if((time() - $_SESSION['last_active']) > (isset($config['user-inactive'])))
+				if((time() - $_SESSION['last_active']) > USER_INACTIVE)
 				{
-					Authentication::logUserOut();
+					Authentication::logUserOut($_SESSION['user_id']);
 				}
 			}
 		}
@@ -212,7 +210,7 @@
 		 */
 		public static function deactivateUser($uid)
 		{
-			openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),"auth::deactivateUser()",$_SESSION['user_id'],5,0,"User account deactivated");
+			openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),$_SESSION['user_id'],5,0,"User account deactivated");
 			Authentication::logUserOut();
 			openRailwayCore::deleteFrom(USERS_TABLE,'user_id','=',$uid);
 		}
@@ -308,6 +306,11 @@
 			$result = openRailwayCore::dbQuery($sql);
 			
 			openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),$_SESSION['user_id'],5,1,"User " . $uid . " reinstated by user " . $_SESSION['user_id']);
+		}
+		
+		public static function requireReAuth()
+		{
+			
 		}
 	}
 ?>
