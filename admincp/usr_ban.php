@@ -19,6 +19,12 @@
 			$successAlert = 1;
 		
 		}
+		
+		if(($_GET['action'] == 'deactivate') && isset($_POST['uid']))
+		{
+			Authentication::deactivateUser($_POST['uid']);
+			$successAlert = 1;
+		}
 	}
 	
 	$sqlSuspend = "SELECT * FROM `users` WHERE `suspended` = '0'";
