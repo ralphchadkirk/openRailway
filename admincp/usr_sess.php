@@ -23,6 +23,7 @@
 													'SID' => $sessions['staff_id'],
 													'IP' => $sessions['user_ip'],
 													'UA' => $sessions['user_agent'],
+													'SAL' => $sessions['session_access_level'],
 													));
 	}
 

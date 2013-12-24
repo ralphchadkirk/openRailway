@@ -145,7 +145,7 @@
 				}
 				
 				$_SESSION['user_ip'] = $user_ip;
-				$sql = "INSERT INTO " . SESSIONS_TABLE . " VALUES ('" . $_SESSION['session_id'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['user_id'] . "','" . $_SESSION['staff_id'] . "','" . $_SESSION['user_ip'] . "','" . $_SESSION['user_agent'] . "')";
+				$sql = "INSERT INTO " . SESSIONS_TABLE . " VALUES ('" . $_SESSION['session_id'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['log_in_time'] . "','" . $_SESSION['user_id'] . "','" . $_SESSION['staff_id'] . "','" . $_SESSION['user_ip'] . "','" . $_SESSION['user_agent'] . "','" . $_SESSION['access_level'] . "')";
 				$result = openRailwayCore::dbQuery($sql);
 				openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),$_SESSION['user_id'],5,1,"User (UID: " .$_SESSION['user_id'] . ") logged in");
 				header("Location: " . ROOT . "index.php");
