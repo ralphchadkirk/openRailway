@@ -1,13 +1,13 @@
 	<article>
 		<div class="row">
-			<div class="span12">
+			<div class="col-md-12">
 				<div class="page-header">
 					<h1>User Settings</h1>
 				</div>
 				<ul class="nav nav-tabs">
 					<li class="active"><a href="#home" data-toggle="tab">Profile</a></li>
 					<li><a href="#messages" data-toggle="tab">Change your password</a></li>
-					<li><a href="#settings" data-toggle="tab">Deactivate <span class="badge badge-important">!</span></a></li>
+					<li><a href="#settings" data-toggle="tab">Deactivate</a></li>
 					<li><a href="#system" data-toggle="tab">System</a></li>
 				</ul>
 				<div class="tab-content">
@@ -20,7 +20,7 @@
 							</noscript>
 							<form class="form-horizontal">
 								<div class="row">
-									<div class="span6">
+									<div class="col-md-6">
 										<div class="control-group">
 											<label class="control-label" for="sname">Surname</label>
 											<div class="controls">
@@ -46,7 +46,7 @@
 											</div>
 										</div>
 									</div>
-									<div class="span6">
+									<div class="col-md-6">
 										<div class="control-group">
 											<label class="control-label" for="email">Email</label>
 											<div class="controls">
@@ -56,19 +56,19 @@
 										<div class="control-group">
 											<label class="control-label" for="hphone">Home phone</label>
 											<div class="controls">
-												<input id="hphone" name="hphone" type="text" value="{HPHONE}" />
+												<input id="hphone" name="hphone" type="text" value="{HPHONE}" data-validation="number" />
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="wphone">Work phone</label>
 											<div class="controls">
-												<input id="wphone" name="wphone" type="text" value="{WPHONE}" />
+												<input id="wphone" name="wphone" type="text" value="{WPHONE}" data-validation="number" />
 											</div>
 										</div>
 										<div class="control-group">
 											<label class="control-label" for="mphone">Mobile phone</label>
 											<div class="controls">
-												<input id="mphone" name="mphone" type="text" value="{MPHONE}" />
+												<input id="mphone" name="mphone" type="text" value="{MPHONE}" data-validation="number" />
 											</div>
 										</div>
 										<div class="control-group">
@@ -88,105 +88,86 @@
 					<div class="tab-pane" id="messages">
 						<h3>Change your password</h3>
 						<div id="change-wrapper">
-							<form class="form-horizontal">
-								<div class="control-group">
+							<form class="form-horizontal col-md-4">
+								<div class="form-group">
 									<label class="control-label" for="oldpassword">Old password:</label>
-									<div class="controls">
-										<input type="password" name="oldpassword" id="oldpassword" />
-									</div>
+									<input type="password" name="oldpassword" id="oldpassword"  class="form-control" data-validation="length" data-validation-length="min6" />
 								</div>
-								<div class="control-group">
+								<div class="form-group">
 									<label class="control-label" for="newpassword">New password:</label>
-									<div class="controls">
-										<input type="password" name="newpassword" id="newpassword" />
-									</div>
+									<input type="password" name="newpassword" id="newpassword"  class="form-control" data-validation="length" data-validation-length="min6" />
 								</div>
-								<div class="control-group">
+								<div class="form-group">
 									<label class="control-label" for="confirmpassword">Confirm your new password:</label>
-									<div class="controls">
-										<input type="password" name="confirmpassword" id="confirmpassword" />
-									</div>
+									<input type="password" name="confirmpassword" id="confirmpassword"  class="form-control" data-validation="length" data-validation-length="min6" />
 								</div>
-								<div class="form-actions">
-									<input type="submit" id="password-change-button" class="btn btn-success btn-large" value="Change password" />
-								</div>
+								<input type="submit" id="password-change-button" class="btn btn-success btn-large" value="Change password" />
 							</form>
 						</div>
 					</div>
 					<div class="tab-pane" id="settings">
 						<h3>Deactivate your account</h3>
 						<div class="row">
-							<div class="span2">
+							<div class="col-md-2">
 								<form>
 									<a href="{ROOT}user.php?mode=account&action=deactivate" class="btn btn-danger btn-large">Deactivate</a>
 								</form>
 							</div>
-							<div class="span10">
+							<div class="col-md-10">
 								<p>By deactivating your account you will no longer be able to log in, or carry out any tasks, however your staff records will still remain in the database. These can only be removed by an administrator. <strong>This action cannot be undone</strong>; a new account would have to be created for you.</p>
 							</div>
 						</div>
 					</div>
 					<div class="tab-pane" id="system">
 						<h3>System settings</h3>
-						<form class="form-horizontal">
-							<div class="row">
-								<div class="span6">
-									<div class="control-group">
-										<label class="control-label" for="dateformat">Preferred date format:</label>
-										<div class="controls">
-											<input type="text" name="dateformat" id="dateformat" />
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label" for="timeformat">Preferred time format:</label>
-										<div class="controls">
-											<input type="text" name="timeformat" id="timeformat" />
-										</div>
-									</div>
-									<div class="control-group">
-										<label class="control-label" for="timezone">Time zone:</label>
-										<div class="controls">
-											<select>
-												<option>UTC -12</option>
-												<option>UTC -11</option>
-												<option>UTC -10</option>
-												<option>UTC -9</option>
-												<option>UTC -8</option>
-												<option>UTC -7</option>
-												<option>UTC -6</option>
-												<option>UTC -5</option>
-												<option>UTC -4</option>
-												<option>UTC -3</option>
-												<option>UTC -2</option>
-												<option>UTC -1</option>
-												<option>UTC</option>
-												<option>UTC +1</option>
-												<option>UTC +2</option>
-												<option>UTC +3</option>
-												<option>UTC +4</option>
-												<option>UTC +5</option>
-												<option>UTC +6</option>
-												<option>UTC +7</option>
-												<option>UTC +8</option>
-												<option>UTC +9</option>
-												<option>UTC +10</option>
-												<option>UTC +11</option>
-												<option>UTC +12</option>
-											</select>
-										</div>
-									</div>
+							<form class="form-horizontal col-md-3">
+								<div class="form-group">
+									<label class="control-label" for="dateformat">Preferred date format:</label>
+									<input type="text" name="dateformat" id="dateformat" class="form-control" />
 								</div>
-							</div>
-							<div class="row">
-								<div class="span12">
-									<div class="form-actions">
-										<input type="submit" id="system-change-button" class="btn btn-success btn-large" value="Save changes" />
-									</div>
+								<div class="form-group">
+									<label class="control-label" for="timeformat">Preferred time format:</label>
+									<input type="text" name="timeformat" id="timeformat" class="form-control" />
 								</div>
+								<div class="form-group">
+									<label class="control-label" for="timezone">Time zone:</label>
+									<select class="form-control">
+										<option>UTC -12</option>
+										<option>UTC -11</option>
+										<option>UTC -10</option>
+										<option>UTC -9</option>
+										<option>UTC -8</option>
+										<option>UTC -7</option>
+										<option>UTC -6</option>
+										<option>UTC -5</option>
+										<option>UTC -4</option>
+										<option>UTC -3</option>
+										<option>UTC -2</option>
+										<option>UTC -1</option>
+										<option>UTC</option>
+										<option>UTC +1</option>
+										<option>UTC +2</option>
+										<option>UTC +3</option>
+										<option>UTC +4</option>
+										<option>UTC +5</option>
+										<option>UTC +6</option>
+										<option>UTC +7</option>
+										<option>UTC +8</option>
+										<option>UTC +9</option>
+										<option>UTC +10</option>
+										<option>UTC +11</option>
+										<option>UTC +12</option>
+									</select>
+								</div>
+								<input type="submit" id="system-change-button" class="btn btn-success btn-large" value="Save changes" />
+								</form>
 							</div>
-						</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</article>
+	<script>
+		$.validate();
+	</script>
