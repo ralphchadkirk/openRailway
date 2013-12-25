@@ -15,13 +15,23 @@
 	
 	while($sessions = mysql_fetch_assoc($result))
 	{
+		$ipGeoLoc = array();
+		$ipGeoLoc = openRailwayCore::ipGeoCheck($sessions['user_ip']);
+		if(empty($ipGeoLoc['country']))
+		{
+			$returnLoc = 0;
+		} else
+		{
+			$returnLoc = 1;
+		}
 		$main->assign_block_vars('usr_sess',array(
 													'SESSID' => $sessions['session_id'],
 													'LOGIN' => date("d-M-Y H:i:s",$sessions['log_in_time']),
 													'LASTACTIVE' => date("d-M-Y H:i:s",$sessions['last_active_time']),
 													'UID' => $sessions['user_id'],
 													'SID' => $sessions['staff_id'],
-													'IP' => $sessions['user_ip'],
+												    'IP' => $sessions['user_ip'],
+													'GEOLOC' => $ipGeoLoc['town'] . ", " . $ipGeoLoc['state'] . ", " . $ipGeoLoc['country'],
 													'UA' => $sessions['user_agent'],
 													'SAL' => $sessions['session_access_level'],
 													));
