@@ -17,12 +17,12 @@
 	{
 		$ipGeoLoc = array();
 		$ipGeoLoc = openRailwayCore::ipGeoCheck($sessions['user_ip']);
-		if(empty($ipGeoLoc['country']))
+		if( $ipGeoLoc['town'] == '')
 		{
-			$returnLoc = 0;
+			$geoLoc = null;
 		} else
 		{
-			$returnLoc = 1;
+			$geoLoc = $ipGeoLoc['town'] . ", " . $ipGeoLoc['state'] . ", " . $ipGeoLoc['country'];
 		}
 		$main->assign_block_vars('usr_sess',array(
 													'SESSID' => $sessions['session_id'],
@@ -31,7 +31,7 @@
 													'UID' => $sessions['user_id'],
 													'SID' => $sessions['staff_id'],
 												    'IP' => $sessions['user_ip'],
-													'GEOLOC' => $ipGeoLoc['town'] . ", " . $ipGeoLoc['state'] . ", " . $ipGeoLoc['country'],
+													'GEOLOC' => $geoLoc,
 													'UA' => $sessions['user_agent'],
 													'SAL' => $sessions['session_access_level'],
 													));
