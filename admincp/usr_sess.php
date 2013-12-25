@@ -16,7 +16,7 @@
 	while($sessions = mysql_fetch_assoc($result))
 	{
 		$ipGeoLoc = array();
-		$ipGeoLoc = openRailwayCore::ipGeoCheck($sessions['user_ip']);
+		$ipGeoLoc = Authentication::checkIPLocation($sessions['user_ip']);
 		if( $ipGeoLoc['town'] == '')
 		{
 			$geoLoc = null;
