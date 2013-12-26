@@ -8,7 +8,7 @@
 	
 	// Process login info section
 	$ipAddr = $_SESSION['user_ip'];
-	$loginTime = date('d-m-Y h:i:s', $_SESSION['log_in_time']);
+	$loginTime = date('d-m-Y H:i:s', $_SESSION['log_in_time']);
 	use phpbrowscap\Browscap;
 	$bc = new Browscap(FROOT . "cache");
 	// $browser = $bc->getBrowser(); COMMENTED OUT AS XAMPP DOES NOT SUPPORT
