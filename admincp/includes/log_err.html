@@ -1,7 +1,8 @@
 				<div class="panel-body">
-					<!-- BEGIN if_detail_display -->
-					<p><a href="{ROOT}admincp/index.php?module=log_err">Back to main table</a></p>
-					<!-- END if_detail_display -->
+					<h4>{SUBTITLE}</h4>
+					<!-- BEGIN if_linkback -->
+					<p><a href="{ROOT}admincp/index.php?module=log_err" class="btn btn-primary">Back to main table</a></p>
+					<!-- END if_linkback -->
 					<table class="table table-hover table-condensed">
 						<!-- BEGIN if_table_display -->
 						<tr>
@@ -17,7 +18,7 @@
 						<tr>
 							<td><a href="{ROOT}admincp/index.php?module=log_err&id={log_err.ID}">{log_err.TIME}</a></td>
 							<td>{log_err.SEV}</td>
-							<td>{log_err.INTID}</td>
+							<td><a href="{ROOT}admincp/index.php?module=log_err&int={log_err.INTID}">{log_err.INTID}</a></td>
 							<td>{log_err.IP}</td>
 							<td>{log_err.SUA}</td>
 							<td>{log_err.DESC}</td>
