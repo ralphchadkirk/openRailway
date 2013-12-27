@@ -371,7 +371,7 @@
 			$sql = "UPDATE `users` SET `suspended` = '0' WHERE user_id = '" . $uid . "'";
 			$result = openRailwayCore::dbQuery($sql);
 			
-			openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),$_SESSION['user_id'],5,1,"User " . $uid . " reinstated by user " . $_SESSION['user_id']);
+			openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),$_SESSION['user_id'],5,1,"User (UID: " . $uid . ") reinstated by user (UID: " . $_SESSION['user_id'] . ")");
 		}
 		
 		public static function requireReAuth()
