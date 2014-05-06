@@ -15,8 +15,8 @@
 		{
 			// Include required files
 			include(FROOT . "lib/auth.class.php");
-			include(FROOT . "lib/temp.class.php");
-			include(FROOT . "lib/browser.class.php");
+			include(FROOT . "lib/vendor/template.php");
+			include(FROOT . "lib/vendor/browser.php");
 			error_reporting(E_ALL & ~E_STRICT);
 			//set_error_handler("openRailwayCore::error_handler",E_NONE);
 			ini_set('log_errors','1');
