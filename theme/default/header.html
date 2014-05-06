@@ -7,15 +7,31 @@
 		<![endif]-->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-form-validator/2.1.27/jquery.form-validator.min.js"></script>
+		<!-- Bootstrap -->
 		<link href="{ROOT}theme/default/css/bootstrap.min.css" type="text/css" rel="stylesheet" />
 		<link href="{ROOT}theme/default/css/extra.css" type="text/css" rel="stylesheet" />
 		<script src="{ROOT}theme/default/js/bootstrap.js" type="text/javascript"></script>
+		<!-- Messenger -->
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/messenger/1.4.0/js/messenger.min.js" type="text/javascript"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/messenger/1.4.0/js/messenger-theme-future.js" type="text/javascript"></script>
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/messenger/1.4.0/css/messenger.css" type="text/css" rel="stylesheet" />
+		<link href="http://cdnjs.cloudflare.com/ajax/libs/messenger/1.4.0/css/messenger-theme-air.css" type="text/css" rel="stylesheet" />
+		<script type="text/javascript">
+				Messenger.options = {
+				extraClasses: 'messenger-fixed messenger-on-bottom messenger-on-right',
+				theme: 'air',
+				}
+		</script>
+		<!-- Others -->
 		<script src="{ROOT}theme/default/js/core.js" type="text/javascript"></script>
 		<script src="{ROOT}theme/default/js/ajax.js" type="text/javascript"></script>
 		<title>{TITLE} | openRailway for {RAILWAY_NAME}</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body id="bootstrap-js">
+	<!--	<script type="text/javascript">
+			Messenger().error('WHY WONT YOU WORK!!!!');
+			Messenger().success('It works now :)');
+			</script> -->
     	<header class="navbar navbar-fixed-top navbar-inverse">
 			<div class="container">
 				<a class="navbar-brand">openRailway</a>
@@ -42,6 +58,10 @@
 							</li>
 							<li>
 								<a href="{ROOT}user.php?mode=account">Account</a>
+							</li>
+							<li class="divider"></li>
+							<li>
+								<a href="{ROOT}admincp/index.php">Admin Control Panel</a>
 							</li>
 							<li class="divider"></li>
 							<li>
