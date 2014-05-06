@@ -135,7 +135,7 @@
 			if($_SESSION['user_agent'] != $_SERVER['HTTP_USER_AGENT'])
 			{
 				$interaction = openRailwayCore::createInteractionIdentifier();
-				openRailwayCore::logEvent(time(),$interaction,$_SESSION['user_id'],5,1,"User agent (UID: " . $_SESSION['user_id'] . ") change detected; account logged out and suspended");
+				openRailwayCore::logEvent(time(),$interaction,$_SESSION['user_id'],5,1,"User agent (UID: " . $_SESSION['user_id'] . ") change detected");
 				Authentication::suspendUser($_SESSION['user_id'],$interaction,1);
 			}
 		}
@@ -204,28 +204,22 @@
 		 */
 		public static function logUserOut($uid = null,$interaction = null,$system = null)
 		{
-			if(isset($uid))
+			if(($system == 1) && isset($uid))
 			{
 				openRailwayCore::deleteFrom(SESSIONS_TABLE,'user_id','=',$uid);
-			} else
-			{
-				openRailwayCore::deleteFrom(SESSIONS_TABLE,'user_id','=',$_SESSION['user_id']);
-				session_destroy();
-			}
-			if(!isset($interaction))
-			{
-				$interaction = openRailwayCore::createInteractionIdentifier();
-			}
-			if($system == 1 && isset($uid))
-			{
 				openRailwayCore::logEvent(time(),$interaction,$_SESSION['user_id'],5,1,"User (UID: " .$uid . ") forced log out by openRailway system");
+				session_destroy();
 				header("Location: " . ROOT . "user.php?mode=auth&action=login&l=flogout");
 			} elseif(!isset($system) && isset($uid))
 			{
-				header("Location: " . ROOT . "user.php?mode=auth&action=login&l=flogout");
+				openRailwayCore::deleteFrom(SESSIONS_TABLE,'user_id','=',$uid);
 				openRailwayCore::logEvent(time(),$interaction,$_SESSION['user_id'],5,1,"User (UID: " .$uid . ") forced log out by user (UID: " . $_SESSION['user_id'] . ")");
-			} elseif(!isset($system) && !isset($uid))
+				session_destroy();
+				header("Location: " . ROOT . "user.php?mode=auth&action=login&l=flogout");
+			} elseif(!isset($system) && !isset($uid) && isset($_SESSION['user_id']))
 			{
+				openRailwayCore::deleteFrom(SESSIONS_TABLE,'user_id','=',$_SESSION['user_id']);
+				session_destroy();
 				header("Location: " . ROOT . "user.php?mode=auth&action=login&l=logout");
 			}
 		}
@@ -355,18 +349,13 @@
 			if($system == 1)
 			{
 				$eventString = "User (UID: " . $uid . ") suspended by openRailway system";
-			} else
-			{
-				$eventString = "User (UID: " . $uid . ") suspended by user (UID: " . $_SESSION['user_id'] . ")";
-			}
-			if($system == 1)
-			{
 				Authentication::logUserOut($uid,$interaction,1);
 			} else
 			{
+				$eventString = "User (UID: " . $uid . ") suspended by user (UID: " . $_SESSION['user_id'] . ")";
 				Authentication::logUserOut($uid,$interaction,0);
-
 			}
+
 			openRailwayCore::logEvent(time(),$interaction,$_SESSION['user_id'],5,1,$eventString);
 		}
 		
