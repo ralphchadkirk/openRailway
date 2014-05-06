@@ -3,7 +3,7 @@
 	// Deal with logout form
 	if(isset($_GET['action']) && $_GET['action'] == "force" && isset($_POST['uid']))
 	{
-		Authentication::logUserOut($_POST['uid']);
+		Authentication::logUserOut($_POST['uid'],openRailwayCore::createInteractionIdentifier(),1);
 	}
 	
 	$sql = "SELECT * FROM `sessions`";
