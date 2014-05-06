@@ -23,13 +23,13 @@
 						<td>{user_sus_loop.UID} ({user_sus_loop.SID})</td>
 						<td>{user_sus_loop.NAME}</td>
 						<td>
-							<form class="form pull-left" action="{ROOT}admincp/index.php?module=usr_ban&action=unban" method="post">
+							<form class="form-inline" action="{ROOT}admincp/index.php?module=usr_ban&action=unban" method="post">
 								<input type="hidden" value="{user_sus_loop.UID}" name="unbanID" />
-								<button type="submit" class="btn btn-link">Reinstate user</button>
+								<button type="submit" class="btn btn-link btn-sm">Reinstate user</button>
 							</form>
-							<form class="form pull-right" action="{ROOT}admincp/index.php?module=usr_ban&action=deactivate" method="post">
+							<form class="form-inline" action="{ROOT}admincp/index.php?module=usr_ban&action=deactivate" method="post">
 								<input type="hidden" value="{user_sus_loop.UID}" name="UID" />
-								<button type="submit" class="btn btn-link">Deactivate user</button>
+								<button type="submit" class="btn btn-link btn-sm">Deactivate user</button>
 							</form>
 							<div style="clear: both;"></div>
 						</td>
