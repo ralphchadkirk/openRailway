@@ -68,3 +68,8 @@ footer
 {
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
+.navbar-brand
+{
+	font-family: "Gill Sans", sans-serif;
+	font-size: 18pt;
+}
