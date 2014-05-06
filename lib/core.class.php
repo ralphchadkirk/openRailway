@@ -71,7 +71,15 @@
 			{
 				trigger_error("Query failed: $query",E_USER_ERROR);
 			}
-  			return $result; 
+			$writeIterate = 1;
+			//		if($writeIterate == 1)
+			//{
+			//	openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),$_SESSION['user_id'],5,1,"Query run");
+			//	$writeIterate == 0;
+			//}
+						
+  			return $result;
+			
 		}
 		
 		/**
@@ -126,32 +134,13 @@
 																		'ACCESS_LEVEL' => $_SESSION['access_level_desc'] . " (" . $_SESSION['access_level'] . ")"
 																	   ,
 																		));
-            }
-                        
-			// Display list of modules in /modules
-			$path = FROOT . "modules/";	
-			$names = array();
-			$dirs = scandir($path);
-			foreach($dirs as $dir)
-			{
-				if(!is_dir($dir))
+				if((isset($_SESSION['access_level'])) && ($_SESSION['access_level'] > 5))
 				{
-					array_push($names,$dir);
+					$template->assign_block_vars('if_admin',array());
 				}
-			}
-			foreach($names as $name)
-			{
-				// Get the module config details
-				$path = FROOT . "modules/" . $name . "/";	
-				$module = parse_ini_file($path . "module.cfg");
-				$template->assign_block_vars("module_loop",array(
-																 "MODULE_NAME" => $module['name'],
-																 "MODULE_LINK" => ROOT . "modules/" . $module['directory'] . "/" . $module['landingpage'],
-																 ));
-			}
-			
-			$template->assign_var('DATE',date("l jS F Y"));
-     
+            }
+		
+			     
 			$template->set_filenames(array(
 											'head' => 'header.html',
 											));
@@ -169,10 +158,6 @@
 			$template->assign_var('RAILWAY_NAME',$railway_name);
 			$template->assign_var('CURRENT_YEAR',gmdate("Y"));
 			$template->assign_var('ROOT',ROOT);
-			if(isset($_SESSION['access_level']) && $_SESSION['access_level'] > 5)
-			{
-				$template->assign_block_vars('if_access_greater_5','');
-			}
 			$template->set_filenames(array(
 											'foot' => 'footer.html',
 											));
