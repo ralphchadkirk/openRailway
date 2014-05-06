@@ -1,5 +1,12 @@
 <?php
-	Authentication::accessLevelController(8,'>');
+	
+	if(isset($_GET['action']) && $_GET['action'] == 'deleteall')
+	{
+		$sql = "DELETE FROM `log` WHERE `security_relevant` = '1'";
+		$result = openRailwayCore::dbQuery($sql);
+		openRailwayCore::logEvent(time(),openRailwayCore::createInteractionIdentifier(),$_SESSION['user_id'],1,1,'User deleted all security log entries');
+		header("Location: " . ROOT . "admincp/index.php?module=log_err");
+	}
 	
 	$main = new Template;
 	$main->set_custom_template("includes/",'default');
@@ -48,6 +55,9 @@
 														 'SUA' => $event['source_user_agent'],
 														 'DESC' => $event['description'],
 														 ));
+			} else
+			{
+				$main->assign_block_vars('no_results','');
 			}
 		}
 	}

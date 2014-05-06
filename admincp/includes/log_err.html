@@ -24,7 +24,13 @@
 							<td>{log_err.DESC}</td>
 						</tr>
 						<!-- END log_err -->
+						<!-- BEGIN no_results -->
+						<tr>
+							<td colspan="6">There are no log entries to display</td>
+						</tr>
+						<!-- END no_results -->
 					</table>
+					<p><a href="{ROOT}admincp/index.php?module=log_err&action=deleteall" class="btn btn-danger">Delete entries</a></p>
 				</div>
 			</div>
 		</div>
